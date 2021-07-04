@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Paper-House/PaperHouse#readme",
   "dependencies": {
+    "@openzeppelin/contracts": "^4.2.0",
     "@truffle/hdwallet-provider": "^1.4.1"
   }
 }
