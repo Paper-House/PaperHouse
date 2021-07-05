@@ -57,9 +57,6 @@ contract PaperHouse is ERC721URIStorage {
         tokenUri = tokenURI(paperId);
 
         return (papers[paperId], tokenUri);
-        ResearchPaper memory rpaper = ResearchPaper(msg.sender,_author,newtokenId,_isfunding,_fundAmount,0);
-
-        papers[newpaperId]=rpaper;
     }
 
     function fundapaper(uint256 _paperid) public payable {
