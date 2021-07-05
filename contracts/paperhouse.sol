@@ -29,6 +29,7 @@ contract PaperHouse is ERC721URIStorage {
         address from;
         address to;
         uint256 amount;
+        uint256 paperId;
     }
 
     mapping(uint256 => ResearchPaper) public papers;
@@ -93,6 +94,7 @@ contract PaperHouse is ERC721URIStorage {
             donations[lowest].from = msg.sender;
             donations[lowest].to = rpaper.owner;
             donations[lowest].amount = msg.value;
+            donations[lowest].paperId=_paperid;
         }
 
         emit funding(msg.sender, rpaper.owner, msg.value, _paperid);
