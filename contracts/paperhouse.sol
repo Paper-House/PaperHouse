@@ -9,6 +9,7 @@ contract PaperHouse is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     Counters.Counter private _paperIds;
+    Counters.Counter private _donations;
 
     constructor() ERC721("PaperHouse", "PH") {}
 
@@ -24,7 +25,14 @@ contract PaperHouse is ERC721URIStorage {
         uint256 totalAmountFunded;
     }
 
+    struct Donations {
+        address from;
+        address to;
+        uint256 amount;
+    }
+
     mapping(uint256 => ResearchPaper) public papers;
+    mapping(uint256 => Donations) public donations;
 
     function publish(
         string memory tokenURI,
@@ -55,6 +63,8 @@ contract PaperHouse is ERC721URIStorage {
     }
 
     function fundapaper(uint256 _paperid) public payable {
+        _donations.increment();
+
         ResearchPaper storage rpaper = papers[_paperid];
 
         require(rpaper.allowFunding == true, "Funding not allowed");
@@ -70,6 +80,22 @@ contract PaperHouse is ERC721URIStorage {
 
         amount += msg.value;
         rpaper.totalAmountFunded = amount;
+
+        if (_donations.current() <= 5) {
+            uint256 lowest = _donations.current();
+
+            for (uint256 i = 0; i < _donations.current(); i++) {
+                if (donations[i].amount < msg.value) {
+                    lowest = i;
+                }
+            }
+
+            donations[lowest].from = msg.sender;
+            donations[lowest].to = rpaper.owner;
+            donations[lowest].amount = msg.value;
+        }
+
+        emit funding(msg.sender, rpaper.owner, msg.value, _paperid);
     }
 
     function getPaper(uint256 paperId)
