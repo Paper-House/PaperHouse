@@ -12,6 +12,8 @@ contract PaperHouse is ERC721URIStorage {
 
     constructor() ERC721("PaperHouse", "PH") {}
 
+    event published(uint256 _paperid);
+
     struct ResearchPaper {
         address owner;
         string author;
@@ -48,6 +50,7 @@ contract PaperHouse is ERC721URIStorage {
         );
 
         papers[newpaperId] = rpaper;
+        emit published(newtokenId);
     }
 
     function fundapaper(uint256 _paperid) public payable {
