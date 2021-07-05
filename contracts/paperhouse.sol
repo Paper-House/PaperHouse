@@ -17,12 +17,14 @@ contract PaperHouse is ERC721URIStorage {
         address owner;
         string author;
         uint256 tokenId;
-        bool isfunding;
+        bool allowFunding;
+        uint256 fundAmount; 
+        uint256 totalAmountFunded;
     }
 
     mapping(uint256=>ResearchPaper) public papers;
 
-    function publish(string memory tokenURI,string memory _author,bool _isfunding) public {
+    function publish(string memory tokenURI,string memory _author,bool _isfunding,uint256 _fundAmount) public {
         _tokenIds.increment();
         _paperIds.increment();
         
@@ -32,9 +34,24 @@ contract PaperHouse is ERC721URIStorage {
         _mint(msg.sender, newtokenId);
         _setTokenURI(newtokenId, tokenURI);
 
-        ResearchPaper memory rpaper = ResearchPaper(msg.sender,_author,newtokenId,_isfunding);
+        ResearchPaper memory rpaper = ResearchPaper(msg.sender,_author,newtokenId,_isfunding,_fundAmount,0);
 
         papers[newpaperId]=rpaper;
+    }
 
+    function fundapaper(uint256 _paperid) public payable {
+        
+        ResearchPaper storage rpaper = papers[_paperid];
+        
+        require(rpaper.allowFunding==true,"Funding not allowed");
+        
+        require(msg.value<=(rpaper.fundAmount-rpaper.totalAmountFunded),"no more Funding allowed");
+        
+        payable(address(rpaper.owner)).transfer(msg.value);
+
+        uint256 amount = rpaper.totalAmountFunded;
+
+        amount+=msg.value;
+        rpaper.totalAmountFunded=amount;
     }
 }
