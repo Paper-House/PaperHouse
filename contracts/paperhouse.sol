@@ -100,7 +100,7 @@ contract PaperHouse is ERC721URIStorage {
         }
 
         if (lowest <= 10) {
-            // Check if the donator has already exist in top funders.
+            // Check if the donator already exist in top funders.
             for (uint256 i = 0; i < 10; i++) {
                 // if yes then update the amount.
                 if (donations[i].from == msg.sender) {
