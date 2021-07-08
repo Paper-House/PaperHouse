@@ -135,4 +135,15 @@ contract PaperHouse is ERC721URIStorage {
 
         return (papers[paperId], tokenUri);
     }
+
+    function updatepaper(
+        uint256 _paperid,
+        bool _allowFunding,
+        uint256 _amount
+    ) public {
+        ResearchPaper storage rpaper = papers[_paperid];
+        require(msg.sender==rpaper.owner,"you are not the owner of this paper to update");
+        rpaper.allowFunding=_allowFunding;
+        rpaper.fundAmount=_amount;
+    }
 }
