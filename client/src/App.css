@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(
+    133.99deg,
+    #092537 -7.04%,
+    #0067ad -7.04%,
+    #0061a2 -7.04%,
+    #005b99 -7.04%,
+    #005792 -7.04%,
+    #003c65 13.92%,
+    #000000 100%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+}
