@@ -1,11 +1,8 @@
 nav {
   display: flex;
   align-items: center;
-  max-width: 1920px;
-  width: 100vw;
   padding: 0px 20px 0px 20px;
-  margin: auto;
-  margin-top: 15px;
+  margin-top: 15px !important;
   z-index: 999;
   position: sticky;
 }
@@ -63,11 +60,11 @@ input:focus {
 
 .nav-buttons a {
   color: #0097fd;
-  font-size: 100%;
-  font-weight: bolder;
-  font: bolder;
+  font-family: "Open Sans";
+  font-size: 1em;
+  font-weight: 600;
   cursor: pointer;
-  transition: 200ms ease-in;
+  transition: 0.2s ease-in;
 }
 
 #connect {
@@ -76,7 +73,7 @@ input:focus {
   color: white;
   padding: 9px 18px 9px 18px;
   border-radius: 26px;
-  transition: .25s ease-in-out;
+  transition: 0.25s ease-in-out;
   animation: glow 1s alternate infinite;
 }
 
@@ -85,7 +82,7 @@ input:focus {
   border: 1px solid #0097fd;
   box-sizing: border-box;
   border-radius: 26px;
-  color: #0097FD, 100%;
+  color: #0097fd, 100%;
   padding: 9px 18px 9px 18px;
 }
 
@@ -122,7 +119,70 @@ input:focus {
 .mobile__slider__toogle--search {
   display: none;
 }
+/*connect wallet*/
+.ConnectWallet_container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 65px);
+}
+.toggleoff {
+  position: absolute;
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  backdrop-filter: blur(100%);
+  width: 100%;
+  height: 100%;
+}
+.ConnectWallet {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  background-color: #092537;
+  border: 2px solid #0097fd;
+  border-radius: 10px;
+  padding: 20px 25px;
+}
+.connectwallet_text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.ConnectWallet_container h3 {
+  color: white;
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-size: 1.3em;
+}
+.connectwallet_text button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.connectwallet_metamask,
+.connectwallet_portis {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  width: 100%;
+  height: 80px;
+  border: 2px solid rgba(0, 151, 253, 0.5);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+  cursor: pointer;
+}
+.connectwallet_metamask:hover ,.connectwallet_portis:hover {
+  border: 2px solid rgba(0, 151, 253, 1);
 
+}
+.connectwallet_metamask img,
+.connectwallet_portis img {
+  width: 50px;
+}
 /* Mobile */
 @media only screen and (max-width: 767px) {
   nav {
@@ -229,10 +289,10 @@ input:focus {
   }
 }
 @keyframes glow {
-  0%{
-    box-shadow: 0px 0px 5px #0097FD;
+  0% {
+    box-shadow: 0px 0px 5px #0097fd;
   }
-  100%{
-    box-shadow: 0px 0px 18px #0097FD;
+  100% {
+    box-shadow: 0px 0px 18px #0097fd;
   }
 }
