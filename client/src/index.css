@@ -23,13 +23,18 @@ body {
   font-family: "Circular Std Bold", "Open Sans", sans-serif;
 }
 
+:root {
+  --red-circle: rgba(197, 101, 113, 0.7);
+  --violet-circle: #5c45ff;
+}
+
 .container {
   max-width: 1500px;
   margin: 0 auto;
   padding: 0px 20px 0px 20px;
 }
 
-@media only screen and (min-width: 2560px) {
+@media only screen and (min-width: 1920px) {
   .container {
     max-width: 1500px;
     margin: 0 auto;
