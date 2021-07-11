@@ -4,8 +4,7 @@
   position: sticky;
   background: rgba(0, 0, 0, 0.06);
   backdrop-filter: saturate(100%) blur(20px);
-  padding: 0px 20px 0px 20px;
-  width: 100vw;
+  width: 100%;
 }
 
 nav {
@@ -14,6 +13,8 @@ nav {
   height: 65px;
   margin: auto;
   max-width: 1500px;
+  padding: 0px 20px 0px 20px;
+
 }
 
 nav img {
@@ -135,12 +136,12 @@ input:focus {
 }
 /*connect wallet*/
 .ConnectWallet_container {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 65px);
+  height: calc(100vh - 60px);
 }
 .toggleoff {
   position: absolute;

@@ -32,10 +32,15 @@ export const Navbar = () => {
         </div>
         <div className="nav-buttons">
           <div className="nav-buttons-left">
-            <NavLink id="explore" to="/explore" activeClassName="active">
+            <NavLink id="explore" to="/explore" exact activeClassName="active">
               Explore
             </NavLink>
-            <NavLink id="my-papers" to="/mypaper" activeClassName="active">
+            <NavLink
+              id="my-papers"
+              to="/mypaper"
+              exact
+              activeClassName="active"
+            >
               My Papers
             </NavLink>
           </div>
