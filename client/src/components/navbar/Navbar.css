@@ -77,7 +77,7 @@ input:focus {
   padding: 9px 18px 9px 18px;
   border-radius: 26px;
   transition: .25s ease-in-out;
-  animation: glow 1s infinite ;
+  animation: glow 1s alternate infinite;
 }
 
 #publish {
