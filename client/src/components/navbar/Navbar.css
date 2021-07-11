@@ -1,8 +1,10 @@
 nav {
   display: flex;
   align-items: center;
+  max-width: 1920px;
   width: 100vw;
   padding: 0px 20px 0px 20px;
+  margin: auto;
   margin-top: 15px;
 }
 
@@ -48,6 +50,7 @@ input:focus {
 
 .nav-buttons {
   width: 30%;
+  height: 40px;
   min-width: 523px;
   display: flex;
   align-items: center;
@@ -65,7 +68,7 @@ input:focus {
   background: #0097fd;
   box-shadow: 8px 12px 14px rgba(0, 151, 253, 0.19), inset 0px 4px 30px #6447f4;
   color: white;
-  padding: 13px 20px 13px 20px;
+  padding: 9px 18px 9px 18px;
   border-radius: 26px;
 }
 
@@ -76,7 +79,7 @@ input:focus {
   box-sizing: border-box;
   border-radius: 26px;
   color: #0097fd, 100%;
-  padding: 13px 20px 13px 20px;
+  padding: 9px 18px 9px 18px;
 }
 
 #explore, #my-papers {
@@ -143,6 +146,7 @@ input:focus {
   .dropdown__icon--circle {
     height: fit-content;
     height: 40px;
+    width: 40px;
     padding: 10px;
     border-radius: 50%;
     border: 1px solid hsla(204, 100%, 50%, 0.733);
@@ -151,8 +155,8 @@ input:focus {
   }
 
   .dropdown__icon--circle svg {
-    width: 18px;
-    height: 18px;
+    width: 18px !important;
+    height: 18px !important;
     font-weight: bolder;
   }
 }
