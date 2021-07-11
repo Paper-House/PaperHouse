@@ -1,1 +1,194 @@
- 
+.paper_container {
+  height: calc(100vh - 65px);
+  display: flex;
+  flex-direction: row;
+}
+.paper_pdf {
+  height: 100%;
+  width: 65%;
+  text-align: center;
+  padding: 20px;
+}
+/* Paper details section */
+.paper_info {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.paper_details {
+  width: 100%;
+  height: 80%;
+  overflow-y: auto;
+  padding: 20px;
+}
+.paper_title h3 {
+  color: white;
+  font-weight: 600;
+  font-size: 1.25em;
+}
+.paper_publisher {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+}
+.paper_publisher h3 {
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+  margin-right: 5px;
+}
+.paper_description {
+  margin-top: 10px;
+  color: white;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+.paper_authors_section h3 {
+  margin-top: 10px;
+
+  color: white;
+  font-weight: 600;
+  font-size: 1.3em;
+}
+.paper_authors_section p {
+  color: white;
+  font-weight: 400;
+  font-size: 1em;
+}
+.paper_view {
+  margin-top: 10px;
+}
+.paper_view button {
+  outline: none;
+  border: none;
+  background-color: #0097fd;
+  padding: 10px 15px;
+
+  border-radius: 100px;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  margin: 5px;
+  width: fit-content;
+  cursor: pointer;
+}
+/* funders section */
+.paper_funders_title h3 {
+  margin-top: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.3em;
+}
+.paper_funder {
+  margin-top: 5px;
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #0097fd;
+  border-radius: 12px;
+}
+.paper_funder img {
+  max-width: 40px;
+  margin-right: 5px;
+}
+.paper_funder h3 {
+  color: white;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.paper_funder h2 {
+  color: white;
+  font-weight: 400;
+  font-size: 0.8em;
+}
+/* fund section */
+.paper_fund {
+  width: 90%;
+  height: fit-content;
+  margin-bottom: 10px;
+  background: #01426e;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.paper_fund_info {
+  display: flex;
+  justify-content: space-between;
+}
+.paper_fund_info h3 {
+  color: #35a2fc;
+  font-weight: 400;
+}
+
+.paper_fund_bar {
+  position: relative;
+}
+.paper_fund_bar_bg,
+.paper_fund_bar_current {
+  height: 15px;
+  width: 100%;
+  background-color: #346f96;
+  border-radius: 100px;
+  position: absolute;
+}
+.paper_fund_bar_current {
+  width: 50%;
+  background: linear-gradient(
+    270deg,
+    #011a2b -16.79%,
+    #015086 58.15%,
+    #0097fd 110.55%
+  );
+}
+.paper_fund_bar h3 {
+  margin-top: 15px;
+  color: #35a2fc;
+  font-size: 0.95em;
+  font-weight: 400;
+}
+.paper_fund button {
+  width: fit-content;
+  outline: none;
+  background-color: #0097fd;
+  border: none;
+  color: white;
+  border-radius: 100px;
+  padding: 10px 30px;
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 1em;
+  align-self: center;
+  cursor: pointer;
+}
+.paper_fund button:hover {
+  opacity: 0.9;
+}
+/* address button */
+.address-btn {
+  display: flex;
+  border-radius: 100px;
+  background-color: #0097fd;
+  outline: none;
+  border: none;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px 10px;
+}
+.address-btn h3 {
+  margin: 0;
+  font-size: 0.8em;
+  font-weight: 300;
+}
+.address-btn img {
+  width: 20px;
+  margin-right: 5px;
+}

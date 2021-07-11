@@ -1,1 +1,24 @@
- 
+.Mypapers_container {
+  display: flex;
+  height: calc(100vh - 65px);
+}
+
+.sidebar_ {
+  height: 100%;
+  min-width: 300px;
+  border-radius: 0px 21px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  background-image: url(./blur.png);
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#sidebar_active_button {
+  background: rgba(0, 152, 255, 0.36);
+  color: white;
+  text-align: center;
+  border-radius: 24px;
+  width: 70%;
+  height: 67.37px;
+}
