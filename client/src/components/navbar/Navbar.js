@@ -2,12 +2,12 @@ import React from "react";
 
 import "./Navbar.css";
 
-import PHLogo from "../assets/PHLogo.png";
+import logo from "../assets/logo.svg";
 
 export default function Navbar() {
   return (
     <nav>
-      <img src={PHLogo} />
+      <img src={logo} />
       <div className="paper-search">
         <form>
           <svg
