@@ -9,7 +9,7 @@ export default function Navbar() {
   const [walletToggle, setWalletToggle] = useState(false);
   return (
     <>
-      <nav className="container">
+      <nav className="container nav__backdrop">
         <img src={logo} />
         <div className="paper-search">
           <form>
@@ -75,7 +75,7 @@ export default function Navbar() {
         </div>
       </nav>
       {walletToggle ? (
-        <div className="ConnectWallet_container container">
+        <div className="ConnectWallet_container">
           <div
             className="toggleoff"
             onClick={() => setWalletToggle(false)}
