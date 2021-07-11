@@ -1,22 +1,29 @@
+.nav__backdrop {
+  top: 0;
+  z-index: 10;
+  position: sticky;
+  background: rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(204px);
+  padding: 0px 20px 0px 20px;
+}
+
 nav {
   display: flex;
   align-items: center;
   max-width: 1920px;
-  width: 100vw;
-  padding: 0px 20px 0px 20px;
+  height: 78px;
   margin: auto;
-  margin-top: 15px;
-  z-index: 999;
-  position: sticky;
 }
 
 nav img {
   margin-right: 20px;
   width: 50px;
+  /* margin-top: 15px; */
 }
 
 .paper-search {
   width: 70%;
+  /* margin-top: 15px; */
 }
 
 .paper-search form {
@@ -59,6 +66,7 @@ input:focus {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  /* margin-top: 15px; */
 }
 
 .nav-buttons a {
@@ -76,7 +84,7 @@ input:focus {
   color: white;
   padding: 9px 18px 9px 18px;
   border-radius: 26px;
-  transition: .25s ease-in-out;
+  transition: 0.25s ease-in-out;
   animation: glow 1s alternate infinite;
 }
 
@@ -85,7 +93,7 @@ input:focus {
   border: 1px solid #0097fd;
   box-sizing: border-box;
   border-radius: 26px;
-  color: #0097FD, 100%;
+  color: #0097fd, 100%;
   padding: 9px 18px 9px 18px;
 }
 
@@ -229,10 +237,10 @@ input:focus {
   }
 }
 @keyframes glow {
-  0%{
-    box-shadow: 0px 0px 5px #0097FD;
+  0% {
+    box-shadow: 0px 0px 5px #0097fd;
   }
-  100%{
-    box-shadow: 0px 0px 18px #0097FD;
+  100% {
+    box-shadow: 0px 0px 18px #0097fd;
   }
 }
