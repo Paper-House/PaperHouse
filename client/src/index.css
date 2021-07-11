@@ -26,6 +26,7 @@ body {
 .container {
   max-width: 1500px;
   margin: 0 auto;
+  padding: 0px 20px 0px 20px;
 }
 a {
   text-decoration: none;
