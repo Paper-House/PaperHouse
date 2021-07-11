@@ -7,7 +7,7 @@ import PHLogo from "../assets/PHLogo.png";
 export default function Navbar() {
   return (
     <nav>
-      <img src={PHLogo} />
+      <img src={PHLogo} alt="ph" />
       <div className="paper-search">
         <form>
           <svg

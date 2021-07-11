@@ -196,8 +196,8 @@ input:focus {
     align-items: center;
     height: fit-content;
     width: 30%;
-    max-width: 100px;
-    min-width: 110px;
+    max-width: 95px;
+    min-width: 95px;
   }
 
   .search__icon--circle {
