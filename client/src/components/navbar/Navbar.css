@@ -3,7 +3,7 @@
   z-index: 10;
   position: sticky;
   background: rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(204px);
+  backdrop-filter: saturate(180%) blur(20px);
   padding: 0px 20px 0px 20px;
 }
 
