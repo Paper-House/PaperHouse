@@ -26,6 +26,9 @@ body {
 :root {
   --red-circle: rgba(197, 101, 113, 0.7);
   --violet-circle: #5c45ff;
+  --backdrop-border-radius: 21px;
+  --pH-heading-color:#0097FD;
+  --button-light-background-color: #0097FD54;
 }
 
 .container {
