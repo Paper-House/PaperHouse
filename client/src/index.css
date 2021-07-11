@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
 @import url("//db.onlinewebfonts.com/c/961a181da27e7cbc072ec2fb5bbfe2a9?family=Circular+Std+Bold");
-
 
 * {
   margin: 0;
@@ -27,4 +26,7 @@ body {
 .container {
   max-width: 1500px;
   margin: 0 auto;
+}
+a {
+  text-decoration: none;
 }
