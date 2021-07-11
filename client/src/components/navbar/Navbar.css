@@ -60,13 +60,14 @@ input:focus {
 .nav-buttons a {
   color: #0097fd;
   font-size: 100%;
-  font-weight: bold;
+  font-weight: bolder;
+  font: bolder;
   cursor: pointer;
 }
 
 #connect {
   background: #0097fd;
-  box-shadow: 8px 12px 14px rgba(0, 151, 253, 0.19), inset 0px 4px 30px #6447f4;
+  /* box-shadow: 8px 12px 14px rgba(0, 151, 253, 0.19), inset 0px 4px 30px #6447f4; */
   color: white;
   padding: 9px 18px 9px 18px;
   border-radius: 26px;
