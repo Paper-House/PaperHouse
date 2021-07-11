@@ -1,6 +1,6 @@
 .nav__backdrop {
   top: 0;
-  z-index: 10;
+  z-index: 999;
   position: sticky;
   background: rgba(0, 0, 0, 0.06);
   backdrop-filter: saturate(100%) blur(20px);

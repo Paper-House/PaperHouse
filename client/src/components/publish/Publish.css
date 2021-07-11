@@ -1,0 +1,150 @@
+.Publish__container {
+  padding-top: 15px;
+  position: relative;
+}
+
+#pCircle {
+  position: absolute;
+  z-index: 0;
+  filter: blur(30px);
+  overflow:hidden;
+}
+
+.circle1-red {
+  right: -4%;
+}
+
+.circle1-violet {
+  right: -4%;
+  top: 15%;
+}
+
+.circle2-red {
+  bottom: 8%;
+  left: -4%;
+}
+
+.circle2-violet {
+  bottom: -2%;
+  left: -4%;
+}
+
+.Publish__form-circle-red {
+  background: var(--red-circle);
+  box-shadow: 0px 4px 100px 0px #c56571;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.Publish__form-circle-violet {
+  background: var(--violet-circle);
+  box-shadow: 0px 4px 100px #6c63ff;
+  border-radius: 50%;
+  width: 159px;
+  height: 159px;
+}
+
+.Publish__form-backdrop {
+  z-index: 99;
+  /* height: calc(100vh - 65px - 15px - 5px); */
+  height: 90vh;
+  max-height: 1320px;
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: -15px -15px 34px rgb(0 0 0 / 24%);
+  backdrop-filter: blur(80px);
+  padding: 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border-radius: var(--backdrop-border-radius);
+}
+
+#publish-heading {
+  text-align: center;
+  color: var(--pH-heading-color);
+}
+
+.Publish__form {
+  display: flex;
+  height: calc(100% - 25px);
+  padding-top: 30px;
+}
+
+.Publish__form--upload {
+  max-width: 50%;
+  width: fit-content;
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#Publish__file--upload {
+  border-radius: 30px;
+  border: 1px dashed #0097fd;
+  color: var(--pH-heading-color);
+  text-align: center;
+}
+
+.Publish__form--upload-pdf {
+  padding: 60px 30px;
+  width: 50%;
+  min-width: 324px;
+  line-height: 30px;
+}
+
+.Publish__form--upload-pdf h2 {
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.Publish__form--upload-pdf p {
+  font-size: 1rem;
+}
+
+.Publish__form--upload-thumbnail {
+  padding: 60px 30px;
+  width: 50%;
+  min-width: 324px;
+  margin-top: 25px;
+  line-height: 30px;
+}
+
+.Publish__form--upload-thumbnail h2 {
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.Publish__form--upload-thumbnail p {
+  font-size: 1rem;
+}
+
+.Publish__form--upload-chooseFile {
+  width: fit-content;
+  margin: 0 auto;
+  background-color: var(--button-light-background-color);
+  border-radius: 48px;
+}
+
+.Publish__form--upload-chooseFile {
+  margin-top: 8px;
+}
+
+.Publish__form--upload-chooseFile p {
+  padding: 15px 25px;
+  width: 100%;
+}
+
+.Publish__form--upload-chooseFile p label {
+	text-decoration: underline;
+}
+
+.Publish__form--upload-chooseFile
+label {
+  cursor: pointer;
+}
+
+.Publish__form--input-boxes {
+  max-width: 50%;
+  flex-basis: 50%;
+}

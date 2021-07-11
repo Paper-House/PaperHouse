@@ -1,5 +1,125 @@
-import React from "react";
+import React, { useState } from "react";
+
+import Select from "react-select";
+
+import "./Publish.css";
 
 export const Publish = () => {
-  return <div>publish</div>;
+  const [categoryOptions, setCategoryOptions] = useState([
+    { value: "Science", label: "Science" },
+    { value: "ML/AI", label: "ML/AI" },
+    { value: "Space", label: "Space" },
+    { value: "Medical", label: "Medical" },
+    { value: "Economics", label: "Economics" },
+    { value: "Other", label: "Other" },
+  ]);
+
+  const [funding, setfunding] = useState(false);
+
+  const publishHandleInputChange = (object) => {
+    console.group("Input Changed");
+    console.log(object);
+    console.groupEnd();
+  };
+
+  console.log(`funding: ${funding}`);
+  console.log(categoryOptions);
+
+  return (
+    <div className="container Publish__container">
+      <div className="Publish__form-circle-red circle1-red" id="pCircle"></div>
+      <div className="Publish__form-circle-violet circle1-violet" id="pCircle"></div>
+      <div className="Publish__form-circle-red circle2-red" id="pCircle"></div>
+      <div className="Publish__form-circle-violet circle2-violet" id="pCircle"></div>
+      <div className="Publish__form-backdrop">
+        <h1 id="publish-heading">Publish a Research Paper</h1>
+        <div className="Publish__form"> {/* flex */}
+          <div className="Publish__form--upload"> {/* flex item 1 */}
+            <div className="Publish__form--upload-pdf" id="Publish__file--upload">
+              <h2>Upload PDF</h2>
+              <p>Supports .pdf max 100MB</p>
+              <div className="Publish__form--upload-chooseFile">
+                <input
+                  type="file"
+                  name="upload"
+                  id="upload-pdf"
+                  accept="application/pdf"
+                  required
+                  hidden
+                />
+                <p>
+                  <label for="upload-pdf">Choose File</label>
+                </p>
+              </div>
+            </div>
+            <div className="Publish__form--upload-thumbnail" id="Publish__file--upload">
+              <h2>Upload thumbnail</h2>
+              <p>Supports .png .jpg .jpeg max 5MB</p>
+              <div className="Publish__form--upload-chooseFile">
+                <input
+                  type="file"
+                  id="upload-img"
+                  accept="image/*"
+                  required
+                  hidden
+                />
+                <p>
+                  <label for="upload-img">Choose File</label>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="Publish__form--input-boxes"> {/* flex item 2 */}
+            <div className="Publish__form--input-title">
+              <h2>Title</h2>
+              <input type="text" required />
+            </div>
+            <div className="Publish__form--input--author">
+              <h2>Author</h2>
+              <input type="text" required />
+            </div>
+            <div className="Publish__form--input--description">
+              <h2>Description</h2>
+              <input type="text" required />
+            </div>
+            <div className="Publish__form--input--category">
+              <h2>Categories</h2>
+              <Select
+                defaultValue={[categoryOptions[0], categoryOptions[1]]}
+                isMulti
+                name="colors"
+                options={categoryOptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={publishHandleInputChange}
+              />
+            </div>
+            <div className="Publish__form--input--funding-toogle">
+              <h2>Allow funding</h2>
+              <input
+                type="checkbox"
+                onChange={() => setfunding(!funding)}
+                required
+              />
+            </div>
+            <div className="Publish__form--input--funding-amount">
+              <h2>Funding Amount</h2>
+              <input type="text" required />
+            </div>
+            <p>
+              Once your NFT is minted on the Polygon blockchain, you will not be
+              able to edit or update any of its information.
+            </p>
+            <p>
+              You agree that any information uploaded to the Paper House will
+              not contain material subject to copyright or other proprietary
+              rights, unless you have necessary permission or are otherwise
+              legally entitled to post the material.
+            </p>
+            <button className="Publish__form--button">Publish</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
