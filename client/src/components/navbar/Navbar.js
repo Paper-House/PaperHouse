@@ -8,9 +8,10 @@ import portis from "../assets/portis.png";
 export const Navbar = () => {
   const [walletToggle, setWalletToggle] = useState(false);
   return (
+    <>
     <div className="nav__backdrop">
       <nav>
-        <NavLink to="/" className="logo-navlink">
+        <NavLink to="/" className="logo-navlink" exact activeClassName="active">
           <img src={logo} />
         </NavLink>
         <div className="paper-search">
@@ -32,15 +33,10 @@ export const Navbar = () => {
         </div>
         <div className="nav-buttons">
           <div className="nav-buttons-left">
-            <NavLink id="explore" to="/explore" exact activeClassName="active">
+            <NavLink id="explore" to="/explore">
               Explore
             </NavLink>
-            <NavLink
-              id="my-papers"
-              to="/mypaper"
-              exact
-              activeClassName="active"
-            >
+            <NavLink id="my-papers" to="/mypaper">
               My Papers
             </NavLink>
           </div>
@@ -87,6 +83,7 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
+      </div>
       {walletToggle ? (
         <div className="ConnectWallet_container">
           <div
@@ -124,6 +121,6 @@ export const Navbar = () => {
       ) : (
         ""
       )}
-    </div>
+      </>
   );
 };
