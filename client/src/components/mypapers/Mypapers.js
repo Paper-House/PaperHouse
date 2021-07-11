@@ -1,7 +1,5 @@
-import React from "react"
+import React from "react";
 
-export default function Mypapers (){
-    return(
-        <div></div>
-    )
-}
+export const Mypapers = () => {
+  return <div>my papers</div>;
+};

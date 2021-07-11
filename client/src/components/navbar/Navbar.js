@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 import logo from "../assets/logo.svg";
 import metamask from "../assets/metamask.png";
 import portis from "../assets/portis.png";
-export default function Navbar() {
+export const Navbar = () => {
   const [walletToggle, setWalletToggle] = useState(false);
   return (
     <div className="nav__backdrop">
       <nav>
-        <img src={logo} />
+        <NavLink to="/">
+          <img src={logo} />
+        </NavLink>
         <div className="paper-search">
           <form>
             <svg
@@ -30,11 +32,17 @@ export default function Navbar() {
         </div>
         <div className="nav-buttons">
           <div className="nav-buttons-left">
-            <a id="explore">Explore</a>
-            <a id="my-papers">My Papers</a>
+            <NavLink id="explore" to="/explore" activeClassName="active">
+              Explore
+            </NavLink>
+            <NavLink id="my-papers" to="/mypaper" activeClassName="active">
+              My Papers
+            </NavLink>
           </div>
           <div className="nav-buttons-right">
-            <a id="publish">Publish</a>
+            <NavLink id="publish" to="/publish">
+              Publish
+            </NavLink>
             <a id="connect" onClick={() => setWalletToggle(!walletToggle)}>
               Connect
             </a>
@@ -113,4 +121,4 @@ export default function Navbar() {
       )}
     </div>
   );
-}
+};
