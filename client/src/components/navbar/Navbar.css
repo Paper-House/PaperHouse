@@ -6,6 +6,8 @@ nav {
   padding: 0px 20px 0px 20px;
   margin: auto;
   margin-top: 15px;
+  z-index: 999;
+  position: sticky;
 }
 
 nav img {
@@ -46,6 +48,7 @@ select,
 input:focus {
   color: #0097fd;
   font-size: 1rem;
+  font-weight: bolder;
 }
 
 .nav-buttons {

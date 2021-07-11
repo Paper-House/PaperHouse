@@ -25,7 +25,7 @@ export default function Navbar() {
           <input type="text" placeholder="Search Papers" />
         </form>
       </div>
-      <div class="nav-buttons">
+      <div className="nav-buttons">
         <div className="nav-buttons-left">
           <a id="explore">Explore</a>
           <a id="my-papers">My Papers</a>
