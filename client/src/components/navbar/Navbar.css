@@ -66,6 +66,7 @@ input:focus {
   font-weight: bolder;
   font: bolder;
   cursor: pointer;
+  transition: 200ms ease-in;
 }
 
 #connect {
@@ -84,11 +85,21 @@ input:focus {
   border-radius: 26px;
   color: #0097fd, 100%;
   padding: 9px 18px 9px 18px;
+  opacity: 0.7;
+}
+
+#publish:hover {
+  opacity: 1;
 }
 
 #explore, #my-papers {
   border-radius: 26px;
   padding: 13px 20px 13px 20px;
+}
+
+#explore:hover, #my-papers:hover {
+  /* color: #CECECE; */
+  color: white;
 }
 
 .nav-buttons-left {
