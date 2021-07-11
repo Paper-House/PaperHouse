@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import "./Navbar.css";
 
 import logo from "../assets/logo.svg";
-import metamask from "../assets/metamask.png"
-import portis from "../assets/portis.png"
+import metamask from "../assets/metamask.png";
+import portis from "../assets/portis.png";
 export default function Navbar() {
   const [walletToggle, setWalletToggle] = useState(false);
   return (
-    <>
-      <nav className="container nav__backdrop">
+    <div className="nav__backdrop">
+      <nav>
         <img src={logo} />
         <div className="paper-search">
           <form>
@@ -83,7 +83,7 @@ export default function Navbar() {
           <div className="ConnectWallet">
             <div className="connectwallet_text">
               <h3>Connect Wallet</h3>
-              <button onClick={()=>setWalletToggle(false)}>
+              <button onClick={() => setWalletToggle(false)}>
                 <svg
                   width="35"
                   height="35"
@@ -98,13 +98,19 @@ export default function Navbar() {
                 </svg>
               </button>
             </div>
-            <div className="connectwallet_metamask"><h3>MetaMask</h3><img src={metamask} alt="metamask" /></div>
-            <div className="connectwallet_portis"><h3>Portis</h3><img src={portis} alt="metamask" /></div>
+            <div className="connectwallet_metamask">
+              <h3>MetaMask</h3>
+              <img src={metamask} alt="metamask" />
+            </div>
+            <div className="connectwallet_portis">
+              <h3>Portis</h3>
+              <img src={portis} alt="metamask" />
+            </div>
           </div>
         </div>
       ) : (
         ""
       )}
-    </>
+    </div>
   );
 }
