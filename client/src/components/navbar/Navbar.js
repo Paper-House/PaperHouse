@@ -10,7 +10,7 @@ export const Navbar = () => {
   return (
     <div className="nav__backdrop">
       <nav>
-        <NavLink to="/">
+        <NavLink to="/" className="logo-navlink">
           <img src={logo} />
         </NavLink>
         <div className="paper-search">

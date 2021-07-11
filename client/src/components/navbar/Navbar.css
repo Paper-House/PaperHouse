@@ -22,6 +22,10 @@ nav img {
   /* margin-top: 15px; */
 }
 
+.logo-navlink {
+  height: 50px;
+}
+
 .paper-search {
   width: 70%;
   /* margin-top: 15px; */
@@ -214,6 +218,10 @@ input:focus {
   nav img {
     width: 40px;
     margin-right: 0px;
+  }
+
+  .logo-navlink {
+    height: 40px;
   }
 
   .mobile__slider__toogle--search {
