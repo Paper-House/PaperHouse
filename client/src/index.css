@@ -30,6 +30,10 @@ body {
   --button-light-background-color: #0097FD54;
 }
 
+div#root {
+  overflow: hidden;
+}
+
 .container {
   max-width: 1500px;
   margin: 0 auto;
