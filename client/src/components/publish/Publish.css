@@ -166,6 +166,7 @@
   border-radius: 5px;
   padding: 20px 20px;
   margin-top: 10px;
+  color: #0097FD;
 }
 
 
@@ -173,6 +174,11 @@
   font-size: 0.9rem;
   font-weight: bold;
   text-align: start;
+}
+
+.Publish__form--input-boxes input:focus, textarea:focus {
+  outline: none;
+  color: #0097FD;
 }
 
 .Publish__form--input-title {
@@ -191,6 +197,7 @@
   padding: 20px 20px;
   margin-top: 10px;
   resize: none;
+  color: #0097FD;
 }
 
 .basic-multi-select {
