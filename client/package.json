@@ -30,5 +30,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@iconify/icons-akar-icons": "^1.1.16",
+    "@iconify/react": "^1.1.4"
   }
 }
