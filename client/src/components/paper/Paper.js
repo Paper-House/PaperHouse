@@ -11,6 +11,7 @@ export const Paper = () => {
           type="application/pdf"
           width="100%"
           height="100%"
+          className="embeded_pdf"
         />
       </div>
       <div className="paper_info">
