@@ -112,7 +112,7 @@ export const Paper = () => {
           </div>
           <div className="paper_fund_bar">
             <div className="paper_fund_bar_bg"></div>
-            <div uclassName="paper_fund_bar_current"></div>
+            <div className="paper_fund_bar_current"></div>
             <h3>50%</h3>
           </div>
           <button>FUND THIS RESEARCH PAPER</button>
