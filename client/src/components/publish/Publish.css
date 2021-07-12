@@ -1,0 +1,275 @@
+.Publish__container {
+  padding-top: 15px;
+  position: relative;
+}
+
+#pCircle {
+  position: absolute;
+  z-index: 0;
+  filter: blur(30px);
+}
+
+.circle1-red {
+  right: 4%;
+}
+
+.circle1-violet {
+  right: 4%;
+  top: 15%;
+}
+
+.circle2-red {
+  bottom: 8%;
+  left: 10%;
+}
+
+.circle2-violet {
+  bottom: 2%;
+  left: 4%;
+}
+
+.Publish__form-circle-red {
+  background: var(--red-circle);
+  box-shadow: 0px 4px 100px 0px #c56571;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.Publish__form-circle-violet {
+  background: var(--violet-circle);
+  box-shadow: 0px 4px 100px #6c63ff;
+  border-radius: 50%;
+  width: 159px;
+  height: 159px;
+}
+
+.Publish__form-backdrop {
+  z-index: 99;
+  /* height: calc(100vh - 65px - 15px - 5px); */
+  height: fit-content;
+  min-height: 850px;
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: -15px -15px 34px rgb(0 0 0 / 24%);
+  backdrop-filter: blur(80px);
+  padding: 20px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border-radius: var(--backdrop-border-radius);
+}
+
+#publish-heading {
+  text-align: center;
+  color: var(--pH-heading-color);
+}
+
+.Publish__form {
+  display: flex;
+  padding-top: 30px;
+  min-height: 80vh;
+  height: fit-content;
+}
+
+.Publish__form--upload {
+  max-width: 50%;
+  width: 50%;
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#Publish__file--upload {
+  border-radius: var(--backdrop-border-radius);
+  border: 1px dashed #0097fd;
+  color: var(--pH-heading-color);
+  text-align: center;
+}
+
+.Publish__form--upload-pdf {
+  padding: 60px 30px;
+  width: 60%;
+  min-width: 324px;
+  line-height: 30px;
+}
+
+.Publish__form--upload-pdf h2 {
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.Publish__form--upload-pdf p {
+  font-size: 1rem;
+}
+
+.Publish__form--upload-thumbnail {
+  padding: 60px 30px;
+  width: 60%;
+  min-width: 324px;
+  margin-top: 25px;
+  line-height: 30px;
+}
+
+.Publish__form--upload-thumbnail h2 {
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.Publish__form--upload-thumbnail p {
+  font-size: 1rem;
+}
+
+.Publish__form--upload-chooseFile {
+  width: fit-content;
+  margin: 0 auto;
+  background-color: var(--button-light-background-color);
+  border-radius: 48px;
+}
+
+.Publish__form--upload-chooseFile {
+  margin-top: 20px;
+}
+
+.Publish__form--upload-chooseFile p {
+  padding: 15px 35px;
+  width: 100%;
+}
+
+.Publish__form--upload-chooseFile p label {
+  text-decoration: underline;
+}
+
+.Publish__form--upload-chooseFile label {
+  cursor: pointer;
+}
+
+.Publish__form--input-boxes {
+  width: 50%;
+  flex-basis: 50%;
+  display: grid;
+  /* grid-template-rows: 98px 98px 200px 98px auto auto auto auto; */
+  grid-template-rows: auto auto 200px auto auto auto auto auto 1fr;
+  grid-gap: 30px;
+}
+
+.Publish__form--input-boxes h2 {
+  color: var(--pH-heading-color);
+}
+
+.Publish__form--input-boxes input {
+  background-color: transparent;
+  border: none;
+  background: rgba(0, 151, 253, 0.31);
+  width: 80%;
+  border-radius: 5px;
+  padding: 20px 20px;
+  margin-top: 10px;
+}
+
+
+.Publish__form--input-boxes input::placeholder {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: start;
+}
+
+.Publish__form--input-title {
+  min-height: fit-content;
+  height: 100%;
+}
+
+.Publish__form--input--description textarea {
+  height: max-content;
+  height: calc(100% - 33px - 10px);
+  background-color: transparent;
+  border: none;
+  background: rgba(0, 151, 253, 0.31);
+  width: 80%;
+  border-radius: 5px;
+  padding: 20px 20px;
+  margin-top: 10px;
+  resize: none;
+}
+
+.basic-multi-select {
+  width: 80%;
+  margin-top: 10px;
+}
+
+.Publish__form--input--funding-toogle {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.Publish__form--input--funding-toogle h2 {
+  width: 100%;
+}
+
+.Publish__form--input--funding-toogle input {
+  margin-top: 0px;
+  width: fit-content;
+}
+
+.Publish__form--input--funding-amount {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.Publish__form--input--funding-amount h2 {
+  width: 100%;
+}
+
+.Publish__form--input--funding-amount input {
+  margin-top: 0px;
+  height: 30px;
+  max-width: 50%;
+  width: 20%;
+}
+
+.Publish__form--input--funding-amount input::placeholder {
+  text-align: center;
+}
+
+.Publish__form--input--terms {
+  color: #0097fd;
+  width: 80%;
+}
+
+.Publish__form--input--terms p { 
+  font-size: 100%;
+  font-weight: 400;
+}
+#Publish__form--input--terms--item2 {
+  margin-top: 10px;
+}
+
+.Publish__form--button {
+  min-width: 20%;
+  max-width: 40%;
+  width: 100px;
+  height: 50px;
+  max-height: 60px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #0097FD;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 100%;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.25s ease-in-out;
+  animation: glow 1s alternate infinite
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0px 0px 5px #0097fd;
+  }
+  100% {
+    box-shadow: 0px 0px 18px #0097fd;
+  }
+}
+
