@@ -45,8 +45,7 @@
 }
 
 .Publish__form-backdrop {
-  z-index: 99;
-  /* height: calc(100vh - 65px - 15px - 5px); */
+  z-index: 3;
   height: fit-content;
   min-height: 850px;
   background: rgba(0, 0, 0, 0.06);
@@ -166,10 +165,9 @@
   border-radius: 5px;
   padding: 20px 20px;
   margin-top: 10px;
-  color: #0097FD;
+  color: #0097fd;
   font-size: 0.9rem;
 }
-
 
 .Publish__form--input-boxes input::placeholder {
   font-size: 0.9rem;
@@ -177,9 +175,10 @@
   text-align: start;
 }
 
-.Publish__form--input-boxes input:focus, textarea:focus {
+.Publish__form--input-boxes input:focus,
+textarea:focus {
   outline: none;
-  color: #0097FD;
+  color: #0097fd;
 }
 
 .Publish__form--input-title {
@@ -198,7 +197,7 @@
   padding: 20px 20px;
   margin-top: 10px;
   resize: none;
-  color: #0097FD;
+  color: #0097fd;
 }
 
 .basic-multi-select {
@@ -247,7 +246,7 @@
   width: 80%;
 }
 
-.Publish__form--input--terms p { 
+.Publish__form--input--terms p {
   font-size: 100%;
   font-weight: 400;
 }
@@ -263,7 +262,7 @@
   max-height: 60px;
   padding: 10px 20px;
   cursor: pointer;
-  background: #0097FD;
+  background: #0097fd;
   border: none;
   color: white;
   border-radius: 8px;
@@ -271,7 +270,7 @@
   font-weight: bold;
   text-align: center;
   transition: 0.25s ease-in-out;
-  animation: glow 1s alternate infinite
+  animation: glow 1s alternate infinite;
 }
 
 @keyframes glow {
@@ -283,3 +282,83 @@
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .Publish__form {
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
+  }
+
+  #publish-heading {
+    font-size: 150%;
+  }
+
+  .Publish__form--upload {
+    margin: 0;
+    max-width: unset;
+    width: 100%;
+    align-items: center;
+  }
+
+  #Publish__file--upload {
+    width: 100%;
+  }
+
+  .Publish__form--input-boxes {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .Publish__form--input-boxes input {
+    width: 100%;
+  }
+
+  .Publish__form--input-boxes textarea {
+    width: 100%;
+  }
+
+  .Publish__form--upload-pdf {
+    min-width: unset;
+  }
+
+  .Publish__form--upload-thumbnail {
+    min-width: unset;
+  }
+
+  .basic-multi-select {
+    width: 100%;
+  }
+
+  .Publish__form--input--funding-toogle {
+    width: 100%;
+  }
+
+  .Publish__form--input--funding-toogle h2 {
+    width: 100%;
+    font-size:100%;
+  }
+
+  .Publish__form--input--funding-toogle input {
+    width: fit-content;
+  }
+
+  .Publish__form--input--funding-amount {
+    width: 100%;
+  }
+
+  .Publish__form--input--funding-amount h2 {
+    width: 100%;
+    font-size: 100%;
+  }
+
+  .Publish__form--input--funding-amount input {
+    width: fit-content;
+    width: 90px;
+    max-width: 120px;
+  }
+
+  .Publish__form--input--terms {
+    width: 100%;
+  }
+
+}
