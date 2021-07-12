@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -18,8 +19,8 @@ body {
     #000000 100%
   );
   background-repeat: no-repeat;
-  background-attachment: fixed;
   font-family: "Open Sans", sans-serif;
+  height: fit-content
 }
 
 :root {
