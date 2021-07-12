@@ -67,8 +67,8 @@ export const Paper = () => {
             <div className="paper_funders_list">
               <div className="paper_funder">
                 <img src={pf} alt="" srcset="" />
-                <div>
-                  <h3>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</h3>
+                <div className="paper_funder-address">
+                  0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
                   <h2>Funded 0.2ETH</h2>
                 </div>
               </div>

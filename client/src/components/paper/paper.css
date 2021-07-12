@@ -96,10 +96,16 @@
   border: 1px solid #0097fd;
   border-radius: 12px;
   align-items: center;
+  color: white;
+  font-size: 14.4px;
+}
+
+.paper_funder-address {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .paper_funder img {
   max-width: 40px;
   margin-right: 7px;
