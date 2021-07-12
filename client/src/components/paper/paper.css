@@ -4,6 +4,7 @@
   flex-direction: row;
 }
 .paper_pdf {
+  position: relative;
   height: 100%;
   width: 65%;
   text-align: center;
@@ -12,6 +13,25 @@
 }
 .embeded_pdf {
   border-radius: 5px;
+}
+.paper_share {
+  position: absolute;
+  padding: 5px 15px;
+  background-color: white;
+  border-radius: 100px;
+  top: 5px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+}
+.paper_share h3 {
+  font-size: 1em;
+  font-weight: 400;
+  margin-left: 5px;
+  color: black;
+}
+.paper_share{
+  color: black;
 }
 /* Paper details section */
 .paper_info {
@@ -115,6 +135,7 @@
   font-weight: 400;
   font-size: 0.8em;
 }
+
 /* fund section */
 .paper_fund {
   width: 90%;

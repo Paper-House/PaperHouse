@@ -2,6 +2,9 @@ import React from "react";
 import "./paper.css";
 import { AddressBtn } from "../addressBtn";
 import pf from "../assets/pf.png";
+import { Icon, InlineIcon } from "@iconify/react";
+import linkOut from "@iconify/icons-akar-icons/link-out";
+import shareBox from "@iconify/icons-akar-icons/share-box";
 export const Paper = () => {
   return (
     <div class="paper_container container">
@@ -13,6 +16,14 @@ export const Paper = () => {
           height="100%"
           className="embeded_pdf"
         />
+        <a href="">
+          {" "}
+          <div className="paper_share">
+            <Icon icon={shareBox} />
+
+            <h3>Share</h3>
+          </div>
+        </a>
       </div>
       <div className="paper_info">
         <div className="paper_details">
@@ -48,16 +59,18 @@ export const Paper = () => {
           <div className="paper_view">
             <a href="#">
               <button className="paper_view_polyscan">
-                View on polygonscan
+                View on polygonscan <Icon icon={linkOut} />
               </button>
             </a>
             <a href="#">
               <button className="paper_view_ipfs_meta">
-                View IPFS Metadata
+                View IPFS Metadata <Icon icon={linkOut} />
               </button>
             </a>{" "}
             <a href="#">
-              <button className="paper_view_ipfs">View on IPFS</button>
+              <button className="paper_view_ipfs">
+                View on IPFS <Icon icon={linkOut} />
+              </button>
             </a>
           </div>
           <div className="paper_funders">
