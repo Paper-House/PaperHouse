@@ -28,6 +28,7 @@ body {
   --backdrop-border-radius: 21px;
   --pH-heading-color:#0097FD;
   --button-light-background-color: #0097FD54;
+  --input-button-border-radius: 19px;
 }
 
 .container {
