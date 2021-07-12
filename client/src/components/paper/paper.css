@@ -13,6 +13,7 @@
 }
 .embeded_pdf {
   border-radius: 5px;
+  border: none;
 }
 
 .paper_share {
@@ -35,6 +36,10 @@
 }
 .paper_share {
   color: black;
+}
+#adobe-dc-view{
+  height: 100%;
+  width: 100%;
 }
 /* Paper details section */
 .paper_info {
@@ -237,9 +242,10 @@
 @media screen and (max-width: 768px) {
   .paper_container {
     flex-direction: column;
+    height: 100%;
   }
   .paper_pdf {
-    height: 500px;
+    height: 50vh;
     width: 100%;
     border: none;
     padding: 5px;

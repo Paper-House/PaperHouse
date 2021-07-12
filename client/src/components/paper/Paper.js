@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./paper.css";
 import { AddressBtn } from "../addressBtn";
 import pf from "../assets/pf.png";
@@ -17,13 +17,26 @@ export const Paper = () => {
   return (
     <div class="paper_container container">
       <div className="paper_pdf">
-        <embed
-          src="https://bitcoin.org/bitcoin.pdf"
+        {/* <object
+          data="https://bitcoin.org/bitcoin.pdf"
           type="application/pdf"
           width="100%"
           height="100%"
           className="embeded_pdf"
-        />
+        >
+          <iframe
+            src="https://bitcoin.org/bitcoin.pdf"
+            width="100%"
+            height="100%"
+            className="embeded_pdf"
+          >
+            This browser does not support PDFs. Please download the PDF to view
+            it:
+            <a href="https://bitcoin.org/bitcoin.pdf">Download PDF</a>
+          </iframe>
+        </object> */}
+        <div id="adobe-dc-view"></div>
+
         <div className="paper_share" onClick={copyClip}>
           {clipboard ? (
             <h3>Copied!</h3>
