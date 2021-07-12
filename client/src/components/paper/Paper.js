@@ -101,10 +101,13 @@ export const Paper = () => {
               </div>
             </div>
           </div>
+          <div className="fade"></div>
         </div>
         <div className="paper_fund">
           <div className="paper_fund_info">
-            <h3>1.3ETH Funded</h3>
+            <h3>
+              1.3ETH <p> Funded</p>
+            </h3>
             <h3>2ETH</h3>
           </div>
           <div className="paper_fund_bar">
