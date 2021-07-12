@@ -25,6 +25,14 @@ export const Publish = () => {
   console.log(`funding: ${funding}`);
   console.log(categoryOptions);
 
+  // const customStyles = {
+  //   menu: (provided, state) => ({
+  //     ...provided,
+  //     borderBottom: "none",
+  //     backgroundColor: "rgba(0, 151, 253, 1);",
+  //   }),
+  // };
+
   return (
     <div className="container Publish__container">
       <div className="Publish__form-circle-red circle1-red" id="pCircle"></div>
@@ -104,7 +112,7 @@ export const Publish = () => {
               <h2>Description</h2>
               <textarea
                 type="text"
-                placeholder=" A Peer-to-Peer Electronic Cash System..."
+                placeholder="A Peer-to-Peer Electronic Cash System..."
                 required
               />
             </div>
@@ -113,11 +121,12 @@ export const Publish = () => {
               <Select
                 defaultValue={[categoryOptions[0], categoryOptions[1]]}
                 isMulti
-                name="colors"
+                name="Categories"
                 options={categoryOptions}
                 className="basic-multi-select"
                 classNamePrefix="select"
                 onChange={publishHandleInputChange}
+                // styles={customStyles}
               />
             </div>
             <div className="Publish__form--input--funding-toogle">
