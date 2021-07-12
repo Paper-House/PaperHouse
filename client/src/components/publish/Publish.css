@@ -73,10 +73,10 @@
 .Publish__form--upload {
   max-width: 50%;
   width: 50%;
-  flex-basis: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+  margin-right: 90px;
 }
 
 #Publish__file--upload {
@@ -87,8 +87,8 @@
 }
 
 .Publish__form--upload-pdf {
-  padding: 60px 30px;
-  width: 60%;
+  padding: 50px 30px;
+  width: 70%;
   min-width: 324px;
   line-height: 30px;
 }
@@ -100,11 +100,12 @@
 
 .Publish__form--upload-pdf p {
   font-size: 1rem;
+  font-weight: 500;
 }
 
 .Publish__form--upload-thumbnail {
-  padding: 60px 30px;
-  width: 60%;
+  padding: 50px 30px;
+  width: 70%;
   min-width: 324px;
   margin-top: 25px;
   line-height: 30px;
@@ -117,6 +118,7 @@
 
 .Publish__form--upload-thumbnail p {
   font-size: 1rem;
+  font-weight: 500;
 }
 
 .Publish__form--upload-chooseFile {
@@ -131,7 +133,7 @@
 }
 
 .Publish__form--upload-chooseFile p {
-  padding: 15px 35px;
+  padding: 13px 35px;
   width: 100%;
 }
 
@@ -164,6 +166,8 @@
   border-radius: 5px;
   padding: 20px 20px;
   margin-top: 10px;
+  color: #0097FD;
+  font-size: 0.9rem;
 }
 
 
@@ -171,6 +175,11 @@
   font-size: 0.9rem;
   font-weight: bold;
   text-align: start;
+}
+
+.Publish__form--input-boxes input:focus, textarea:focus {
+  outline: none;
+  color: #0097FD;
 }
 
 .Publish__form--input-title {
@@ -189,6 +198,7 @@
   padding: 20px 20px;
   margin-top: 10px;
   resize: none;
+  color: #0097FD;
 }
 
 .basic-multi-select {

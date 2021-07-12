@@ -55,6 +55,7 @@ nav img {
   border: none;
   margin-left: 10px;
   align-self: center;
+  font-size: 1rem;
 }
 
 .paper-search form input::placeholder,
