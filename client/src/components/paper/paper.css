@@ -26,6 +26,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  width: fit-content;
 }
 .paper_share h3 {
   font-family: "Open Sans";
@@ -240,6 +241,11 @@
 }
 /* Tablet and below */
 @media screen and (max-width: 768px) {
+  .paper_share {
+    top: 5px;
+    left: -5px;
+
+  }
   .paper_container {
     flex-direction: column;
     height: 100%;
@@ -249,6 +255,7 @@
     width: 100%;
     border: none;
     padding: 5px;
+    padding-top: 20px;
   }
   .paper_info {
     width: 100%;
