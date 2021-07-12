@@ -5,6 +5,8 @@ import pf from "../assets/pf.png";
 import { Icon, InlineIcon } from "@iconify/react";
 import linkOut from "@iconify/icons-akar-icons/link-out";
 import shareBox from "@iconify/icons-akar-icons/share-box";
+import ViewSDKClient from "../ViewSDKClient";
+
 export const Paper = () => {
   const [clipboard, setclipboard] = useState(false);
   function copyClip() {
@@ -14,29 +16,27 @@ export const Paper = () => {
       setclipboard(false);
     }, 1500);
   }
+  useEffect(() => {
+    const viewSDKClient = new ViewSDKClient();
+    viewSDKClient.ready().then(() => {
+      viewSDKClient.previewFile(
+        "adobe-dc-view",
+        {
+          dockPageControls: false,
+          showLeftHandPanel: false,
+          enableFormFilling: false,
+          showAnnotationTools: false,
+        },
+        "https://ipfs.io/ipfs/QmR7GSQM93Cx5eAg6a6yRzNde1FQv7uL6X1o4k7zrJa3LX/ipfs.draft3.pdf",
+        "IPFS - Content Addressed, Versioned, P2P File System"
+      );
+    });
+  }, []);
+
   return (
     <div class="paper_container container">
       <div className="paper_pdf">
-        {/* <object
-          data="https://bitcoin.org/bitcoin.pdf"
-          type="application/pdf"
-          width="100%"
-          height="100%"
-          className="embeded_pdf"
-        >
-          <iframe
-            src="https://bitcoin.org/bitcoin.pdf"
-            width="100%"
-            height="100%"
-            className="embeded_pdf"
-          >
-            This browser does not support PDFs. Please download the PDF to view
-            it:
-            <a href="https://bitcoin.org/bitcoin.pdf">Download PDF</a>
-          </iframe>
-        </object> */}
         <div id="adobe-dc-view"></div>
-
         <div className="paper_share" onClick={copyClip}>
           {clipboard ? (
             <h3>Copied!</h3>
