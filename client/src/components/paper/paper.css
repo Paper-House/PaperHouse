@@ -53,7 +53,6 @@
 }
 .paper_authors_section h3 {
   margin-top: 10px;
-
   color: white;
   font-weight: 600;
   font-size: 1.3em;
@@ -71,7 +70,6 @@
   border: none;
   background-color: #0097fd;
   padding: 10px 15px;
-
   border-radius: 100px;
   color: white;
   font-size: 1em;
@@ -199,4 +197,37 @@
 .address-btn img {
   width: 20px;
   margin-right: 5px;
+}
+/* Tablet and below */
+@media screen and (max-width: 768px) {
+  .paper_container {
+    flex-direction: column;
+  }
+  .paper_pdf {
+    height: 500px;
+    width: 100%;
+    border: none;
+    padding: 5px;
+  }
+  .paper_info {
+    width: 100%;
+    height: fit-content;
+  }
+  .paper_details {
+    height: fit-content;
+    overflow: hidden;
+    padding: 5px;
+    margin-bottom: 165px;
+  }
+  .paper_fund {
+    position: fixed;
+    bottom: 0;
+  }
+  .paper_funder h3 {
+    font-size: 0.75em;
+  }
+
+  .paper_funder h2 {
+    font-size: 0.7em;
+  }
 }
