@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./paper.css";
 import { AddressBtn } from "../addressBtn";
 import pf from "../assets/pf.png";
@@ -6,6 +6,14 @@ import { Icon, InlineIcon } from "@iconify/react";
 import linkOut from "@iconify/icons-akar-icons/link-out";
 import shareBox from "@iconify/icons-akar-icons/share-box";
 export const Paper = () => {
+  const [clipboard, setclipboard] = useState(false);
+  function copyClip() {
+    navigator.clipboard.writeText(window.location.href);
+    setclipboard(true);
+    setTimeout(() => {
+      setclipboard(false);
+    }, 1500);
+  }
   return (
     <div class="paper_container container">
       <div className="paper_pdf">
@@ -16,14 +24,16 @@ export const Paper = () => {
           height="100%"
           className="embeded_pdf"
         />
-        <a href="">
-          {" "}
-          <div className="paper_share">
-            <Icon icon={shareBox} />
-
-            <h3>Share</h3>
-          </div>
-        </a>
+        <div className="paper_share" onClick={copyClip}>
+          {clipboard ? (
+            <h3>Copied!</h3>
+          ) : (
+            <>
+              <Icon icon={shareBox} />
+              <h3>Share</h3>
+            </>
+          )}
+        </div>
       </div>
       <div className="paper_info">
         <div className="paper_details">
@@ -87,29 +97,29 @@ export const Paper = () => {
               </div>
               <div className="paper_funder">
                 <img src={pf} alt="" srcset="" />
-                <div>
-                  <h3>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</h3>
+                <div className="paper_funder-address">
+                  0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
                   <h2>Funded 0.2ETH</h2>
                 </div>
               </div>
               <div className="paper_funder">
                 <img src={pf} alt="" srcset="" />
-                <div>
-                  <h3>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</h3>
+                <div className="paper_funder-address">
+                  0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
                   <h2>Funded 0.2ETH</h2>
                 </div>
               </div>
               <div className="paper_funder">
                 <img src={pf} alt="" srcset="" />
-                <div>
-                  <h3>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</h3>
+                <div className="paper_funder-address">
+                  0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
                   <h2>Funded 0.2ETH</h2>
                 </div>
               </div>
               <div className="paper_funder">
                 <img src={pf} alt="" srcset="" />
-                <div>
-                  <h3>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</h3>
+                <div className="paper_funder-address">
+                  0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
                   <h2>Funded 0.2ETH</h2>
                 </div>
               </div>

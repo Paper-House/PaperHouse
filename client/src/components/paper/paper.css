@@ -14,6 +14,7 @@
 .embeded_pdf {
   border-radius: 5px;
 }
+
 .paper_share {
   position: absolute;
   padding: 5px 15px;
@@ -23,14 +24,16 @@
   right: 10px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .paper_share h3 {
-  font-size: 1em;
+  font-family: "Open Sans";
+  font-size: 0.95em;
   font-weight: 400;
   margin-left: 5px;
   color: black;
 }
-.paper_share{
+.paper_share {
   color: black;
 }
 /* Paper details section */
@@ -124,22 +127,19 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: white;
+  font-weight: 500;
+  font-size: 1em;
 }
 
 .paper_funder img {
   max-width: 40px;
   margin-right: 7px;
 }
-.paper_funder h3 {
-  color: white;
-  font-weight: 500;
-  font-size: 0.9em;
-}
-
 .paper_funder h2 {
   color: white;
   font-weight: 400;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 /* fund section */
@@ -207,7 +207,8 @@
   align-self: center;
   cursor: pointer;
 }
-.paper_fund button:hover {
+.paper_fund button:hover,
+.paper_view button:hover {
   opacity: 0.9;
 }
 /* address button */
