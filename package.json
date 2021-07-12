@@ -23,5 +23,9 @@
   "dependencies": {
     "@openzeppelin/contracts": "^4.2.0",
     "@truffle/hdwallet-provider": "^1.4.1"
+  },
+  "devDependencies": {
+    "@iconify/icons-akar-icons": "^1.1.16",
+    "@iconify/react": "^1.1.4"
   }
 }

@@ -1,18 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./paper.css";
 import { AddressBtn } from "../addressBtn";
 import pf from "../assets/pf.png";
+import { Icon, InlineIcon } from "@iconify/react";
+import linkOut from "@iconify/icons-akar-icons/link-out";
+import shareBox from "@iconify/icons-akar-icons/share-box";
 export const Paper = () => {
+  const [clipboard, setclipboard] = useState(false);
+  function copyClip() {
+    navigator.clipboard.writeText(window.location.href);
+    setclipboard(true);
+    setTimeout(() => {
+      setclipboard(false);
+    }, 1500);
+  }
   return (
     <div class="paper_container container">
       <div className="paper_pdf">
-        <embed
-          src="https://bitcoin.org/bitcoin.pdf"
+        {/* <object
+          data="https://bitcoin.org/bitcoin.pdf"
           type="application/pdf"
           width="100%"
           height="100%"
           className="embeded_pdf"
-        />
+        >
+          <iframe
+            src="https://bitcoin.org/bitcoin.pdf"
+            width="100%"
+            height="100%"
+            className="embeded_pdf"
+          >
+            This browser does not support PDFs. Please download the PDF to view
+            it:
+            <a href="https://bitcoin.org/bitcoin.pdf">Download PDF</a>
+          </iframe>
+        </object> */}
+        <div id="adobe-dc-view"></div>
+
+        <div className="paper_share" onClick={copyClip}>
+          {clipboard ? (
+            <h3>Copied!</h3>
+          ) : (
+            <>
+              <Icon icon={shareBox} />
+              <h3>Share</h3>
+            </>
+          )}
+        </div>
       </div>
       <div className="paper_info">
         <div className="paper_details">
@@ -48,16 +82,18 @@ export const Paper = () => {
           <div className="paper_view">
             <a href="#">
               <button className="paper_view_polyscan">
-                View on polygonscan
+                View on polygonscan <Icon icon={linkOut} />
               </button>
             </a>
             <a href="#">
               <button className="paper_view_ipfs_meta">
-                View IPFS Metadata
+                View IPFS Metadata <Icon icon={linkOut} />
               </button>
             </a>{" "}
             <a href="#">
-              <button className="paper_view_ipfs">View on IPFS</button>
+              <button className="paper_view_ipfs">
+                View on IPFS <Icon icon={linkOut} />
+              </button>
             </a>
           </div>
           <div className="paper_funders">
@@ -74,29 +110,29 @@ export const Paper = () => {
               </div>
               <div className="paper_funder">
                 <img src={pf} alt="" srcset="" />
-                <div>
-                  <h3>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</h3>
+                <div className="paper_funder-address">
+                  0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
                   <h2>Funded 0.2ETH</h2>
                 </div>
               </div>
               <div className="paper_funder">
                 <img src={pf} alt="" srcset="" />
-                <div>
-                  <h3>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</h3>
+                <div className="paper_funder-address">
+                  0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
                   <h2>Funded 0.2ETH</h2>
                 </div>
               </div>
               <div className="paper_funder">
                 <img src={pf} alt="" srcset="" />
-                <div>
-                  <h3>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</h3>
+                <div className="paper_funder-address">
+                  0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
                   <h2>Funded 0.2ETH</h2>
                 </div>
               </div>
               <div className="paper_funder">
                 <img src={pf} alt="" srcset="" />
-                <div>
-                  <h3>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</h3>
+                <div className="paper_funder-address">
+                  0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
                   <h2>Funded 0.2ETH</h2>
                 </div>
               </div>
