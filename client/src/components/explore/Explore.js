@@ -66,7 +66,8 @@ export const Explore = () => {
       date: "10 june 2021",
       thumbnail: "https://ipfs",
       category: "medical",
-    },    {
+    },
+    {
       paperid: 1,
       title:
         "Computing interaction effects and standard errors in logit and probit models",
@@ -75,7 +76,8 @@ export const Explore = () => {
       date: "10 june 2021",
       thumbnail: "https://ipfs",
       category: "space",
-    },    {
+    },
+    {
       paperid: 1,
       title:
         "Computing interaction effects and standard errors in logit and probit models",

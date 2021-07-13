@@ -10,7 +10,6 @@
   margin-top: 10px;
 }
 .explore_categories {
-  width: 100%;
   margin: 10px 0px;
   overflow: auto;
   display: flex;
@@ -32,6 +31,7 @@
   font-family: "Open Sans";
   font-weight: 600;
   font-size: 1.1em;
+  min-width: fit-content;
 }
 
 .explore_category_item:hover {
@@ -112,5 +112,10 @@ button[aria-expanded="true"] {
   }
   .explore_papers {
     grid-template-columns: repeat(auto-fit, 100%);
+  }
+}
+@media screen and (max-width: 764px) {
+  .explore_papers {
+    justify-content: center;
   }
 }
