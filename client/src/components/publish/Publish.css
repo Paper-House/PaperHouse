@@ -169,12 +169,6 @@
   font-size: 0.9rem;
 }
 
-.Publish__form--input-boxes input::placeholder {
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-align: start;
-}
-
 .Publish__form--input-boxes input:focus,
 textarea:focus {
   outline: none;
@@ -197,9 +191,17 @@ textarea:focus {
   padding: 20px 20px;
   margin-top: 10px;
   resize: none;
-  color: #0097fd;
+  font-size: 0.9rem;
+  font-weight: 400;
 }
-
+.Publish__form--input--description textarea::placeholder,
+.Publish__form--input-boxes input::placeholder,
+.Publish__form--input-boxes input {
+  color: #0097fd;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: start;
+}
 .basic-multi-select {
   width: 80%;
   margin-top: 10px;
@@ -211,7 +213,11 @@ textarea:focus {
   width: 80%;
 }
 
-.Publish__form--input--funding-toogle h2 {
+.Publish__form--input--funding-toogle h2,
+.Publish__form--input--funding-amount h2 {
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 1.2em;
   width: 100%;
 }
 
@@ -226,10 +232,6 @@ textarea:focus {
   width: 80%;
 }
 
-.Publish__form--input--funding-amount h2 {
-  width: 100%;
-}
-
 .Publish__form--input--funding-amount input {
   margin-top: 0px;
   height: 30px;
@@ -238,6 +240,7 @@ textarea:focus {
 }
 
 .Publish__form--input--funding-amount input::placeholder {
+  color: #0097fd;
   text-align: center;
 }
 
@@ -249,6 +252,7 @@ textarea:focus {
 .Publish__form--input--terms p {
   font-size: 100%;
   font-weight: 400;
+  font-size: .8em;
 }
 #Publish__form--input--terms--item2 {
   margin-top: 10px;
@@ -335,7 +339,7 @@ textarea:focus {
 
   .Publish__form--input--funding-toogle h2 {
     width: 100%;
-    font-size:100%;
+    font-size: 100%;
   }
 
   .Publish__form--input--funding-toogle input {
@@ -360,5 +364,4 @@ textarea:focus {
   .Publish__form--input--terms {
     width: 100%;
   }
-
 }

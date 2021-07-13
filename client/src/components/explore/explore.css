@@ -86,6 +86,7 @@ button[aria-expanded="true"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-align: center;
 }
 .paper_card_author h3,
 .paper_card_date h3 {

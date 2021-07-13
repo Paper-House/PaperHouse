@@ -12,7 +12,7 @@ export default function PaperCard({ data }) {
           <h3>{data.title}</h3>
         </div>
         <div className="paper_card_category">{data.category}</div>
-        <div className="paper_card_date"><h3>published on {data.date}</h3></div>
+        <div className="paper_card_date"><h3>Published on {data.date}</h3></div>
         <div className="paper_card_author">
           <h3>{data.author}</h3>
           <AddressBtn address={data.publisher} />
