@@ -26,6 +26,9 @@ export default function PaperCard({ data, page, callupdate, currentAmount }) {
           <div className="paper_card_update">
             <div className="paper_card_fundtoggle">
               <h3>Allow Funding</h3>
+              <label htmlFor="" className="switch">
+                <input type="checkbox" />
+              </label>
             </div>
             <div className="paper_card_fundamount_input">
               <h3>Funding Amount</h3>{" "}
@@ -35,6 +38,7 @@ export default function PaperCard({ data, page, callupdate, currentAmount }) {
                 id="fundamoundt"
                 ref={fundInput}
                 placeholder={currentAmount}
+                onClick={() => setfundtoggle(!fundtoggle)}
               />
             </div>
             <button onClick={() => callupdate(fundInput, fundtoggle)}>

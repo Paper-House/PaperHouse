@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useref} from "react";
 
 import Select from "react-select";
 
@@ -15,7 +15,7 @@ export const Publish = () => {
   ]);
 
   const [funding, setfunding] = useState(false);
-
+  
   const publishHandleInputChange = (object) => {
     console.group("Input Changed");
     console.log(object);
@@ -137,12 +137,10 @@ export const Publish = () => {
                 required
               />
             </div>
-            {funding ? (
-              <div className="Publish__form--input--funding-amount">
-                <h2>Funding Amount</h2>
-                <input type="text" placeholder="0Eth" required />
-              </div>
-            ) : null}
+            <div className="Publish__form--input--funding-amount">
+              <h2>Funding Amount</h2>
+              <input type="text" placeholder="0Eth" required />
+            </div>
             <div className="Publish__form--input--terms">
               <p id="Publish__form--input--terms--item1">
                 Once your NFT is minted on the Polygon blockchain, you will not
