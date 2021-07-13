@@ -252,7 +252,7 @@ textarea:focus {
 .Publish__form--input--terms p {
   font-size: 100%;
   font-weight: 400;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 #Publish__form--input--terms--item2 {
   margin-top: 10px;
@@ -363,5 +363,69 @@ textarea:focus {
 
   .Publish__form--input--terms {
     width: 100%;
+  }
+}
+
+/* IPad */
+@media only screen and (max-width: 900px) {
+  .Publish__form--upload {
+    margin-right: 30px;
+  }
+
+  .Publish__form--input-boxes input {
+    width: 100%;
+  }
+
+  .Publish__form--input-boxes textarea {
+    width: 100%;
+  }
+
+  .basic-multi-select {
+    width: 100%;
+  }
+
+  .Publish__form--input--funding-toogle {
+    width: 100%;
+  }
+
+  .Publish__form--input--funding-toogle input {
+    width: fit-content;
+  }
+
+  .Publish__form--input--terms {
+    width: 100%;
+  }
+
+  .Publish__form--input-boxes {
+    grid-template-rows: auto auto 200px auto auto auto auto auto;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .Publish__form--input-boxes input {
+    width: 90%;
+  }
+  .Publish__form--input-boxes textarea {
+    width: 90%;
+  }
+
+  .basic-multi-select {
+    width: 90%;
+  }
+
+  .Publish__form--input--funding-toogle {
+    width: 90%;
+  }
+
+  .Publish__form--input--funding-toogle input {
+    width: fit-content;
+  }
+
+  .Publish__form--input--terms {
+    width: 90%;
+  }
+
+  .Publish__form--input-boxes {
+    grid-template-rows: auto auto 200px auto auto auto auto auto 0.5fr;
   }
 }
