@@ -115,6 +115,7 @@ button[aria-expanded="true"] {
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  margin-top: 10px;
 }
 .paper_card_fundtoggle h3,
 .paper_card_fundamount_input h3 {
@@ -122,7 +123,6 @@ button[aria-expanded="true"] {
   font-size: 1em;
   color: #0097fd;
   font-weight: 600;
-  margin-top: 5px;
 }
 .paper_card_update button {
   padding: 5px 15px;
@@ -150,6 +150,42 @@ button[aria-expanded="true"] {
 }
 .paper_card_fundamount_input input::placeholder {
   color: #0097fd;
+}
+
+.switch {
+  position: relative;
+  width: 35px;
+  height: 18px;
+  cursor: pointer;
+}
+.switch input[type="checkbox"] {
+  position: relative;
+  background: white;
+  appearance: none;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.25);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+.switch input:checked[type="checkbox"] {
+  background: #0097fd;
+  box-shadow: inset 0px 1px 6px rgba(0, 0, 0, 0.25);
+}
+.switch input[type="checkbox"]::before {
+  position: absolute;
+  content: "";
+  top: 3px;
+  left: 3px;
+  width: 13px;
+  height: 13px;
+  background: #0097fd;
+  border-radius: 100px;
+}
+.switch input:checked[type="checkbox"]::before {
+  background: white;
+  transform: translateX(15px);
 }
 @media screen and (max-width: 425px) {
   .paper_card {
