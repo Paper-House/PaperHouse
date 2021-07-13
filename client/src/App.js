@@ -7,31 +7,24 @@ import { Explore } from "./components/explore/index";
 import { Publish } from "./components/publish/index";
 import { Paper } from "./components/paper/index";
 import { Mypapers } from "./components/mypapers/index";
-class App extends Component {
-  componentDidMount = async () => {
-    console.log("Component Mounted.");
-  };
 
-  render() {
-    return (
-      <Router>
-        <div>
-          <Navbar />
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <Navbar />
 
-          <Switch>
-            <Route exact path="/" component={Home} />
+        <Switch>
+          <Route exact path="/" component={Home} />
 
-            <Route path="/explore" component={Explore} />
+          <Route path="/explore" component={Explore} />
 
-            <Route path="/publish" component={Publish} />
+          <Route path="/publish" component={Publish} />
 
-            <Route path="/paper" component={Paper} />
-            <Route path="/mypaper" component={Mypapers} />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+          <Route path="/paper" component={Paper} />
+          <Route path="/mypaper" component={Mypapers} />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
-
-export default App;

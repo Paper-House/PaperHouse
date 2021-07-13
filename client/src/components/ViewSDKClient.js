@@ -16,12 +16,11 @@ class ViewSDKClient {
     return this.readyPromise;
   }
 
-  previewFile(divId,viewerConfig,fileURL,fileName) {
+  previewFile(divId, viewerConfig, fileURL, fileName) {
     const config = {
       clientId: "b0b125077da244a4aca8805632114cb0",
     };
     if (divId) {
-
       config.divId = divId;
     }
     this.adobeDCView = new window.AdobeDC.View(config);

@@ -1,5 +1,6 @@
 .explore {
   width: 100%;
+  height: 100%;
 }
 .explore_title h3 {
   font-family: "Open Sans";
@@ -9,9 +10,12 @@
   margin-top: 10px;
 }
 .explore_categories {
+  width: 100%;
   margin: 10px 0px;
-  overflow-x: visible;
+  overflow: auto;
   display: flex;
+  text-align: center;
+  padding: 10px 0px;
 }
 .explore_category_item {
   padding: 5px 20px;
@@ -21,22 +25,32 @@
   color: #0097fd;
   margin-right: 15px;
   transition: 0.2s ease-in-out;
-}
-.explore_category_item h3 {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: "Open Sans";
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
+
 .explore_category_item:hover {
+  color: white;
+  background-color: #0097fd;
+  box-shadow: 0px 0px 10px #0097fd;
+}
+
+button[aria-expanded="true"] {
   color: white;
   background-color: #0097fd;
   box-shadow: 0px 0px 10px #0097fd;
 }
 .explore_papers {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 25px;
   margin-top: 20px;
+  width: 100%;
 }
 /* card */
 
@@ -47,7 +61,6 @@
   border-radius: 10px;
   overflow: hidden;
   transition: 0.2s ease-in-out;
-
 }
 .paper_card:hover {
   box-shadow: 0px 0px 8px #0097fd;
@@ -81,4 +94,23 @@
   color: white;
   font-weight: 500;
   margin-top: 10px;
+}
+.paper_card_category {
+  margin: 10px 0;
+  padding: 5px 10px;
+  font-family: "Open Sans";
+  font-size: 0.9em;
+  color: white;
+  font-weight: 500;
+  background-color: #0097fd;
+  width: fit-content;
+  border-radius: 100px;
+}
+@media screen and (max-width: 425px) {
+  .paper_card {
+    width: 100%;
+  }
+  .explore_papers {
+    grid-template-columns: repeat(auto-fit, 100%);
+  }
 }
