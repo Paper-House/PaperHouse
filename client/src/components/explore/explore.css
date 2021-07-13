@@ -107,6 +107,50 @@ button[aria-expanded="true"] {
   width: fit-content;
   border-radius: 100px;
 }
+
+.paper_card_fundtoggle,
+.paper_card_fundamount_input {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.paper_card_fundtoggle h3,
+.paper_card_fundamount_input h3 {
+  font-family: "Open Sans";
+  font-size: 1em;
+  color: #0097fd;
+  font-weight: 600;
+  margin-top: 5px;
+}
+.paper_card_update button {
+  padding: 5px 15px;
+  background-color: #0097fd;
+  color: white;
+  font-size: 1.1em;
+  font-weight: 400;
+  border-radius: 100px;
+  outline: none;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.paper_card_fundamount_input input {
+  width: 80px;
+  height: 25px;
+  border-radius: 100px;
+  background-color: rgba(0, 151, 253, 0.3);
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 1em;
+  color: #0097fd;
+  font-weight: 400;
+}
+.paper_card_fundamount_input input::placeholder {
+  color: #0097fd;
+}
 @media screen and (max-width: 425px) {
   .paper_card {
     width: 100%;

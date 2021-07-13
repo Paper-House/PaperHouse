@@ -5,10 +5,10 @@ import PaperCard from "../explore/PaperCard";
 
 export const Mypapers = () => {
   const [category, setcategory] = useState("all");
-
+  const address = "0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6";
   const data = [
     {
-      paperid: 1,
+      paperid: 2,
       title:
         "Computing interaction effects and standard errors in logit and probit models",
       author: "Edward C. Norton",
@@ -52,7 +52,7 @@ export const Mypapers = () => {
       title:
         "Computing interaction effects and standard errors in logit and probit models",
       author: "Edward C. Norton",
-      publisher: "0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6",
+      publisher: "0x0aa121493Ba3f231s70dBB3aAA62a9De64F374f6",
       date: "10 june 2021",
       thumbnail: "https://ipfs",
       category: "ml/ai",
@@ -62,7 +62,7 @@ export const Mypapers = () => {
       title:
         "Computing interaction effects and standard errors in logit and probit models",
       author: "Edward C. Norton",
-      publisher: "0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6",
+      publisher: "0x0aa121493Ba3f231570dBBfaAA62a9De64F374f6",
       date: "10 june 2021",
       thumbnail: "https://ipfs",
       category: "medical",
@@ -72,7 +72,7 @@ export const Mypapers = () => {
       title:
         "Computing interaction effects and standard errors in logit and probit models",
       author: "Edward C. Norton",
-      publisher: "0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6",
+      publisher: "0x0aa121493Ba3f231570dBB3aAf62a9De64F374f6",
       date: "10 june 2021",
       thumbnail: "https://ipfs",
       category: "space",
@@ -88,6 +88,10 @@ export const Mypapers = () => {
       category: "economics",
     },
   ];
+  function UpdatePaper(paperid, updateAmount, fundToggle) {
+    //smart contract call
+    console.log(paperid, fundToggle);
+  }
   return (
     <div className="mypapers container">
       <div className="explore_title">
@@ -95,20 +99,17 @@ export const Mypapers = () => {
       </div>
       <div className="mypapers_papers">
         {data.map((paper) => {
-          if (category === "all") {
-            return (
-              <Link to={`paper?token=${paper.paperid}`}>
-                <PaperCard data={paper} />
-              </Link>
+          if (paper.publisher === address)
+          return (
+              <PaperCard
+                data={paper}
+                page="mypapers"
+                currentAmount="2.5ETH"
+                callupdate={(updateAmount, fundToggle) =>
+                  UpdatePaper(paper.paperid, updateAmount, fundToggle)
+                }
+              />
             );
-          }
-          if (paper.category === category) {
-            return (
-              <Link to={`paper?token=${paper.paperid}`}>
-                <PaperCard data={paper} />
-              </Link>
-            );
-          }
         })}
       </div>
     </div>
