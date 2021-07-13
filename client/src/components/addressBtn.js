@@ -1,10 +1,10 @@
 import React from "react";
 import pf from "./assets/pf.png";
-export const AddressBtn = () => {
+export const AddressBtn = ({ address }) => {
   return (
     <button className="address-btn">
       <img src={pf} alt="" srcset="" />
-      <h3>0x0a3..f6</h3>
+      <div className="address-btn_add">{address}</div>
     </button>
   );
 };

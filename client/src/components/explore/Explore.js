@@ -96,14 +96,14 @@ export const Explore = () => {
       <div className="explore_categories">
         <button
           className="explore_category_item"
-          aria-expanded={category == "all" ? true : false}
+          aria-expanded={category === "all" ? true : false}
           onClick={(e) => setcategory(e.target.innerText.toLowerCase())}
         >
           All
         </button>
         <button
           className="explore_category_item"
-          aria-expanded={category == "science" ? true : false}
+          aria-expanded={category === "science" ? true : false}
           onClick={(e) =>
             setcategory(e.target.innerText.split(" ")[1].toLowerCase())
           }
@@ -112,7 +112,7 @@ export const Explore = () => {
         </button>
         <button
           className="explore_category_item"
-          aria-expanded={category == "space" ? true : false}
+          aria-expanded={category === "space" ? true : false}
           onClick={(e) =>
             setcategory(e.target.innerText.split(" ")[1].toLowerCase())
           }
@@ -121,7 +121,7 @@ export const Explore = () => {
         </button>
         <button
           className="explore_category_item"
-          aria-expanded={category == "whitepapers" ? true : false}
+          aria-expanded={category === "whitepapers" ? true : false}
           onClick={(e) =>
             setcategory(e.target.innerText.split(" ")[1].toLowerCase())
           }
@@ -130,7 +130,7 @@ export const Explore = () => {
         </button>
         <button
           className="explore_category_item"
-          aria-expanded={category == "ml/ai" ? true : false}
+          aria-expanded={category === "ml/ai" ? true : false}
           onClick={(e) =>
             setcategory(e.target.innerText.split(" ")[1].toLowerCase())
           }
@@ -139,7 +139,7 @@ export const Explore = () => {
         </button>
         <button
           className="explore_category_item"
-          aria-expanded={category == "medical" ? true : false}
+          aria-expanded={category === "medical" ? true : false}
           onClick={(e) =>
             setcategory(e.target.innerText.split(" ")[1].toLowerCase())
           }
@@ -148,7 +148,7 @@ export const Explore = () => {
         </button>
         <button
           className="explore_category_item"
-          aria-expanded={category == "economics" ? true : false}
+          aria-expanded={category === "economics" ? true : false}
           onClick={(e) =>
             setcategory(e.target.innerText.split(" ")[1].toLowerCase())
           }

@@ -68,7 +68,9 @@ export const Paper = () => {
             <div className="paper_publisher">
               <h3>Published By</h3>
               <a>
-                <AddressBtn />
+                <AddressBtn
+                  address={"0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6"}
+                />
               </a>
             </div>
 
