@@ -15,7 +15,8 @@ export const Publish = () => {
   ]);
 
   const [funding, setfunding] = useState(false);
-  
+  const [file, setfile] = useState("...");
+
   const publishHandleInputChange = (object) => {
     console.group("Input Changed");
     console.log(object);
@@ -86,12 +87,14 @@ export const Publish = () => {
                   accept="image/*"
                   required
                   hidden
+                  onChange={(event) => {setfile(URL.createObjectURL(event.target.files[0]))}}
                 />
                 <p>
                   <label for="upload-img">Choose File</label>
                 </p>
               </div>
             </div>
+            {/* <img src={file} /> */}
           </div>
           <div className="Publish__form--input-boxes">
             {" "}
