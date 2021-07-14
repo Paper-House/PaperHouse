@@ -200,3 +200,9 @@ button[aria-expanded="true"] {
     justify-content: center;
   }
 }
+
+@media (device-width: 768px) and (device-height: 1024px) {
+  .explore_papers {
+    grid-template-columns: repeat(auto-fit, 350px);
+  }
+}
