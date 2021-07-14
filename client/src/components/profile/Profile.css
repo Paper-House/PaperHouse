@@ -112,4 +112,7 @@
   .paper_card {
     width: 100%;
   }
+  .explore_papers {
+    grid-template-columns: repeat(auto-fit, 350px);
+  }
 }
