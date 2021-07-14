@@ -93,10 +93,7 @@ export const Mypapers = () => {
     console.log(paperid, fundToggle);
   }
   return (
-    <div className="mypapers container">
-      <div className="explore_title">
-        <h3>My Papers</h3>
-      </div>
+    <div className="mypapers">
       <div className="mypapers_papers">
         {data.map((paper) => {
           if (paper.publisher === address)

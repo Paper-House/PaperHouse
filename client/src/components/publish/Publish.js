@@ -134,11 +134,14 @@ export const Publish = () => {
             </div>
             <div className="Publish__form--input--funding-toogle">
               <h2>Allow funding</h2>
-              <input
+              {/* <input
                 type="checkbox"
                 onChange={() => setfunding(!funding)}
                 required
-              />
+              /> */}
+              <label htmlFor="" className="switch">
+                <input type="checkbox" style={{padding: "0px"}} onChange={() => setfunding(!funding)} />
+              </label>
             </div>
             <div className="Publish__form--input--funding-amount">
               <h2>Funding Amount</h2>

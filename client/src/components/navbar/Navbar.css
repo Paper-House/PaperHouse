@@ -68,11 +68,13 @@ input:focus {
 
 .nav-buttons {
   width: 30%;
-  height: 40px;
+  height: 50px;
   min-width: 523px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: space-around;
+  grid-gap: 30px;
+  /* justify-content: space-around; */
   /* margin-top: 15px; */
 }
 
@@ -91,7 +93,7 @@ input:focus {
   background: #0097fd;
   /* box-shadow: 8px 12px 14px rgba(0, 151, 253, 0.19), inset 0px 4px 30px #6447f4; */
   color: white;
-  padding: 9px 18px 9px 18px;
+  padding: 8px 18px 8px 18px;
   border-radius: 26px;
   transition: 0.25s ease-in-out;
   animation: glow 1s alternate infinite;
@@ -103,7 +105,7 @@ input:focus {
   box-sizing: border-box;
   border-radius: 26px;
   color: #0097fd, 100%;
-  padding: 9px 18px 9px 18px;
+  padding: 8px 18px 8px 18px;
 }
 
 #publish:hover {
@@ -113,7 +115,7 @@ input:focus {
 #explore,
 #my-papers {
   border-radius: 26px;
-  padding: 13px 20px 13px 20px;
+  padding: 12px 20px 12px 20px
 }
 
 #explore:hover,
@@ -123,17 +125,21 @@ input:focus {
 }
 
 .nav-buttons-left {
-  width: 50%;
+  /* width: 50%; */
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  justify-content: space-between;
 }
 
 .nav-buttons-right {
-  width: 50%;
+  /* width: 50%; */
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  justify-content: space-between;
 }
 
 .mobile__slider__toogle--search {

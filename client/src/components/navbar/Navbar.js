@@ -60,8 +60,8 @@ export const Navbar = () => {
               <NavLink id="explore" to="/explore">
                 Explore
               </NavLink>
-              <NavLink id="my-papers" to="/mypaper">
-                My Papers
+              <NavLink id="my-papers" to="/myprofile">
+                My Profile
               </NavLink>
             </div>
             <div className="nav-buttons-right">
