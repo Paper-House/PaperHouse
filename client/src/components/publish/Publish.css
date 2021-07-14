@@ -49,7 +49,7 @@
 .Publish__form-backdrop {
   height: fit-content;
   min-height: 850px;
-  background: rgba(0, 0, 0, 0.06);
+  background: rgb(0 0 0 / 32%);
   box-shadow: -15px -15px 34px rgb(0 0 0 / 24%);
   backdrop-filter: blur(80px);
   padding: 20px;
@@ -396,6 +396,27 @@ textarea:focus {
     width: 100%;
   }
 
+  .Publish__form {
+    grid-gap: 20px;
+  }
+
+  .Publish__form--upload {
+    margin-right: 0px;
+  }
+
+
+  .Publish__form--input--funding-amount {
+    width: 100%;
+  }
+
+  .Publish__form--input--funding-amount h2 {
+    width: 60%;
+  }
+
+  .Publish__form--input--funding-amount input {
+    width: 40%;
+  }
+
   .Publish__form--input--funding-toogle {
     width: 100%;
   }
@@ -417,8 +438,14 @@ textarea:focus {
   .Publish__form--input-boxes input {
     width: 90%;
   }
+
+  .Publish__form {
+    grid-gap:10px;
+  }
+
   .Publish__form--upload {
     align-items: center;
+    margin-right: 0px;
   }
 
   .Publish__form--input-boxes textarea {
@@ -439,6 +466,18 @@ textarea:focus {
 
   .Publish__form--input--terms {
     width: 90%;
+  }
+
+  .Publish__form--input--funding-amount {
+    width: 90%;
+  }
+
+  .Publish__form--input--funding-amount h2 {
+    width: 60%;
+  }
+
+  .Publish__form--input--funding-amount input {
+    width: 40%;
   }
 
   .Publish__form--input-boxes {
