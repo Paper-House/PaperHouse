@@ -104,3 +104,12 @@
     display: none;
   }
 }
+
+@media all and (device-width: 768px) and (device-height: 1024px) {
+  .mypapers_papers {
+    grid-template-columns: repeat(auto-fit, 350px);
+  }
+  .paper_card {
+    width: 100%;
+  }
+}
