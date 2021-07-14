@@ -14,7 +14,7 @@ export default function PaperCard({ data, page, callupdate, currentAmount }) {
         <div className="paper_card_title">
           <h3>{data.title}</h3>
         </div>
-        <div className="paper_card_category">{data.category}</div>
+        <div className="paper_card_category">{data.category.toUpperCase()}</div>
         <div className="paper_card_date">
           <h3>Published on {data.date}</h3>
         </div>

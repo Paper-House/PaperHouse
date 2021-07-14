@@ -40,7 +40,7 @@ const Profile = () => {
         </div>
         <div className="Activities__person--proflie">
           <p>
-            043a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89
+          0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
           </p>
           <img src={pf} alt="pf" />
         </div>
@@ -49,7 +49,7 @@ const Profile = () => {
         <h2>Activities</h2>
         <div className="Activities__person--proflie">
           <p>
-            043a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89
+          0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
           </p>
           <img src={pf} alt="pf" />
         </div>
