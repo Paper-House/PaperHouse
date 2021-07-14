@@ -22,6 +22,7 @@ export default function App() {
           <Route path="/mypaper" component={Mypapers} />
           <Route path="/paper" component={Paper} />
           <Route path="/myprofile" component={Profile} />
+          <Route path="/profile" component={Profile} />
         </Switch>
       </div>
     </Router>
