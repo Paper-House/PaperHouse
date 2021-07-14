@@ -147,7 +147,7 @@ input:focus {
 }
 /*connect wallet*/
 .ConnectWallet_container {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
