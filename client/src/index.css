@@ -36,7 +36,7 @@ body {
 .container {
   max-width: 1500px;
   margin: 0 auto;
-  padding: 0px 20px 0px 20px;
+  padding: 0px 20px 20px 20px;
 }
 
 @media only screen and (min-width: 1920px) {
