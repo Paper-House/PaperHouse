@@ -38,7 +38,6 @@ export default function PaperCard({ data, page, callupdate, currentAmount }) {
                 id="fundamoundt"
                 ref={fundInput}
                 placeholder={currentAmount}
-                onClick={() => setfundtoggle(!fundtoggle)}
               />
             </div>
             <button onClick={() => callupdate(fundInput, fundtoggle)}>

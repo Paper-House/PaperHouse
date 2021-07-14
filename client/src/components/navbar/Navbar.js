@@ -5,8 +5,27 @@ import "./Navbar.css";
 import logo from "../assets/logo.svg";
 import metamask from "../assets/metamask.png";
 import portis from "../assets/portis.png";
+import { getMetamask, getPortis } from "../ConnectWallet";
 export const Navbar = () => {
   const [walletToggle, setWalletToggle] = useState(false);
+
+  async function connectMetamask() {
+    const web3 = await getMetamask();
+    await web3.eth.getAccounts((error, accounts) => {
+      setWalletToggle(false);
+
+      console.log(accounts);
+    });
+  }
+  function connectPortis() {
+    const web3 = getPortis();
+    web3.eth.getAccounts((error, accounts) => {
+      setWalletToggle(false);
+
+      console.log(accounts);
+    });
+  }
+
   return (
     <>
       <div className="nav__backdrop">
@@ -119,14 +138,18 @@ export const Navbar = () => {
                 </svg>
               </button>
             </div>
-            <div className="connectwallet_metamask">
-              <h3>MetaMask</h3>
-              <img src={metamask} alt="metamask" />
-            </div>
-            <div className="connectwallet_portis">
-              <h3>Portis</h3>
-              <img src={portis} alt="metamask" />
-            </div>
+            <a onClick={connectMetamask}>
+              <div className="connectwallet_metamask">
+                <h3>MetaMask</h3>
+                <img src={metamask} alt="metamask" />
+              </div>
+            </a>
+            <a onClick={connectPortis}>
+              <div className="connectwallet_portis">
+                <h3>Portis</h3>
+                <img src={portis} alt="metamask" />
+              </div>
+            </a>
           </div>
         </div>
       ) : (
