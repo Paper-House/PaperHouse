@@ -9,7 +9,6 @@ contract PaperHouse is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     Counters.Counter private _paperIds;
-    Counters.Counter private _donations;
 
     constructor() ERC721("PaperHouse", "PH") {}
 
@@ -66,8 +65,6 @@ contract PaperHouse is ERC721URIStorage {
     }
 
     function fundapaper(uint256 _paperid) public payable {
-        if (_donations.current() <= 10) _donations.increment();
-
         ResearchPaper storage rpaper = papers[_paperid];
 
         require(rpaper.allowFunding == true, "Funding not allowed");
@@ -84,46 +81,7 @@ contract PaperHouse is ERC721URIStorage {
         amount += msg.value;
         rpaper.totalAmountFunded = amount;
 
-        uint256 lowest = _donations.current();
-
-
-            uint256 lowest_amt
-         = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
-
-        for (uint256 i = 0; i <= 10 && _donations.current() > 10; i++) {
-            // find the lowest amount.
-            if (
-                donations[i].amount < msg.value &&
-                donations[i].amount < lowest_amt
-            ) {
-                lowest = i;
-                lowest_amt = donations[i].amount;
-            } // 200 600 700 400 500
-        }
-
-        if (lowest <= 10) {
-            // Check if the donator already exist in top funders.
-            for (uint256 i = 0; i < 10; i++) {
-                // if yes then update the amount.
-                if (donations[i].from == msg.sender) {
-                    donations[i].to = rpaper.owner;
-                    donations[i].amount = msg.value;
-                    donations[i].paperId = _paperid;
-
-                    emit Funding(msg.sender, rpaper.owner, msg.value, _paperid);
-
-                    return;
-                }
-            }
-
-            // else just add as a new donator.
-            donations[lowest].from = msg.sender;
-            donations[lowest].to = rpaper.owner;
-            donations[lowest].amount = msg.value;
-            donations[lowest].paperId = _paperid;
-
-            emit Funding(msg.sender, rpaper.owner, msg.value, _paperid);
-        }
+        emit Funding(msg.sender, rpaper.owner, msg.value, _paperid);
     }
 
     function getPaper(uint256 paperId)
