@@ -60,7 +60,7 @@ const Profile = (props) => {
         </div>
       </div>
       <div className="Activities__nav--section-mob">
-        <h2>Activities</h2>
+        <h2 id="heading">{heading}</h2>
         <div className="Activities__person--proflie">
           <p>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</p>
           <img src={pf} alt="pf" />
