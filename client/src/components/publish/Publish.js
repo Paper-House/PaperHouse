@@ -23,6 +23,16 @@ export const Publish = () => {
     console.groupEnd();
   };
 
+  const pdfAdded = (event) => {
+    console.log(file)
+    console.log(event.target.files)
+  }
+
+  const thumbnailAdded = (event) => {
+    setfile(event.target.files[0])
+    console.log(event.target.files)
+  }
+
   console.log(`funding: ${funding}`);
   console.log(categoryOptions);
 
@@ -68,6 +78,7 @@ export const Publish = () => {
                   accept="application/pdf"
                   required
                   hidden
+                  onChange={pdfAdded}
                 />
                 <p>
                   <label for="upload-pdf">Choose File</label>
@@ -87,7 +98,7 @@ export const Publish = () => {
                   accept="image/*"
                   required
                   hidden
-                  onChange={(event) => {setfile(URL.createObjectURL(event.target.files[0]))}}
+                  onChange={thumbnailAdded}
                 />
                 <p>
                   <label for="upload-img">Choose File</label>
