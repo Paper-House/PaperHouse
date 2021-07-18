@@ -3,7 +3,7 @@ import "./mypapers.css";
 import { Link } from "react-router-dom";
 import PaperCard from "../explore/PaperCard";
 
-export const Mypapers = () => {
+export const Mypapers = ({ path }) => {
   const [category, setcategory] = useState("all");
   const address = "0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6";
   const data = [
@@ -88,6 +88,7 @@ export const Mypapers = () => {
       category: "economics",
     },
   ];
+  console.log(path);
   function UpdatePaper(paperid, updateAmount, fundToggle) {
     //smart contract call
     console.log(paperid, fundToggle);
@@ -97,10 +98,10 @@ export const Mypapers = () => {
       <div className="mypapers_papers">
         {data.map((paper) => {
           if (paper.publisher === address)
-          return (
+            return (
               <PaperCard
                 data={paper}
-                page="mypapers"
+                page={path === "/profile" ? "" : "mypapers"}
                 currentAmount="2.5ETH"
                 callupdate={(updateAmount, fundToggle) =>
                   UpdatePaper(paper.paperid, updateAmount, fundToggle)

@@ -8,7 +8,7 @@
   height: 100%;
   width: 65%;
   text-align: center;
-  padding: 20px 20px 20px 0px;
+  padding: 20px 20px 0px 0px;
   border-right: 1.5px solid rgba(0, 151, 253, 0.3);
 }
 .embeded_pdf {
@@ -152,7 +152,6 @@
 .paper_fund {
   width: 90%;
   height: fit-content;
-  margin-bottom: 20px;
   background: #01426e;
   border-radius: 10px;
   padding: 20px;
@@ -229,6 +228,7 @@
   align-items: center;
   text-align: center;
   padding: 5px 5px;
+  cursor: pointer;
 }
 .address-btn_add {
   margin: 0;

@@ -20,7 +20,9 @@ export default function App() {
           <Route path="/explore" component={Explore} />
           <Route path="/publish" component={Publish} />
           <Route path="/mypaper" component={Mypapers} />
+          <Route path="/paper" component={Paper} />
           <Route path="/myprofile" component={Profile} />
+          <Route path="/profile" component={Profile} />
         </Switch>
       </div>
     </Router>

@@ -160,7 +160,7 @@ export const Explore = () => {
         {data.map((paper) => {
           if (category === "all") {
             return (
-              <Link to={`paper?token=${paper.paperid}`}>
+              <Link to={`/paper?token=${paper.paperid}`}>
                 <PaperCard data={paper} />
               </Link>
             );

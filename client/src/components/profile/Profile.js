@@ -7,17 +7,25 @@ import "./Profile.css";
 import { Mypapers } from "../mypapers/index";
 import Activities from "../activities/Activities";
 
-const Profile = () => {
+const Profile = (props) => {
+  const path = props.location.pathname;
+
   const [navComponent, setNavComponent] = useState("My Papers");
-  const [heading, setHeading] = useState("My Papers");
+  const [heading, setHeading] = useState(
+    path === "/profile" ? "Papers Published" : "My Papers"
+  );
   const [myPaperColor, setMyPaperColor] = useState("My Papers");
   const [myActivitiesColor, setActivitiesColor] = useState("My Papers");
-
   const handleNav = (option) => {
     setNavComponent(option);
     setHeading(option);
   };
-
+  function checkNav() {
+    const navcomp = path === "/profile" ? "Papers Published" : "My Papers";
+    if (navComponent === navcomp) return <Mypapers path={path} />;
+    else if (navComponent == "Activities") return <Activities />;
+    else return <Mypapers path={path} />;
+  }
   return (
     <div className="Profile_container container">
       <div className="Activities__nav--section">
@@ -25,58 +33,64 @@ const Profile = () => {
         <div className="Activities__navigation">
           <div
             className="Activities__navigation-mypapers"
-            onClick={() => {handleNav("My Papers"); setMyPaperColor("#0088fe"); setActivitiesColor("#116096")}}
-			style={{backgroundColor:myPaperColor}}
+            onClick={() => {
+              handleNav(path === "/profile" ? "Papers Published" : "My Papers");
+              setMyPaperColor("#0088fe");
+              setActivitiesColor("#116096");
+            }}
+            style={{ backgroundColor: myPaperColor }}
           >
-            My Papers
+            {path === "/profile" ? "Papers" : "My Papers"}
           </div>
           <div
             className="Activities__navigation-activities"
-            onClick={() => {handleNav("Activities"); setActivitiesColor("#0088fe"); setMyPaperColor("#116096")}}
-			style={{backgroundColor:myActivitiesColor}}
+            onClick={() => {
+              handleNav("Activities");
+              setActivitiesColor("#0088fe");
+              setMyPaperColor("#116096");
+            }}
+            style={{ backgroundColor: myActivitiesColor }}
           >
             Activities
           </div>
         </div>
         <div className="Activities__person--proflie">
-          <p>
-            043a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89
-          </p>
+          <p>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</p>
           <img src={pf} alt="pf" />
         </div>
       </div>
       <div className="Activities__nav--section-mob">
         <h2>Activities</h2>
         <div className="Activities__person--proflie">
-          <p>
-            043a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89
-          </p>
+          <p>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</p>
           <img src={pf} alt="pf" />
         </div>
         <div className="Activities__navigation">
           <div
             className="Activities__navigation-mypapers"
-            onClick={() => {handleNav("My Papers"); setMyPaperColor("#0088fe"); setActivitiesColor("#116096")}}
-			style={{backgroundColor:myPaperColor}}
+            onClick={() => {
+              handleNav(path === "/profile" ? "Papers Published" : "My Papers");
+              setMyPaperColor("#0088fe");
+              setActivitiesColor("#116096");
+            }}
+            style={{ backgroundColor: myPaperColor }}
           >
-            My Papers
+            {path === "/profile" ? "Papers" : "My Papers"}
           </div>
           <div
             className="Activities__navigation-activities"
-            onClick={() => {handleNav("Activities"); setActivitiesColor("#0088fe"); setMyPaperColor("#116096")}}
-			style={{backgroundColor:myActivitiesColor}}
+            onClick={() => {
+              handleNav("Activities");
+              setActivitiesColor("#0088fe");
+              setMyPaperColor("#116096");
+            }}
+            style={{ backgroundColor: myActivitiesColor }}
           >
             Activities
           </div>
         </div>
       </div>
-      {navComponent == "My Papers" ? (
-        <Mypapers />
-      ) : navComponent == "Activities" ? (
-        <Activities />
-      ) : (
-        ""
-      )}
+      {checkNav()}
     </div>
   );
 };

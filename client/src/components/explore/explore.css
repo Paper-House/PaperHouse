@@ -67,10 +67,13 @@ button[aria-expanded="true"] {
 }
 .paper_card_img {
   width: 100%;
-  object-fit: cover;
+  height: 170px;
 }
 .paper_card img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+
 }
 .paper_card_details {
   padding: 10px;
