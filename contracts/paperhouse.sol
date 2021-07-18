@@ -13,8 +13,9 @@ contract PaperHouse is ERC721URIStorage {
 
     constructor() ERC721("PaperHouse", "PH") {}
 
-    event published(uint256 _paperid, string tokenUri, string author, address authorAddress, bool isFunding, uint256 fundAmount);
-    event funding(address _from, address _to, uint256 value, uint256 _paperid);
+    event Published(uint256 _paperid, string tokenUri, string author, address authorAddress, bool isFunding, uint256 fundAmount);
+    event Funding(address _from, address _to, uint256 value, uint256 _paperid);
+    event UpdatePaper(uint256 _paperid, bool allowFunding, uint256 amount);
 
     struct ResearchPaper {
         address owner;
@@ -61,7 +62,7 @@ contract PaperHouse is ERC721URIStorage {
 
         papers[newpaperId] = rpaper;
 
-        emit published(newtokenId, tokenURI, _author, msg.sender, _isfunding, _fundAmount);
+        emit Published(newtokenId, tokenURI, _author, msg.sender, _isfunding, _fundAmount);
     }
 
     function fundapaper(uint256 _paperid) public payable {
@@ -109,7 +110,7 @@ contract PaperHouse is ERC721URIStorage {
                     donations[i].amount = msg.value;
                     donations[i].paperId = _paperid;
 
-                    emit funding(msg.sender, rpaper.owner, msg.value, _paperid);
+                    emit Funding(msg.sender, rpaper.owner, msg.value, _paperid);
 
                     return;
                 }
@@ -121,7 +122,7 @@ contract PaperHouse is ERC721URIStorage {
             donations[lowest].amount = msg.value;
             donations[lowest].paperId = _paperid;
 
-            emit funding(msg.sender, rpaper.owner, msg.value, _paperid);
+            emit Funding(msg.sender, rpaper.owner, msg.value, _paperid);
         }
     }
 
@@ -146,5 +147,7 @@ contract PaperHouse is ERC721URIStorage {
         require(msg.sender==rpaper.owner,"you are not the owner of this paper to update");
         rpaper.allowFunding=_allowFunding;
         rpaper.fundAmount=_amount;
+
+        emit UpdatePaper(_paperid, _allowFunding, _amount);
     }
 }
