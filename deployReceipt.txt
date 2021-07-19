@@ -1,0 +1,81 @@
+@@
+
+Compiling your contracts...
+===========================
+> Compiling ./contracts/paperhouse.sol
+> Artifacts written to /home/sairajkapdi/Documents/CODE STUFF/paperHouse/PaperHouse/client/src/contracts
+> Compiled successfully using:
+   - solc: 0.8.0+commit.c7dfd78e.Emscripten.clang
+
+Network up to date.
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+
+Starting migrations...
+======================
+> Network name:    'maticTest'
+> Network id:      80001
+> Block gas limit: 20000000 (0x1312d00)
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0x1051ba4542d5d89c072505496beaab1eb6e875891500eaae90e2980f505b9809
+   > Blocks: 3            Seconds: 4
+   > contract address:    0x6F0cac0baC543EF65643C339dd72aDd9Dbc0aD68
+   > block number:        16508618
+   > block timestamp:     1626623976
+   > account:             0xd4D2761e241b07a367E47a1f3c76d40d12283DF5
+   > balance:             0.48429426
+   > gas used:            201187 (0x311e3)
+   > gas price:           30 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00603561 ETH
+
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 2 (block: 16508621)
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00603561 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Replacing 'PaperHouse'
+   ----------------------
+   > transaction hash:    0x3afaa0dbc35be977c73b2b2efb9c4a71b6fa4b65ce50b684b56b599489cbedca
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x7fC940D109f0EE2391586bBeb8ec6902D5089479
+   > block number:        16508628
+   > block timestamp:     1626623996
+   > account:             0xd4D2761e241b07a367E47a1f3c76d40d12283DF5
+   > balance:             0.38455779
+   > gas used:            3278633 (0x320729)
+   > gas price:           30 gwei
+   > value sent:          0 ETH
+   > total cost:          0.09835899 ETH
+
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 2 (block: 16508631)
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.09835899 ETH
+
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.1043946 ETH
