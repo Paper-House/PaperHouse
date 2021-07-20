@@ -1,6 +1,7 @@
 import React, { useState, useref } from "react";
 
 import Select from "react-select";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 import "./Publish.css";
 
@@ -116,7 +117,7 @@ export const Publish = () => {
                     and probit models.pdf
                   </p>
                   <div className="preview-info--ipfs-link">
-                    <div id="ipfs-link-preview" >
+                    <div id="ipfs-link-preview">
                       <a
                         href="https://bafybeidkyx7npjdwjtceslc2t5ryc25dtojefu6yy7ao6qaethbcpnhpra.ipfs.dweb.link/scalability.pdf"
                         target="_blank"
@@ -132,22 +133,26 @@ export const Publish = () => {
                 className="Publish__form--upload-preview-content"
                 id="Publish__form--upload-preview-thumbnail"
               >
-                <img src={thumb} />
+                {/* <img src={thumb} /> */}
+                <Skeleton width={100} height={90} />
                 <div className="preview-info">
                   <p title="Computing_interaction_effects_and_standard_errors_in_logit and_probit_models.png">
-                    Computing interaction effects and standard errors in logit
-                    and probit models.png
+                    {/* Computing interaction effects and standard errors in logit
+                    and probit models.png */}
+                    <Skeleton width={"100%"} count={2} />
                   </p>
                   <div className="preview-info--ipfs-link">
-                    <div id="ipfs-link-preview" >
-                      <a
+                    <div id="ipfs-link-preview">
+                      {/* <a
                         href="https://bafybeiczp5sgorjrq7nbl2kyk76tohzyd7k7lfzdbwohjofos4hfjwqiii.ipfs.dweb.link/"
                         target="_blank"
                       >
                         Preview
-                      </a>
+                      </a> */}
+                      <Skeleton width={"60px"} />
                     </div>
-                    <p id="upload__extension-png">.PNG</p>
+                    {/* <p id="upload__extension-png">.PNG</p> */}
+                    <Skeleton width={"60px"} />
                   </div>
                 </div>
               </div>
