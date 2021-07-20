@@ -116,8 +116,7 @@ export const Publish = () => {
                     and probit models.pdf
                   </p>
                   <div className="preview-info--ipfs-link">
-                    <div>
-                      IPFS Link:
+                    <div id="ipfs-link-preview" >
                       <a
                         href="https://bafybeidkyx7npjdwjtceslc2t5ryc25dtojefu6yy7ao6qaethbcpnhpra.ipfs.dweb.link/scalability.pdf"
                         target="_blank"
@@ -140,8 +139,7 @@ export const Publish = () => {
                     and probit models.png
                   </p>
                   <div className="preview-info--ipfs-link">
-                    <div>
-                      IPFS Link:
+                    <div id="ipfs-link-preview" >
                       <a
                         href="https://bafybeiczp5sgorjrq7nbl2kyk76tohzyd7k7lfzdbwohjofos4hfjwqiii.ipfs.dweb.link/"
                         target="_blank"
