@@ -1,8 +1,10 @@
-import React, { useState,useref} from "react";
+import React, { useState, useref } from "react";
 
 import Select from "react-select";
 
 import "./Publish.css";
+
+import thumb from "../assets/thumb.png";
 
 export const Publish = () => {
   const [categoryOptions, setCategoryOptions] = useState([
@@ -24,14 +26,14 @@ export const Publish = () => {
   };
 
   const pdfAdded = (event) => {
-    console.log(file)
-    console.log(event.target.files)
-  }
+    console.log(file);
+    console.log(event.target.files);
+  };
 
   const thumbnailAdded = (event) => {
-    setfile(event.target.files[0])
-    console.log(event.target.files)
-  }
+    setfile(event.target.files[0]);
+    console.log(event.target.files);
+  };
 
   console.log(`funding: ${funding}`);
   console.log(categoryOptions);
@@ -105,6 +107,53 @@ export const Publish = () => {
                 </p>
               </div>
             </div>
+            <div className="Publish__form--upload-preview">
+              <div className="Publish__form--upload-preview-content">
+                <img src={thumb} />
+                <div className="preview-info">
+                  <p title="Computing_interaction_effects_and_standard_errors_in_logit and_probit_models.pdf">
+                    Computing interaction effects and standard errors in logit
+                    and probit models.pdf
+                  </p>
+                  <div className="preview-info--ipfs-link">
+                    <div>
+                      IPFS Link:
+                      <a
+                        href="https://bafybeidkyx7npjdwjtceslc2t5ryc25dtojefu6yy7ao6qaethbcpnhpra.ipfs.dweb.link/scalability.pdf"
+                        target="_blank"
+                      >
+                        Preview
+                      </a>
+                    </div>
+                    <p id="upload__extension">.PDF</p>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="Publish__form--upload-preview-content"
+                id="Publish__form--upload-preview-thumbnail"
+              >
+                <img src={thumb} />
+                <div className="preview-info">
+                  <p title="Computing_interaction_effects_and_standard_errors_in_logit and_probit_models.png">
+                    Computing interaction effects and standard errors in logit
+                    and probit models.png
+                  </p>
+                  <div className="preview-info--ipfs-link">
+                    <div>
+                      IPFS Link:
+                      <a
+                        href="https://bafybeiczp5sgorjrq7nbl2kyk76tohzyd7k7lfzdbwohjofos4hfjwqiii.ipfs.dweb.link/"
+                        target="_blank"
+                      >
+                        Preview
+                      </a>
+                    </div>
+                    <p id="upload__extension-png">.PNG</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             {/* <img src={file} /> */}
           </div>
           <div className="Publish__form--input-boxes">
@@ -151,7 +200,11 @@ export const Publish = () => {
                 required
               /> */}
               <label htmlFor="" className="switch">
-                <input type="checkbox" style={{padding: "0px"}} onChange={() => setfunding(!funding)} />
+                <input
+                  type="checkbox"
+                  style={{ padding: "0px" }}
+                  onChange={() => setfunding(!funding)}
+                />
               </label>
             </div>
             <div className="Publish__form--input--funding-amount">

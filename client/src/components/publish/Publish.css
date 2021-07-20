@@ -151,6 +151,94 @@
   cursor: pointer;
 }
 
+.Publish__form--upload-preview {
+  width: 70%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  min-width: 324px;
+}
+
+.Publish__form--upload-preview-content {
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+  padding: 10px;
+  border-radius: var(--backdrop-border-radius);
+  border: 1px dashed #0097fd;
+  color: var(--pH-heading-color);
+  font-size: 80%;
+  width: 100%;
+  max-height: 150px;
+}
+
+#Publish__form--upload-preview-thumbnail {
+  margin-top: 25px;
+}
+
+.preview-info {
+  height: fit-content;
+  width: 80%;
+}
+
+.preview-info--ipfs-link {
+  height: fit-content;
+  padding: 10px 0px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#upload__extension {
+  width: fit-content;
+  align-self: flex-end;
+  background-color: red;
+  font-size: 80%;
+  border-radius: 48px;
+  padding: 7px 15px;
+  color: white;
+  font-weight: bold;
+}
+
+#upload__extension-png {
+  width: fit-content;
+  align-self: flex-end;
+  background-color: #00c17f;
+  font-size: 80%;
+  border-radius: 48px;
+  padding: 7px 15px;
+  color: white;
+  font-weight: bold;
+}
+
+.preview-info--ipfs-link a {
+  margin-left: 12px;
+  padding: 7px 15px;
+  background-color: var(--button-light-background-color);
+  border-radius: 48px;
+  font-size: 80%;
+  color: white;
+  font-weight: 500;
+}
+
+.Publish__form--upload-preview-content img {
+  width: 30%;
+  max-width: 100px;
+  max-height: 120px;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid #0b4879;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.preview-info p {
+  font-weight: 500;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .Publish__form--input-boxes {
   /* width: 50%; */
   width: 100%;
@@ -319,6 +407,10 @@ textarea:focus {
     width: 100%;
   }
 
+  .Publish__form--upload-preview {
+    width: 100%;
+  }
+
   .Publish__form--input-boxes {
     width: 100%;
     margin-top: 20px;
@@ -404,7 +496,6 @@ textarea:focus {
     margin-right: 0px;
   }
 
-
   .Publish__form--input--funding-amount {
     width: 100%;
   }
@@ -440,7 +531,7 @@ textarea:focus {
   }
 
   .Publish__form {
-    grid-gap:10px;
+    grid-gap: 10px;
   }
 
   .Publish__form--upload {
@@ -482,5 +573,47 @@ textarea:focus {
 
   .Publish__form--input-boxes {
     grid-template-rows: auto auto 200px auto auto auto auto auto 0.5fr;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .Publish__form--upload {
+    width: 100%;
+  }
+
+  #Publish__file--upload {
+    width: 100%;
+  }
+
+  .Publish__form--upload-preview {
+    width: 100%;
+  }
+
+  .Publish__form--input-boxes input {
+    width: 100%;
+  }
+  .Publish__form--input--funding-amount {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto;
+  }
+  .Publish__form--input--funding-amount input {
+    justify-self: flex-end;
+  }
+  .Publish__form--input-boxes textarea {
+    width: 100%;
+  }
+  .basic-multi-select {
+    width: 100%;
+  }
+
+  .Publish__form--input--funding-toogle {
+    width: 100%;
+  }
+  .Publish__form--input--funding-amount {
+    width: 100%;
+  }
+  .Publish__form--input--terms {
+    width: 100%;
   }
 }

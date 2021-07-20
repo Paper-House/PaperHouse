@@ -53,6 +53,7 @@
 }
 .Activities__person--proflie {
   display: grid;
+  align-items: center;
   grid-template-columns: auto auto;
   margin-left: auto;
   grid-gap: 20px;
@@ -122,6 +123,7 @@
   .Activities__person--proflie img {
     height: 39px;
     width: 39px;
+    justify-self: end;
   }
 }
 
