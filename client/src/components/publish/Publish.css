@@ -237,7 +237,7 @@
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 40px;
+  max-height: 70px;
 }
 
 .Publish__form--input-boxes {
