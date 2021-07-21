@@ -11,11 +11,12 @@ import PaperHouse from "../contracts/PaperHouse.json";
 
 const portis = new Portis("a7653496-491a-42cd-813c-471536ebf61e", "mainnet");
 
-const getInstance = (web3) => {
-  return new web3.eth.Contract(
+const getInstance = (web3, Networkid) => {
+  const instance = new web3.eth.Contract(
     PaperHouse.abi,
-    PaperHouse.networks["5777"].address
+    PaperHouse.networks[Networkid].address
   );
+  return instance;
 };
 
 export default function ConnectWallet({ wallet }) {
@@ -39,17 +40,16 @@ export default function ConnectWallet({ wallet }) {
       if (wallet === 1) {
         window.web3.currentProvider
           .enable()
-          .then((accounts) => {
+          .then(async (accounts) => {
             dispatch(
-              setWallet({ connected: true, address: accounts[0], network: "" })
+              setWallet({
+                connected: true,
+                address: accounts[0],
+                network: await web3.eth.net.getId(),
+              })
             );
             dispatch(
-              setContract(
-                new web3.eth.Contract(
-                  PaperHouse.abi,
-                  PaperHouse.networks["5777"].address
-                )
-              )
+              setContract(getInstance(web3, await web3.eth.net.getId()))
             );
           })
           .catch((err) => {
@@ -59,17 +59,16 @@ export default function ConnectWallet({ wallet }) {
       } else if (wallet === 2) {
         web3.eth
           .getAccounts()
-          .then((accounts) => {
+          .then(async (accounts) => {
             dispatch(
-              setWallet({ connected: true, address: accounts[0], network: "" })
+              setWallet({
+                connected: true,
+                address: accounts[0],
+                network: await web3.eth.net.getId(),
+              })
             );
             dispatch(
-              setContract(
-                new web3.eth.Contract(
-                  PaperHouse.abi,
-                  PaperHouse.networks["5777"].address
-                )
-              )
+              setContract(getInstance(web3, await web3.eth.net.getId()))
             );
           })
           .catch((err) => {
@@ -80,13 +79,3 @@ export default function ConnectWallet({ wallet }) {
   }, [web3]);
   return "";
 }
-
-export const getContract = (web3) => {
-  const networkId = web3.eth.net.getId();
-  const deployedNetwork = PaperHouse.networks[networkId];
-  console.log(deployedNetwork);
-  return new web3.eth.Contract(
-    PaperHouse.abi,
-    deployedNetwork && deployedNetwork.address
-  );
-};
