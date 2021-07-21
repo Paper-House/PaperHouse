@@ -25,12 +25,12 @@ export const Publish = () => {
   const connected = useSelector((state) => state.paper.wallet.connected);
 
   const IPFSupload = () => {
-    
     const metadata = await client.store({
       title: "Pinpie",
       description: "Pin is not delicious beef!",
       author: "",
       thumbnail: new File([file], "thumbnail.jpg", { type: "image/jpg" }),
+      pdf: new File([pdffile], "thumbnail.jpg", { type: "image/jpg" }),
     });
     console.log(metadata.url);
   };
