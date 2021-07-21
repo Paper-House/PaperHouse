@@ -5,6 +5,7 @@
   "dependencies": {
     "@portis/web3": "^4.0.5",
     "@reduxjs/toolkit": "^1.6.1",
+    "nft.storage": "^3.0.1",
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-loading-skeleton": "^2.2.0",

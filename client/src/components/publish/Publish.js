@@ -2,10 +2,13 @@ import React, { useState, useref } from "react";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-
+import { NFTStorage, File } from "nft.storage";
 import "./Publish.css";
 
 import thumb from "../assets/thumb.png";
+
+const apiKey = "YOUR_API_KEY";
+const client = new NFTStorage({ token: apiKey });
 
 export const Publish = () => {
   const [categoryOptions, setCategoryOptions] = useState([
@@ -20,6 +23,17 @@ export const Publish = () => {
   const [funding, setfunding] = useState(false);
   const [file, setfile] = useState("...");
   const connected = useSelector((state) => state.paper.wallet.connected);
+
+  const IPFSupload = () => {
+    
+    const metadata = await client.store({
+      title: "Pinpie",
+      description: "Pin is not delicious beef!",
+      author: "",
+      thumbnail: new File([file], "thumbnail.jpg", { type: "image/jpg" }),
+    });
+    console.log(metadata.url);
+  };
 
   const publishHandleInputChange = (object) => {
     console.group("Input Changed");
