@@ -21,16 +21,17 @@ export const Publish = () => {
   ]);
 
   const [funding, setfunding] = useState(false);
-  const [file, setfile] = useState("...");
+  const [thumbnail, setThumbnail] = useState({});
+  const [pdf, setPdf] = useState({});
   const connected = useSelector((state) => state.paper.wallet.connected);
 
-  const IPFSupload = () => {
+  const IPFSupload = async () => {
     const metadata = await client.store({
       title: "Pinpie",
       description: "Pin is not delicious beef!",
       author: "",
-      thumbnail: new File([file], "thumbnail.jpg", { type: "image/jpg" }),
-      pdf: new File([pdffile], "thumbnail.jpg", { type: "image/jpg" }),
+      thumbnail: new File([thumbnail], "thumbnail.jpg", { type: "image/jpg" }),
+      pdf: new File([pdf], "thumbnail.jpg", { type: "image/jpg" }),
     });
     console.log(metadata.url);
   };
@@ -42,17 +43,20 @@ export const Publish = () => {
   };
 
   const pdfAdded = (event) => {
-    console.log(file);
+    setPdf(event.target.files[0])
     console.log(event.target.files);
   };
 
   const thumbnailAdded = (event) => {
-    setfile(event.target.files[0]);
+    setThumbnail(event.target.files[0]);
     console.log(event.target.files);
   };
 
   console.log(`funding: ${funding}`);
   console.log(categoryOptions);
+  
+  console.log(pdf);
+  console.log(thumbnail);
 
   // const customStyles = {
   //   menu: (provided, state) => ({
