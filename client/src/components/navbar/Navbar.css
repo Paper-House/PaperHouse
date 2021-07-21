@@ -14,7 +14,6 @@ nav {
   height: 65px;
   margin: auto;
   max-width: 1500px;
-
 }
 
 nav img {
@@ -115,7 +114,7 @@ input:focus {
 #explore,
 #my-papers {
   border-radius: 26px;
-  padding: 12px 20px 12px 20px
+  padding: 12px 20px 12px 20px;
 }
 
 #explore:hover,
@@ -189,6 +188,7 @@ input:focus {
   outline: none;
   cursor: pointer;
 }
+
 .connectwallet_metamask,
 .connectwallet_portis {
   display: flex;
@@ -200,8 +200,11 @@ input:focus {
   border-radius: 10px;
   margin-bottom: 20px;
   align-items: center;
+  outline: none;
+  background: transparent;
   cursor: pointer;
 }
+
 .connectwallet_metamask:hover,
 .connectwallet_portis:hover {
   border: 2px solid rgba(0, 151, 253, 1);
@@ -209,6 +212,11 @@ input:focus {
 .connectwallet_metamask img,
 .connectwallet_portis img {
   width: 50px;
+}
+button:disabled {
+  background-color: 2px solid rgba(0, 151, 253, 1) !important;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 /* Mobile */
 @media only screen and (max-width: 767px) {

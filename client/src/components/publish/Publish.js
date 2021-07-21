@@ -1,5 +1,5 @@
 import React, { useState, useref } from "react";
-
+import { useSelector } from "react-redux";
 import Select from "react-select";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
@@ -19,6 +19,7 @@ export const Publish = () => {
 
   const [funding, setfunding] = useState(false);
   const [file, setfile] = useState("...");
+  const connected = useSelector((state) => state.paper.wallet.connected);
 
   const publishHandleInputChange = (object) => {
     console.group("Input Changed");
@@ -226,7 +227,9 @@ export const Publish = () => {
                 legally entitled to post the material.
               </p>
             </div>
-            <button className="Publish__form--button">Publish</button>
+            <button className="Publish__form--button" disabled={!connected}>
+              {connected ? "Publish" : "Connect Wallet"}
+            </button>
           </div>
         </div>
       </div>

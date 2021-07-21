@@ -6,15 +6,28 @@ import "./Navbar.css";
 import logo from "../assets/logo.svg";
 import metamask from "../assets/metamask.png";
 import portis from "../assets/portis.png";
-import ConnectWallet, { getContract } from "../ConnectWallet";
+import ConnectWallet from "../ConnectWallet";
 
 export const Navbar = () => {
   const [walletToggle, setWalletToggle] = useState(false);
+  const [Connecting, setConnecting] = useState(false);
   const [wallet, setwallet] = useState(0);
   const connected = useSelector((state) => state.paper.wallet.connected);
+  const state = useSelector((state) => state.paper);
   useEffect(() => {
     setWalletToggle(false);
+    setConnecting(false);
   }, [connected]);
+  useEffect(() => {
+    if (connected) {
+      state.contract.methods
+        .name()
+        .call()
+        .then((data) => {
+          console.log(data);
+        });
+    }
+  }, [state.contract]);
   return (
     <>
       <ConnectWallet wallet={wallet} />
@@ -128,18 +141,30 @@ export const Navbar = () => {
                 </svg>
               </button>
             </div>
-            <a onClick={() => setwallet(1)}>
-              <div className="connectwallet_metamask">
-                <h3>MetaMask</h3>
-                <img src={metamask} alt="metamask" />
-              </div>
-            </a>
-            <a onClick={() => setwallet(2)}>
-              <div className="connectwallet_portis">
-                <h3>Portis</h3>
-                <img src={portis} alt="metamask" />
-              </div>
-            </a>
+            <button
+              onClick={() => {
+                setwallet(1);
+                setConnecting(true);
+              }}
+              disabled={Connecting}
+              className="connectwallet_metamask"
+            >
+              <h3>MetaMask</h3>
+              {Connecting && wallet == 1 ? <h3>Connecting...</h3> : ""}
+              <img src={metamask} alt="metamask" />
+            </button>
+            <button
+              onClick={() => {
+                setwallet(2);
+                setConnecting(true);
+              }}
+              disabled={Connecting}
+              className="connectwallet_portis"
+            >
+              <h3>Portis</h3>
+              {Connecting && wallet == 2 ? <h3>Connecting...</h3> : ""}
+              <img src={portis} alt="metamask" />
+            </button>
           </div>
         </div>
       ) : (
