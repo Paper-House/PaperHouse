@@ -7,8 +7,7 @@ import "./Publish.css";
 
 import thumb from "../assets/thumb.png";
 const client = new NFTStorage({
-  token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDAwZjA4NWQ0OEYzZjVFMDIwQjExNDM3YkI3NjQ5QzEzMzRkQjYyRUEiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYyNjg4NjYxMzY0MywibmFtZSI6IlBhcGVySG91c2UifQ.WQed-WCw9v-GhNGhbzfOaf3PwfCIiZAa44f0oc9SgGo",
+  token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDAwZjA4NWQ0OEYzZjVFMDIwQjExNDM3YkI3NjQ5QzEzMzRkQjYyRUEiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYyNjg4NjYxMzY0MywibmFtZSI6IlBhcGVySG91c2UifQ.WQed-WCw9v-GhNGhbzfOaf3PwfCIiZAa44f0oc9SgGo`,
 });
 
 export const Publish = () => {
@@ -32,8 +31,10 @@ export const Publish = () => {
       description: "Pin is not delicious beef!",
       author: "",
       thumbnail: new File([thumbnail], "thumbnail.jpg", { type: "image/jpg" }),
-      pdf: new File([pdf], "thumbnail.jpg", { type: "image/jpg" }),
+      pdf: new File([pdf], "thumbnail.jpg", { type: "application/pdf" }),
     });
+
+
     console.log(metadata.url);
   };
 
@@ -44,7 +45,7 @@ export const Publish = () => {
   };
 
   const pdfAdded = (event) => {
-    setPdf(event.target.files[0])
+    setPdf(event.target.files[0]);
     console.log(event.target.files);
   };
 
@@ -55,7 +56,7 @@ export const Publish = () => {
 
   console.log(`funding: ${funding}`);
   console.log(categoryOptions);
-  
+
   console.log(pdf);
   console.log(thumbnail);
 
