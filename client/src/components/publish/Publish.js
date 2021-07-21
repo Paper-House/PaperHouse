@@ -6,9 +6,10 @@ import { NFTStorage, File } from "nft.storage";
 import "./Publish.css";
 
 import thumb from "../assets/thumb.png";
-
-const apiKey = "YOUR_API_KEY";
-const client = new NFTStorage({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDAwZjA4NWQ0OEYzZjVFMDIwQjExNDM3YkI3NjQ5QzEzMzRkQjYyRUEiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYyNjg4NjYxMzY0MywibmFtZSI6IlBhcGVySG91c2UifQ.WQed-WCw9v-GhNGhbzfOaf3PwfCIiZAa44f0oc9SgGo" });
+const client = new NFTStorage({
+  token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDAwZjA4NWQ0OEYzZjVFMDIwQjExNDM3YkI3NjQ5QzEzMzRkQjYyRUEiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYyNjg4NjYxMzY0MywibmFtZSI6IlBhcGVySG91c2UifQ.WQed-WCw9v-GhNGhbzfOaf3PwfCIiZAa44f0oc9SgGo",
+});
 
 export const Publish = () => {
   const [categoryOptions, setCategoryOptions] = useState([
@@ -24,13 +25,13 @@ export const Publish = () => {
   const [file, setfile] = useState("...");
   const connected = useSelector((state) => state.paper.wallet.connected);
 
-  const IPFSupload = () => {
+  const IPFSupload = async () => {
     const metadata = await client.store({
       title: "Pinpie",
       description: "Pin is not delicious beef!",
       author: "",
       thumbnail: new File([file], "thumbnail.jpg", { type: "image/jpg" }),
-      pdf: new File([pdffile], "thumbnail.jpg", { type: "image/jpg" }),
+      pdf: new File([pdffile], "pdfname.pdf", { type: "application/pdf" }),
     });
     console.log(metadata.url);
   };
