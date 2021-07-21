@@ -1,33 +1,92 @@
+import React, { useEffect } from "react";
 import Portis from "@portis/web3";
 import Web3 from "web3";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setContract,
+  setWallet,
+  setWeb3,
+} from "../redux/reducers/papersreducer";
+import PaperHouse from "../contracts/PaperHouse.json";
 
-export const getPortis = () => {
-  const prtis = new Portis("a7653496-491a-42cd-813c-471536ebf61e", "mainnet");
-  const web3 = new Web3(prtis.provider);
-  return web3;
+const portis = new Portis("a7653496-491a-42cd-813c-471536ebf61e", "mainnet");
+
+const getInstance = (web3) => {
+  return new web3.eth.Contract(
+    PaperHouse.abi,
+    PaperHouse.networks["5777"].address
+  );
 };
 
-export const getMetamask = () =>
-  new Promise((resolve, reject) => {
-    if (window.ethereum) {
-      const web3 = new Web3(window.ethereum);
-      try {
-        window.ethereum.enable();
-        // Accounts now exposed
-        resolve(web3);
-      } catch (error) {
-        reject(error);
+export default function ConnectWallet({ wallet }) {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.paper);
+  const web3 = state.web3;
+  useEffect(() => {
+    const providerURL = "https://rpc-mumbai.matic.today/";
+
+    if (wallet === 1 && window.web3 !== undefined) {
+      dispatch(setWeb3(new Web3(window.ethereum)));
+    } else if (wallet === 2) {
+      dispatch(setWeb3(new Web3(portis.provider)));
+    } else {
+      const provider = new Web3.providers.HttpProvider(providerURL);
+      dispatch(setWeb3(new Web3(provider)));
+    }
+  }, [wallet]);
+  useEffect(() => {
+    if (web3 !== undefined) {
+      if (wallet === 1) {
+        window.web3.currentProvider
+          .enable()
+          .then((accounts) => {
+            dispatch(
+              setWallet({ connected: true, address: accounts[0], network: "" })
+            );
+            dispatch(
+              setContract(
+                new web3.eth.Contract(
+                  PaperHouse.abi,
+                  PaperHouse.networks["5777"].address
+                )
+              )
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+            dispatch(setWallet({ connected: false, address: "", network: "" }));
+          });
+      } else if (wallet === 2) {
+        web3.eth
+          .getAccounts()
+          .then((accounts) => {
+            dispatch(
+              setWallet({ connected: true, address: accounts[0], network: "" })
+            );
+            dispatch(
+              setContract(
+                new web3.eth.Contract(
+                  PaperHouse.abi,
+                  PaperHouse.networks["5777"].address
+                )
+              )
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     }
-    // Legacy dapp browsers...
-    else if (window.web3) {
-      const web3 = window.web3;
-      console.log("Injected web3 detected.");
-      resolve(web3);
-    } else {
-      const provider = new Web3.providers.HttpProvider("http://127.0.0.1:8545");
-      const web3 = new Web3(provider);
-      console.log("No web3 instance injected, using Local web3.");
-      resolve(web3);
-    }
-  });
+  }, [web3]);
+  return "";
+}
+
+export const getContract = (web3) => {
+  const networkId = web3.eth.net.getId();
+  const deployedNetwork = PaperHouse.networks[networkId];
+  console.log(deployedNetwork);
+  return new web3.eth.Contract(
+    PaperHouse.abi,
+    deployedNetwork && deployedNetwork.address
+  );
+};

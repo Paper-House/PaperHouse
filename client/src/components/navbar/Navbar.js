@@ -1,33 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./Navbar.css";
 
 import logo from "../assets/logo.svg";
 import metamask from "../assets/metamask.png";
 import portis from "../assets/portis.png";
-import { getMetamask, getPortis } from "../ConnectWallet";
+import ConnectWallet, { getContract } from "../ConnectWallet";
+
 export const Navbar = () => {
   const [walletToggle, setWalletToggle] = useState(false);
-
-  async function connectMetamask() {
-    const web3 = await getMetamask();
-    await web3.eth.getAccounts((error, accounts) => {
-      setWalletToggle(false);
-
-      console.log(accounts);
-    });
-  }
-  function connectPortis() {
-    const web3 = getPortis();
-    web3.eth.getAccounts((error, accounts) => {
-      setWalletToggle(false);
-
-      console.log(accounts);
-    });
-  }
-
+  const [wallet, setwallet] = useState(0);
+  const connected = useSelector((state) => state.paper.wallet.connected);
+  useEffect(() => {
+    setWalletToggle(false);
+  }, [connected]);
   return (
     <>
+      <ConnectWallet wallet={wallet} />
       <div className="nav__backdrop">
         <nav>
           <NavLink
@@ -75,7 +65,7 @@ export const Navbar = () => {
                   setWalletToggle(!walletToggle);
                 }}
               >
-                Connect
+                {!connected ? "Connect" : "Connected"}
               </a>
             </div>
           </div>
@@ -122,7 +112,7 @@ export const Navbar = () => {
           ></div>
           <div className="ConnectWallet">
             <div className="connectwallet_text">
-              <h3>Connect Wallet</h3>
+              <h3> {!connected ? "Connect" : "Connected"}</h3>
               <button onClick={() => setWalletToggle(false)}>
                 <svg
                   width="35"
@@ -138,13 +128,13 @@ export const Navbar = () => {
                 </svg>
               </button>
             </div>
-            <a onClick={connectMetamask}>
+            <a onClick={() => setwallet(1)}>
               <div className="connectwallet_metamask">
                 <h3>MetaMask</h3>
                 <img src={metamask} alt="metamask" />
               </div>
             </a>
-            <a onClick={connectPortis}>
+            <a onClick={() => setwallet(2)}>
               <div className="connectwallet_portis">
                 <h3>Portis</h3>
                 <img src={portis} alt="metamask" />
