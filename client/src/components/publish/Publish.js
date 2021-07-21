@@ -130,8 +130,6 @@ export const Publish = () => {
         draggable
         pauseOnHover
       />
-      {/* Same as */}
-      <ToastContainer />
       <div className="container Publish__container">
         <div
           className="Publish__form-circle-red circle1-red"
