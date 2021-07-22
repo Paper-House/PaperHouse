@@ -44,6 +44,15 @@ export const Publish = () => {
 
   const IPFSupload = async (name, des, author, category) => {
     if (pdf && thumbnail && name && des && author && category) {
+      toast("🦄 Uploading to IPFS!", {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       const metadata = await client.store({
         name: name,
         description: des,
