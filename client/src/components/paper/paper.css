@@ -37,10 +37,21 @@
 }
 .paper_share {
   color: black;
+  z-index: 99;
 }
 #adobe-dc-view {
+  position: relative;
   height: 100%;
   width: 100%;
+  z-index: 9;
+}
+.pdf_loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* Paper details section */
 .paper_info {

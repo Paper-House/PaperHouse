@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./paper.css";
 import { AddressBtn } from "../addressBtn";
 import pf from "../assets/pf.png";
-import { Icon, InlineIcon } from "@iconify/react";
+import { Icon } from "@iconify/react";
 import linkOut from "@iconify/icons-akar-icons/link-out";
 import shareBox from "@iconify/icons-akar-icons/share-box";
 import ViewSDKClient from "../ViewSDKClient";
-
 export const Paper = () => {
   const [clipboard, setclipboard] = useState(false);
+  const [Adobeloading, setAdobeloading] = useState(true);
   function copyClip() {
     navigator.clipboard.writeText(window.location.href);
     setclipboard(true);
@@ -28,7 +28,8 @@ export const Paper = () => {
           showAnnotationTools: false,
         },
         "https://ipfs.io/ipfs/QmR7GSQM93Cx5eAg6a6yRzNde1FQv7uL6X1o4k7zrJa3LX/ipfs.draft3.pdf",
-        "IPFS - Content Addressed, Versioned, P2P File System"
+        "IPFS - Content Addressed, Versioned, P2P File System",
+        () => setTimeout(() => setAdobeloading(false), 2000)
       );
     });
   }, []);
@@ -44,7 +45,27 @@ export const Paper = () => {
       <ScrollToTopOnMount />
       <div class="paper_container container">
         <div className="paper_pdf">
+          {Adobeloading ? (
+            <div className="pdf_loading">
+              <div className="Wallet_loader">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="css-1p66nw2"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.477 2 12c0 1.46.312 2.843.872 4.09a1 1 0 01-1.825.82A11.961 11.961 0 010 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12c-2.89 0-5.545-1.023-7.617-2.727a1 1 0 111.27-1.544A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          ) : null}
           <div id="adobe-dc-view"></div>
+
           <div className="paper_share" onClick={copyClip}>
             {clipboard ? (
               <h3>Copied!</h3>
