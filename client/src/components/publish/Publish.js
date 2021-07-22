@@ -106,21 +106,15 @@ export const Publish = () => {
                 progress: undefined,
               });
 
-              setPdf(null);
-              setfunding(false);
-              setThumbnail(null);
               setpublishing(false);
-              setPdfPreviewUrl(null);
-              setThumbPreviewUrl(null);
-              title.current.value = null;
-              author.current.value = null;
-              description.current.value = null;
-              fundingAmount.current.value = null;
-
+              resetValues();
             })
             .catch((err) => {
               console.log(err);
             });
+        } else {
+          setpublishing(false);
+          resetValues();
         }
       });
     }
@@ -165,6 +159,18 @@ export const Publish = () => {
       setThumbPreviewUrl(URL.createObjectURL(event.target.files[0]));
       console.log(thumbnail);
     }
+  };
+
+  const resetValues = () => {
+    setPdf(null);
+    setfunding(false);
+    setThumbnail(null);
+    setPdfPreviewUrl(null);
+    setThumbPreviewUrl(null);
+    title.current.value = null;
+    author.current.value = null;
+    description.current.value = null;
+    fundingAmount.current.value = null;
   };
 
   return (
