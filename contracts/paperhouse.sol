@@ -8,7 +8,6 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract PaperHouse is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
-    Counters.Counter private _paperIds;
 
     constructor() ERC721("PaperHouse", "PH") {}
 
@@ -25,17 +24,8 @@ contract PaperHouse is ERC721URIStorage {
         uint256 fundAmount;
         uint256 totalAmountFunded;
     }
-
-    struct Donations {
-        address from;
-        address to;
-        uint256 amount;
-        uint256 paperId;
-    }
-
     mapping(uint256 => ResearchPaper) public papers;
-    mapping(uint256 => Donations) public donations;
-
+    
     function publish(
         string memory tokenURI,
         string memory _author,
@@ -43,10 +33,8 @@ contract PaperHouse is ERC721URIStorage {
         uint256 _fundAmount
     ) public {
         _tokenIds.increment();
-        _paperIds.increment();
 
         uint256 newtokenId = _tokenIds.current();
-        uint256 newpaperId = _paperIds.current();
 
         _mint(msg.sender, newtokenId);
         _setTokenURI(newtokenId, tokenURI);
@@ -61,7 +49,7 @@ contract PaperHouse is ERC721URIStorage {
             0
         );
 
-        papers[newpaperId] = rpaper;
+        papers[newtokenId] = rpaper;
 
         emit Published(newtokenId, tokenURI, _author, msg.sender, _isfunding, _fundAmount);
     }
@@ -85,19 +73,7 @@ contract PaperHouse is ERC721URIStorage {
 
         emit Funding(msg.sender, rpaper.owner, msg.value, _paperid, amount);
     }
-
-    function getPaper(uint256 paperId)
-        public
-        view
-        returns (ResearchPaper memory, string memory)
-    {
-        string memory tokenUri;
-
-        tokenUri = tokenURI(paperId);
-
-        return (papers[paperId], tokenUri);
-    }
-
+    
     function updatepaper(
         uint256 _paperid,
         bool _allowFunding,

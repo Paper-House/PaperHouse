@@ -19,17 +19,17 @@ body {
     #000000 100%
   );
   background-repeat: no-repeat;
-  background-attachment:fixed;
+  background-attachment: fixed;
   font-family: "Open Sans", sans-serif;
-  height: fit-content
+  height: fit-content;
 }
 
 :root {
   --red-circle: rgba(197, 101, 113, 0.7);
   --violet-circle: #5c45ff;
   --backdrop-border-radius: 21px;
-  --pH-heading-color:#0097FD;
-  --button-light-background-color: #0097FD54;
+  --pH-heading-color: #0097fd;
+  --button-light-background-color: #0097fd54;
   --input-button-border-radius: 19px;
 }
 
@@ -55,4 +55,20 @@ body {
 
 a {
   text-decoration: none;
+}
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar {
+  width: 9px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: var(--pH-heading-color);
 }

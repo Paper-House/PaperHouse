@@ -380,6 +380,13 @@ input[type=number]::-webkit-outer-spin-button {
   transition: 0.25s ease-in-out;
   animation: glow 1s alternate infinite;
 }
+.Publish__form--input-boxes button:disabled {
+  background: rgba(0, 151, 253, 0.5);
+  color: rgba(255, 255,255, .5);
+  cursor: default;
+  animation: none;
+}
+
 .Toastify__toast-container {
   margin-top: 65px !important;
 }

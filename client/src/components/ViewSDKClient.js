@@ -16,7 +16,7 @@ class ViewSDKClient {
     return this.readyPromise;
   }
 
-  previewFile(divId, viewerConfig, fileURL, fileName) {
+  previewFile(divId, viewerConfig, fileURL, fileName, setloading) {
     const config = {
       clientId: "b0b125077da244a4aca8805632114cb0",
     };
@@ -38,6 +38,7 @@ class ViewSDKClient {
       },
       viewerConfig
     );
+    setloading();
 
     return previewFilePromise;
   }

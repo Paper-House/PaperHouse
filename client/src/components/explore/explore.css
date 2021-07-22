@@ -56,11 +56,15 @@ button[aria-expanded="true"] {
 
 .paper_card {
   width: 300px;
-  height: fit-content;
+  height: 360px;
   border: 2px solid #0097fd;
   border-radius: 10px;
   overflow: hidden;
   transition: 0.2s ease-in-out;
+}
+.papercard_myprofile{
+  height: 470px;
+
 }
 .paper_card:hover {
   box-shadow: 0px 0px 8px #0097fd;
