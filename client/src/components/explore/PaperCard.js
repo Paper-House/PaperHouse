@@ -6,7 +6,7 @@ export default function PaperCard({ data, page, callupdate, currentAmount }) {
   const [fundtoggle, setfundtoggle] = useState(false);
   const fundInput = useRef();
   return (
-    <div className="paper_card">
+    <div className={page === "mypapers" ? "paper_card papercard_myprofile" : "paper_card"}>
       <div className="paper_card_img">
         <img src={thumb} alt="" />
       </div>

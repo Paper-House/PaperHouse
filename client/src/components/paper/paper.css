@@ -37,7 +37,7 @@
 }
 .paper_share {
   color: black;
-  z-index: 99;
+  z-index: 10;
 }
 #adobe-dc-view {
   position: relative;
