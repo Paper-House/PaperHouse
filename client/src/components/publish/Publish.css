@@ -5,6 +5,13 @@
   scroll-behavior: smooth;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+   -moz-appearance:none;
+  margin: 0; 
+}
+
 #pCircle {
   position: absolute;
   z-index: 0;
@@ -232,132 +239,132 @@
   border-radius: 5px;
 }
 
-.preview-info p {
-  font-weight: 500;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 70px;
-}
+  .preview-info p {
+    font-weight: 500;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 70px;
+  }
 
-.Publish__form--input-boxes {
-  /* width: 50%; */
-  width: 100%;
-  flex-basis: 50%;
-  display: grid;
-  /* grid-template-rows: 98px 98px 200px 98px auto auto auto auto; */
-  grid-template-rows: auto auto 200px auto auto auto auto auto 1fr;
-  grid-gap: 30px;
-}
+  .Publish__form--input-boxes {
+    /* width: 50%; */
+    width: 100%;
+    flex-basis: 50%;
+    display: grid;
+    /* grid-template-rows: 98px 98px 200px 98px auto auto auto auto; */
+    grid-template-rows: auto auto 200px auto auto auto auto auto 1fr;
+    grid-gap: 30px;
+  }
 
-.Publish__form--input-boxes h2 {
-  color: var(--pH-heading-color);
-}
+  .Publish__form--input-boxes h2 {
+    color: var(--pH-heading-color);
+  }
 
-.Publish__form--input-boxes input {
-  background-color: transparent;
-  border: none;
-  background: rgba(0, 151, 253, 0.31);
-  width: 80%;
-  border-radius: 5px;
-  padding: 20px 20px;
-  margin-top: 10px;
-  color: #0097fd;
-  font-size: 0.9rem;
-}
+  .Publish__form--input-boxes input {
+    background-color: transparent;
+    border: none;
+    background: rgba(0, 151, 253, 0.31);
+    width: 80%;
+    border-radius: 5px;
+    padding: 20px 20px;
+    margin-top: 10px;
+    color: #0097fd;
+    font-size: 0.9rem;
+  }
 
-.Publish__form--input-boxes input:focus,
-textarea:focus {
-  outline: none;
-  color: #0097fd;
-}
+  .Publish__form--input-boxes input:focus,
+  textarea:focus {
+    outline: none;
+    color: #0097fd;
+  }
 
-.Publish__form--input-title {
-  min-height: fit-content;
-  height: 100%;
-}
+  .Publish__form--input-title {
+    min-height: fit-content;
+    height: 100%;
+  }
 
-.Publish__form--input--description textarea {
-  height: max-content;
-  height: calc(100% - 33px - 10px);
-  background-color: transparent;
-  border: none;
-  background: rgba(0, 151, 253, 0.31);
-  width: 80%;
-  border-radius: 5px;
-  padding: 20px 20px;
-  margin-top: 10px;
-  resize: none;
-  font-size: 0.9rem;
-  font-weight: 400;
-}
-.Publish__form--input--description textarea::placeholder,
-.Publish__form--input-boxes input::placeholder,
-.Publish__form--input-boxes input {
-  color: #0097fd;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-align: start;
-}
-.basic-multi-select {
-  width: 80%;
-  margin-top: 10px;
-}
+  .Publish__form--input--description textarea {
+    height: max-content;
+    height: calc(100% - 33px - 10px);
+    background-color: transparent;
+    border: none;
+    background: rgba(0, 151, 253, 0.31);
+    width: 80%;
+    border-radius: 5px;
+    padding: 20px 20px;
+    margin-top: 10px;
+    resize: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  .Publish__form--input--description textarea::placeholder,
+  .Publish__form--input-boxes input::placeholder,
+  .Publish__form--input-boxes input {
+    color: #0097fd;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: start;
+  }
+  .basic-multi-select {
+    width: 80%;
+    margin-top: 10px;
+  }
 
-.Publish__form--input--funding-toogle {
-  display: flex;
-  align-items: center;
-  width: 80%;
-}
+  .Publish__form--input--funding-toogle {
+    display: flex;
+    align-items: center;
+    width: 80%;
+  }
 
-.Publish__form--input--funding-toogle h2,
-.Publish__form--input--funding-amount h2 {
-  font-family: "Open Sans";
-  font-weight: 600;
-  font-size: 1.2em;
-  width: 100%;
-}
+  .Publish__form--input--funding-toogle h2,
+  .Publish__form--input--funding-amount h2 {
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 1.2em;
+    width: 100%;
+  }
 
-.Publish__form--input--funding-toogle input {
-  margin-top: 0px;
-  width: fit-content;
-}
+  .Publish__form--input--funding-toogle input {
+    margin-top: 0px;
+    width: fit-content;
+  }
 
-.Publish__form--input--funding-amount {
-  display: flex;
-  align-items: center;
-  width: 80%;
-}
+  .Publish__form--input--funding-amount {
+    display: flex;
+    align-items: center;
+    width: 80%;
+  }
 
-.Publish__form--input--funding-amount input {
-  margin-top: 0px;
-  height: 30px;
-  max-width: 50%;
-  width: 20%;
-}
+  .Publish__form--input--funding-amount input {
+    margin-top: 0px;
+    height: 30px;
+    max-width: 50%;
+    width: 20%;
+  }
 
-.Publish__form--input--funding-amount input::placeholder {
-  color: #0097fd;
-  text-align: center;
-}
+  .Publish__form--input--funding-amount input::placeholder {
+    color: #0097fd;
+    text-align: center;
+  }
 
-.Publish__form--input--terms {
-  color: #0097fd;
-  width: 80%;
-}
+  .Publish__form--input--terms {
+    color: #0097fd;
+    width: 80%;
+  }
 
-.Publish__form--input--terms p {
-  font-size: 100%;
-  font-weight: 400;
-  font-size: 0.8em;
-}
-#Publish__form--input--terms--item2 {
-  margin-top: 10px;
-}
+  .Publish__form--input--terms p {
+    font-size: 100%;
+    font-weight: 400;
+    font-size: 0.8em;
+  }
+  #Publish__form--input--terms--item2 {
+    margin-top: 10px;
+  }
 
-.Publish__form--button {
-  min-width: 20%;
-  max-width: 170px;
+  .Publish__form--button {
+    min-width: 20%;
+    max-width: 170px;
   width: max-content;
   height: 50px;
   max-height: 60px;

@@ -1,4 +1,4 @@
-import React, { useState, useref } from "react";
+import React, { useState, useref, useRef } from "react";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
@@ -25,11 +25,23 @@ export const Publish = () => {
   ]);
 
   const [funding, setfunding] = useState(false);
-  const [thumbnail, setThumbnail] = useState({});
-  const [pdf, setPdf] = useState({});
+  const [thumbnail, setThumbnail] = useState(null);
+  const [pdf, setPdf] = useState(null);
   const [publishing, setpublishing] = useState(false);
+  const [categories, setCategories] = useState({
+    value: "⚛️ Science",
+    label: "⚛️ Science",
+  });
+  const [pdfPreviewUrl, setPdfPreviewUrl] = useState(null);
+  const [thumbPreviewUrl, setThumbPreviewUrl] = useState(null);
   const { connected, address } = useSelector((state) => state.paper.wallet);
   const contract = useSelector((state) => state.paper.contract);
+
+  const title = useRef(null);
+  const author = useRef(null);
+  const description = useRef(null);
+  const fundingAmount = useRef(null);
+
   const IPFSupload = async (name, des, author, category) => {
     if (pdf && thumbnail && name && des && author && category) {
       const metadata = await client.store({
@@ -43,78 +55,117 @@ export const Publish = () => {
         pdf: new File([pdf], `${pdf.name}`, { type: "application/pdf" }),
       });
       return metadata.url;
+    } else if (!pdf || !thumbnail || !name || !des || !author) {
+      toast.error("😢️ All inputs are required!!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
+
   const PublishPaper = () => {
     if (connected) {
       setpublishing(true);
       IPFSupload(
-        "bitcoin",
-        "bitcoin the god",
-        "satoshi nakamoto",
-        "whitepaper"
+        title.current.value,
+        description.current.value,
+        author.current.value,
+        categories.value
       ).then((tokenURI) => {
-        toast("🦄 Uploaded to IPFS!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        contract.methods
-          .publish(
-            tokenURI,
-            "satoshi Nakamoto",
-            true,
-            Web3.utils.toWei("1", "ether")
-          )
-          .send({ from: address })
-          .then(() => {
-            toast("🚀️ Research Paper Published!", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            setpublishing(false);
-          })
-          .catch((err) => {
-            console.log(err);
+        if (tokenURI) {
+          toast("🦄 Uploaded to IPFS!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
           });
+          contract.methods
+            .publish(
+              tokenURI,
+              author.current.value,
+              funding,
+              Web3.utils.toWei("1", "ether")
+            )
+            .send({ from: address })
+            .then(() => {
+              toast("🚀️ Research Paper Published!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+
+              setPdf(null);
+              setfunding(false);
+              setThumbnail(null);
+              setpublishing(false);
+              setPdfPreviewUrl(null);
+              setThumbPreviewUrl(null);
+              title.current.value = null;
+              author.current.value = null;
+              description.current.value = null;
+              fundingAmount.current.value = null;
+
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       });
     }
   };
+
   const publishHandleInputChange = (object) => {
-    console.group("Input Changed");
-    console.log(object);
-    console.groupEnd();
+    setCategories(object);
+    console.log(categories);
   };
 
   const pdfAdded = (event) => {
-    setPdf(event.target.files[0]);
-    console.log(event.target.files[0].type);
+    if (event.target.files[0].size > 100000000) {
+      toast.error("😢️ PDF size should be less than 100MB!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      setPdf(event.target.files[0]);
+      setPdfPreviewUrl(URL.createObjectURL(event.target.files[0]));
+      console.log(pdf);
+    }
   };
 
   const thumbnailAdded = (event) => {
-    setThumbnail(event.target.files[0]);
-    console.log(event.target.files[0].name);
+    if (event.target.files[0].size > 5000000) {
+      toast.error("😢️ Thumbnail size should be less than 100MB!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      setThumbnail(event.target.files[0]);
+      setThumbPreviewUrl(URL.createObjectURL(event.target.files[0]));
+      console.log(thumbnail);
+    }
   };
-
-  console.log(`funding: ${funding}`);
-  console.log(categoryOptions);
-
-  // const customStyles = {
-  //   menu: (provided, state) => ({
-  //     ...provided,
-  //     borderBottom: "none",
-  //     backgroundColor: "rgba(0, 151, 253, 1);",
-  //   }),
-  // };
 
   return (
     <>
@@ -149,6 +200,7 @@ export const Publish = () => {
         ></div>
         <div className="Publish__form-backdrop">
           <h1 id="publish-heading">Publish a Research Paper</h1>
+          {/* <form> */}
           <div className="Publish__form">
             {" "}
             {/* flex */}
@@ -167,9 +219,9 @@ export const Publish = () => {
                     name="upload"
                     id="upload-pdf"
                     accept="application/pdf"
-                    required
                     hidden
                     onChange={pdfAdded}
+                    required
                   />
                   <p>
                     <label for="upload-pdf">Choose File</label>
@@ -187,64 +239,78 @@ export const Publish = () => {
                     type="file"
                     id="upload-img"
                     accept="image/*"
-                    required
                     hidden
                     onChange={thumbnailAdded}
+                    required
                   />
                   <p>
                     <label for="upload-img">Choose File</label>
                   </p>
                 </div>
               </div>
-              <div className="Publish__form--upload-preview">
-                <div className="Publish__form--upload-preview-content">
-                  <img src={thumb} />
-                  <div className="preview-info">
-                    <p title="Computing_interaction_effects_and_standard_errors_in_logit and_probit_models.pdf">
-                      Computing interaction effects and standard errors in logit
-                      and probit models.pdf
-                    </p>
-                    <div className="preview-info--ipfs-link">
-                      <div id="ipfs-link-preview">
-                        <a
-                          href="https://bafybeidkyx7npjdwjtceslc2t5ryc25dtojefu6yy7ao6qaethbcpnhpra.ipfs.dweb.link/scalability.pdf"
-                          target="_blank"
-                        >
-                          Preview
-                        </a>
+              {thumbPreviewUrl && pdfPreviewUrl && (
+                <div className="Publish__form--upload-preview">
+                  <div className="Publish__form--upload-preview-content">
+                    {thumbPreviewUrl ? (
+                      <img src={thumbPreviewUrl} />
+                    ) : (
+                      <Skeleton width={100} height={90} />
+                    )}
+                    <div className="preview-info">
+                      <p title="Computing_interaction_effects_and_standard_errors_in_logit and_probit_models.pdf">
+                        {pdf ? pdf.name : <Skeleton width={"100%"} count={2} />}
+                      </p>
+                      <div className="preview-info--ipfs-link">
+                        <div id="ipfs-link-preview">
+                          {pdfPreviewUrl ? (
+                            <a href={pdfPreviewUrl} target="_blank">
+                              Preview
+                            </a>
+                          ) : (
+                            <Skeleton width={"60px"} />
+                          )}
+                        </div>
+                        <p id="upload__extension">.PDF</p>
                       </div>
-                      <p id="upload__extension">.PDF</p>
                     </div>
                   </div>
-                </div>
-                <div
-                  className="Publish__form--upload-preview-content"
-                  id="Publish__form--upload-preview-thumbnail"
-                >
-                  {/* <img src={thumb} /> */}
-                  <Skeleton width={100} height={90} />
-                  <div className="preview-info">
-                    <p title="Computing_interaction_effects_and_standard_errors_in_logit and_probit_models.png">
-                      {/* Computing interaction effects and standard errors in logit
+                  <div
+                    className="Publish__form--upload-preview-content"
+                    id="Publish__form--upload-preview-thumbnail"
+                  >
+                    {thumbPreviewUrl ? (
+                      <img src={thumbPreviewUrl} />
+                    ) : (
+                      <Skeleton width={100} height={90} />
+                    )}
+                    {/* <img src={thumb} /> */}
+                    <div className="preview-info">
+                      <p title="Computing_interaction_effects_and_standard_errors_in_logit and_probit_models.png">
+                        {thumbnail ? (
+                          thumbnail.name
+                        ) : (
+                          <Skeleton width={"100%"} count={2} />
+                        )}
+                        {/* Computing interaction effects and standard errors in logit
                     and probit models.png */}
-                      <Skeleton width={"100%"} count={2} />
-                    </p>
-                    <div className="preview-info--ipfs-link">
-                      <div id="ipfs-link-preview">
-                        {/* <a
-                        href="https://bafybeiczp5sgorjrq7nbl2kyk76tohzyd7k7lfzdbwohjofos4hfjwqiii.ipfs.dweb.link/"
-                        target="_blank"
-                      >
-                        Preview
-                      </a> */}
-                        <Skeleton width={"60px"} />
+                      </p>
+                      <div className="preview-info--ipfs-link">
+                        <div id="ipfs-link-preview">
+                          {thumbPreviewUrl ? (
+                            <a href={thumbPreviewUrl} target="_blank">
+                              Preview
+                            </a>
+                          ) : (
+                            <Skeleton width={"60px"} />
+                          )}
+                        </div>
+                        <p id="upload__extension-png">.PNG</p>
+                        {/* <Skeleton width={"60px"} /> */}
                       </div>
-                      {/* <p id="upload__extension-png">.PNG</p> */}
-                      <Skeleton width={"60px"} />
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
               {/* <img src={file} /> */}
             </div>
             <div className="Publish__form--input-boxes">
@@ -255,26 +321,36 @@ export const Publish = () => {
                 <input
                   type="text"
                   placeholder="Bitcoin: A Peer-to-Peer Electron..."
+                  ref={title}
+                  maxlength="40"
                   required
                 />
               </div>
               <div className="Publish__form--input--author">
                 <h2>Author</h2>
-                <input type="text" placeholder="Satoshi Nakamoto" required />
+                <input
+                  type="text"
+                  placeholder="Satoshi Nakamoto"
+                  ref={author}
+                  maxlength="30"
+                  required
+                />
               </div>
               <div className="Publish__form--input--description">
                 <h2>Description</h2>
                 <textarea
                   type="text"
                   placeholder="A Peer-to-Peer Electronic Cash System..."
+                  ref={description}
+                  maxlength="120"
                   required
                 />
               </div>
               <div className="Publish__form--input--category">
                 <h2>Categories</h2>
                 <Select
-                  defaultValue={[categoryOptions[0], categoryOptions[1]]}
-                  isMulti
+                  defaultValue={[categoryOptions[0]]}
+                  // isMulti
                   name="Categories"
                   options={categoryOptions}
                   className="basic-multi-select"
@@ -285,11 +361,6 @@ export const Publish = () => {
               </div>
               <div className="Publish__form--input--funding-toogle">
                 <h2>Allow funding</h2>
-                {/* <input
-                type="checkbox"
-                onChange={() => setfunding(!funding)}
-                required
-              /> */}
                 <label htmlFor="" className="switch">
                   <input
                     type="checkbox"
@@ -300,7 +371,12 @@ export const Publish = () => {
               </div>
               <div className="Publish__form--input--funding-amount">
                 <h2>Funding Amount</h2>
-                <input type="text" placeholder="0Eth" required />
+                <input
+                  type="number"
+                  placeholder="0Eth"
+                  ref={fundingAmount}
+                  required
+                />
               </div>
               <div className="Publish__form--input--terms">
                 <p id="Publish__form--input--terms--item1">
@@ -323,6 +399,7 @@ export const Publish = () => {
               </button>
             </div>
           </div>
+          {/* </form> */}
         </div>
       </div>
     </>
