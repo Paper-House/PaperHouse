@@ -2,10 +2,15 @@
   top: 0;
   z-index: 999;
   position: sticky;
-  background: rgba(0, 0, 0, 0.06);
-  backdrop-filter: saturate(100%) blur(20px);
+  background: rgba(0, 47, 80, 1);
   padding: 0px 20px 0px 20px;
   width: 100%;
+}
+@supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
+  .nav__backdrop{
+    background: rgba(0, 47, 80, .3);
+    backdrop-filter: saturate(100%) blur(20px);
+  }
 }
 
 nav {
