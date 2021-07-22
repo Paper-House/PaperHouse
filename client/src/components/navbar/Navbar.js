@@ -14,6 +14,7 @@ export const Navbar = () => {
   const [wallet, setwallet] = useState(0);
   const connected = useSelector((state) => state.paper.wallet.connected);
   const state = useSelector((state) => state.paper);
+ 
   useEffect(() => {
     setWalletToggle(false);
     setConnecting(false);
