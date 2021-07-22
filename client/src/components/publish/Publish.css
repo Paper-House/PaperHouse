@@ -357,8 +357,8 @@ textarea:focus {
 
 .Publish__form--button {
   min-width: 20%;
-  max-width: 40%;
-  width: 100px;
+  max-width: 170px;
+  width: max-content;
   height: 50px;
   max-height: 60px;
   padding: 10px 20px;
