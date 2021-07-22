@@ -213,10 +213,31 @@ input:focus {
 .connectwallet_portis img {
   width: 50px;
 }
-button:disabled {
+.ConnectWallet button:disabled {
   background-color: 2px solid rgba(0, 151, 253, 1) !important;
-  cursor: not-allowed;
-  opacity: 0.5;
+  opacity: .8;
+  cursor: default;
+}
+.ConnectWallet button:disabled:hover {
+  border: 2px solid rgba(0, 151, 253, 0.5) !important;
+  cursor: default;
+}
+.Wallet_loader{
+  width:35px;
+  height:35px;
+  animation: walletLoad 900ms linear 0s infinite normal none running;
+
+}
+.Wallet_loader svg, .Wallet_loader path{
+  fill:rgba(0, 151, 253, 1);
+}
+@keyframes walletLoad{
+  0%{
+    transform:rotate(0deg);
+  }
+  100%{
+    transform:rotate(360deg);
+  }
 }
 /* Mobile */
 @media only screen and (max-width: 767px) {
