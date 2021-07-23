@@ -32,15 +32,10 @@ export default function ConnectWallet({ wallet }) {
   const state = useSelector((state) => state.paper);
   const web3 = state.web3;
   useEffect(() => {
-    const providerURL = "https://rpc-mumbai.matic.today/";
-
     if (wallet === 1 && window.web3 !== undefined) {
       dispatch(setWeb3(new Web3(window.ethereum)));
     } else if (wallet === 2) {
       dispatch(setWeb3(new Web3(portis.provider)));
-    } else {
-      const provider = new Web3.providers.HttpProvider(providerURL);
-      dispatch(setWeb3(new Web3(provider)));
     }
   }, [wallet]);
   useEffect(() => {
