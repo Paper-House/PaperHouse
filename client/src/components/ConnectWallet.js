@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Portis from "@portis/web3";
 import Web3 from "web3";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,21 +6,29 @@ import {
   setContract,
   setWallet,
   setWeb3,
+  setCorrectNetwork,
 } from "../redux/reducers/papersreducer";
 import PaperHouse from "../contracts/PaperHouse.json";
 
 const portis = new Portis("a7653496-491a-42cd-813c-471536ebf61e", "mainnet");
 
 const getInstance = (web3, Networkid) => {
-  const instance = new web3.eth.Contract(
-    PaperHouse.abi,
-    PaperHouse.networks[Networkid].address
-  );
-  return instance;
+  try {
+    const instance = new web3.eth.Contract(
+      PaperHouse.abi,
+      PaperHouse.networks[Networkid].address
+    );
+    return instance;
+  } catch (err) {
+    console.log(err);
+  }
 };
-
+const getNetworkid = async (web3) => {
+  return await web3.eth.net.getId();
+};
 export default function ConnectWallet({ wallet }) {
   const dispatch = useDispatch();
+  const [networkChange, setnetworkChange] = useState("");
   const state = useSelector((state) => state.paper);
   const web3 = state.web3;
   useEffect(() => {
@@ -48,9 +56,15 @@ export default function ConnectWallet({ wallet }) {
                 network: await web3.eth.net.getId(),
               })
             );
-            dispatch(
-              setContract(getInstance(web3, await web3.eth.net.getId()))
-            );
+            getNetworkid(web3).then((id) => {
+              if (id === 5777) {
+                console.log("hii")
+                dispatch(setContract(getInstance(web3, id)));
+                dispatch(setCorrectNetwork(true));
+              } else {
+                dispatch(setCorrectNetwork(false));
+              }
+            });
           })
           .catch((err) => {
             console.log(err);
@@ -76,6 +90,24 @@ export default function ConnectWallet({ wallet }) {
           });
       }
     }
-  }, [web3]);
+  }, [web3, networkChange]);
+  useEffect(() => {
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        dispatch(
+          setWallet({
+            connected: true,
+            address: accounts[0],
+          })
+        );
+        console.log(accounts);
+      });
+
+      window.ethereum.on("chainChanged", (chainId) => {
+        setnetworkChange(chainId);
+      });
+    }
+  }, []);
+
   return "";
 }

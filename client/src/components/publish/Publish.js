@@ -40,19 +40,30 @@ export const Publish = () => {
   const title = useRef(null);
   const author = useRef(null);
   const description = useRef(null);
-  const fundingAmount = useRef(null);
-
+  const fundingAmount = useRef(undefined);
+  const toastStyles = {
+    default: {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    },
+    error: {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    },
+  };
   const IPFSupload = async (name, des, author, category) => {
     if (pdf && thumbnail && name && des && author && category) {
-      toast("🦄 Uploading to IPFS!", {
-        position: "top-right",
-        autoClose: 7000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast("🦄 Uploading to IPFS!", toastStyles.default);
       const metadata = await client.store({
         name: name,
         description: des,
@@ -65,15 +76,7 @@ export const Publish = () => {
       });
       return metadata.url;
     } else if (!pdf || !thumbnail || !name || !des || !author) {
-      toast.error("😢️ All inputs are required!!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error("😢️ All inputs are required!!", toastStyles.error);
     }
   };
 
@@ -87,38 +90,29 @@ export const Publish = () => {
         categories.value
       ).then((tokenURI) => {
         if (tokenURI) {
-          toast("🦄 Uploaded to IPFS!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toast("🦄 Uploaded to IPFS!", toastStyles.default);
+          console.log(tokenURI);
+          let fund;
+          if (fundingAmount.current.value) {
+            fund = funding ? fundingAmount.current.value : "0";
+          }
           contract.methods
             .publish(
               tokenURI,
               author.current.value,
               funding,
-              Web3.utils.toWei("1", "ether")
+              Web3.utils.toWei(fund, "ether")
             )
             .send({ from: address })
             .then(() => {
-              toast("🚀️ Research Paper Published!", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-
+              toast("🚀️ Research Paper Published!", toastStyles.default);
               setpublishing(false);
               resetValues();
             })
             .catch((err) => {
+              toast.error("❗Transaction Failed", toastStyles.error);
+              setpublishing(false);
+              resetValues();
               console.log(err);
             });
         } else {
@@ -136,15 +130,7 @@ export const Publish = () => {
 
   const pdfAdded = (event) => {
     if (event.target.files[0].size > 100000000) {
-      toast.error("😢️ PDF size should be less than 100MB!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error("😢️ PDF size should be less than 100MB!", toastStyles.error);
     } else {
       setPdf(event.target.files[0]);
       setPdfPreviewUrl(URL.createObjectURL(event.target.files[0]));
@@ -154,15 +140,10 @@ export const Publish = () => {
 
   const thumbnailAdded = (event) => {
     if (event.target.files[0].size > 5000000) {
-      toast.error("😢️ Thumbnail size should be less than 100MB!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error(
+        "😢️ Thumbnail size should be less than 100MB!",
+        toastStyles.error
+      );
     } else {
       setThumbnail(event.target.files[0]);
       setThumbPreviewUrl(URL.createObjectURL(event.target.files[0]));
@@ -179,7 +160,9 @@ export const Publish = () => {
     title.current.value = null;
     author.current.value = null;
     description.current.value = null;
-    fundingAmount.current.value = null;
+    if (fundingAmount.current) {
+      fundingAmount.current.value = null;
+    }
   };
 
   return (
@@ -384,15 +367,17 @@ export const Publish = () => {
                   />
                 </label>
               </div>
-              <div className="Publish__form--input--funding-amount">
-                <h2>Funding Amount</h2>
-                <input
-                  type="number"
-                  placeholder="0Eth"
-                  ref={fundingAmount}
-                  required
-                />
-              </div>
+              {funding ? (
+                <div className="Publish__form--input--funding-amount">
+                  <h2>Funding Amount</h2>
+                  <input
+                    type="number"
+                    placeholder="0Eth"
+                    ref={fundingAmount}
+                    required
+                  />
+                </div>
+              ) : null}
               <div className="Publish__form--input--terms">
                 <p id="Publish__form--input--terms--item1">
                   Once your NFT is minted on the Polygon blockchain, you will
