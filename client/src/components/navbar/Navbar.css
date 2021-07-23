@@ -6,9 +6,11 @@
   padding: 0px 20px 0px 20px;
   width: 100%;
 }
-@supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
-  .nav__backdrop{
-    background: rgba(0, 47, 80, .3);
+@supports (
+  (-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))
+) {
+  .nav__backdrop {
+    background: rgba(0, 47, 80, 0.3);
     backdrop-filter: saturate(100%) blur(20px);
   }
 }
@@ -220,28 +222,40 @@ input:focus {
 }
 .ConnectWallet button:disabled {
   background-color: 2px solid rgba(0, 151, 253, 1) !important;
-  opacity: .8;
+  opacity: 0.8;
   cursor: default;
 }
 .ConnectWallet button:disabled:hover {
   border: 2px solid rgba(0, 151, 253, 0.5) !important;
   cursor: default;
 }
-.Wallet_loader{
-  width:35px;
-  height:35px;
+.Wallet_loader {
+  width: 35px;
+  height: 35px;
   animation: walletLoad 900ms linear 0s infinite normal none running;
-
 }
-.Wallet_loader svg, .Wallet_loader path{
-  fill:rgba(0, 151, 253, 1);
+.Wallet_loader svg,
+.Wallet_loader path {
+  fill: rgba(0, 151, 253, 1);
 }
-@keyframes walletLoad{
-  0%{
-    transform:rotate(0deg);
+.wrong_network {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 47, 80, 0.4);
+  z-index: 999999;
+  color: white;
+}
+@keyframes walletLoad {
+  0% {
+    transform: rotate(0deg);
   }
-  100%{
-    transform:rotate(360deg);
+  100% {
+    transform: rotate(360deg);
   }
 }
 /* Mobile */

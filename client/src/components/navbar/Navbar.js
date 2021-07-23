@@ -13,14 +13,17 @@ export const Navbar = () => {
   const [Connecting, setConnecting] = useState(false);
   const [wallet, setwallet] = useState(0);
   const connected = useSelector((state) => state.paper.wallet.connected);
+  const correctNetwork = useSelector(
+    (state) => state.paper.wallet.correctNetwork
+  );
   const state = useSelector((state) => state.paper);
- 
+
   useEffect(() => {
     setWalletToggle(false);
     setConnecting(false);
   }, [connected]);
   useEffect(() => {
-    if (connected) {
+    if (connected && !correctNetwork) {
       state.contract.methods
         .name()
         .call()
@@ -32,6 +35,7 @@ export const Navbar = () => {
   return (
     <>
       <ConnectWallet wallet={wallet} />
+      {connected?correctNetwork?null:<WrongNetwork/>:null }
       <div className="nav__backdrop">
         <nav>
           <NavLink
@@ -210,3 +214,7 @@ export const Navbar = () => {
     </>
   );
 };
+
+function WrongNetwork() {
+  return <div className="wrong_network">wrong network</div>;
+}
