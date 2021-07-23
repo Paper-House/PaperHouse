@@ -1,7 +1,7 @@
 .nav__backdrop {
   top: 0;
   z-index: 999;
-  position: sticky;
+  position: fixed;
   background: rgba(0, 47, 80, 1);
   padding: 0px 20px 0px 20px;
   width: 100%;

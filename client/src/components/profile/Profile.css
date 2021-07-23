@@ -1,3 +1,7 @@
+.Profile_container {
+  margin-top: 70px;
+}
+
 .Activities__nav--section {
   display: grid;
   align-items: center;
@@ -96,6 +100,7 @@
 
   .Activities__nav--section-mob h2 {
     color: var(--pH-heading-color);
+    font-size: 2rem;
   }
 
   .Activities__person--proflie {

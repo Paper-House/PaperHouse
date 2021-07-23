@@ -3,6 +3,7 @@
   padding-top: 15px;
   position: relative;
   scroll-behavior: smooth;
+  margin-top: 65px;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
