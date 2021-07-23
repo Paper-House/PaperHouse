@@ -6,6 +6,7 @@
     "@portis/web3": "^4.0.5",
     "@reduxjs/toolkit": "^1.6.1",
     "framer-motion": "^4.1.17",
+    "hamburger-react": "^2.4.1",
     "nft.storage": "^3.0.1",
     "react": "16.11.0",
     "react-dom": "16.11.0",
