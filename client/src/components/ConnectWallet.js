@@ -10,7 +10,10 @@ import {
 } from "../redux/reducers/papersreducer";
 import PaperHouse from "../contracts/PaperHouse.json";
 
-const portis = new Portis("a7653496-491a-42cd-813c-471536ebf61e", "maticMumbai");
+const portis = new Portis(
+  "a7653496-491a-42cd-813c-471536ebf61e",
+  "maticMumbai"
+);
 
 const getInstance = (web3, Networkid) => {
   try {
