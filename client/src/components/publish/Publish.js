@@ -20,7 +20,7 @@ export const Publish = () => {
     { value: "🤖️ ML/AI", label: "🤖️ ML/AI" },
     { value: "🚀️ Space", label: "🚀️ Space" },
     { value: "⚕️ Medical", label: "⚕️ Medical" },
-    { value: "Economics", label: "Economics" },
+    { value: "📊 Economics", label: "📊 Economics" },
     { value: "Other", label: "Other" },
   ]);
 
