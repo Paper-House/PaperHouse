@@ -2,11 +2,21 @@ import React, { useRef, useState } from "react";
 import { AddressBtn } from "../addressBtn";
 import thumb from "../assets/thumb.png";
 
-export default function PaperCard({ data, page, callupdate, currentAmount }) {
+export default function PaperCard({
+  data,
+  page,
+  callupdate,
+  currentAmount,
+  updating,
+}) {
   const [fundtoggle, setfundtoggle] = useState(false);
   const fundInput = useRef();
   return (
-    <div className={page === "mypapers" ? "paper_card papercard_myprofile" : "paper_card"}>
+    <div
+      className={
+        page === "mypapers" ? "paper_card papercard_myprofile" : "paper_card"
+      }
+    >
       <div className="paper_card_img">
         <img src={thumb} alt="" />
       </div>
@@ -26,7 +36,7 @@ export default function PaperCard({ data, page, callupdate, currentAmount }) {
           <div className="paper_card_update">
             <div className="paper_card_fundtoggle">
               <h3>Allow Funding</h3>
-              <label htmlFor="" className="switch">
+              <label htmlFor="" className="switch" onClick={() => setfundtoggle(!fundtoggle)}>
                 <input type="checkbox" />
               </label>
             </div>
@@ -40,9 +50,27 @@ export default function PaperCard({ data, page, callupdate, currentAmount }) {
                 placeholder={currentAmount}
               />
             </div>
-            <button onClick={() => callupdate(fundInput, fundtoggle)}>
-              Update
-            </button>
+            {!updating ? (
+              <button onClick={() => callupdate(fundInput.current.value, fundtoggle)}>
+                Update
+              </button>
+            ) : (
+              <div className="Wallet_loader">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="css-1p66nw2"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.477 2 12c0 1.46.312 2.843.872 4.09a1 1 0 01-1.825.82A11.961 11.961 0 010 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12c-2.89 0-5.545-1.023-7.617-2.727a1 1 0 111.27-1.544A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+            )}
           </div>
         ) : null}
       </div>

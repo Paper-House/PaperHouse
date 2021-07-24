@@ -41,6 +41,7 @@ export const Publish = () => {
   const author = useRef(null);
   const description = useRef(null);
   const fundingAmount = useRef(undefined);
+
   const toastStyles = {
     default: {
       position: "top-right",
