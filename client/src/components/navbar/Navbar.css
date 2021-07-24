@@ -384,6 +384,13 @@ input:focus {
     width: 30px;
     height: 30px;
   }
+  .ConnectWallet{
+    width: 80%;
+    height:fit-content;
+  }
+  .connectwallet_metamask img, .connectwallet_portis img{
+    width: 30px;
+  }
 }
 /* IPad */
 @media only screen and (min-height: 1024px) {
@@ -506,6 +513,7 @@ input:focus {
     width: 30px;
     height: 30px;
   }
+ 
 }
 @keyframes glow {
   0% {

@@ -44,6 +44,14 @@ export default function ConnectWallet({ wallet }) {
   useEffect(() => {
     if (web3 !== undefined) {
       if (wallet === 1) {
+        dispatch(
+          setWallet({
+            connected: false,
+            address: "",
+            network: "",
+            correctNetwork: false,
+          })
+        );
         window.ethereum
           .enable()
           .then(async (accounts) => {
@@ -52,6 +60,7 @@ export default function ConnectWallet({ wallet }) {
                 connected: true,
                 address: accounts[0],
                 network: await web3.eth.net.getId(),
+                correctNetwork: false,
               })
             );
             getNetworkid(web3).then((id) => {
@@ -65,9 +74,25 @@ export default function ConnectWallet({ wallet }) {
           })
           .catch((err) => {
             console.log(err);
-            dispatch(setWallet({ connected: false, address: "", network: "" }));
+            dispatch(
+              setWallet({
+                connected: false,
+                address: "",
+                network: "",
+                correctNetwork: false,
+              })
+            );
           });
       } else if (wallet === 2) {
+        dispatch(
+          setWallet({
+            connected: false,
+            address: "",
+            network: "",
+            correctNetwork: false,
+          })
+        );
+
         web3.eth
           .getAccounts()
           .then(async (accounts) => {
@@ -76,6 +101,7 @@ export default function ConnectWallet({ wallet }) {
                 connected: true,
                 address: accounts[0],
                 network: await web3.eth.net.getId(),
+                correctNetwork: false,
               })
             );
             getNetworkid(web3).then((id) => {

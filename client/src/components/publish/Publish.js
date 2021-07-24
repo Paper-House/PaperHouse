@@ -365,6 +365,7 @@ export const Publish = () => {
                     type="checkbox"
                     style={{ padding: "0px" }}
                     onChange={() => setfunding(!funding)}
+                    checked={funding == true}
                   />
                 </label>
               </div>
