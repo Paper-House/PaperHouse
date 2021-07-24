@@ -29,15 +29,17 @@ export const Navbar = () => {
   const [wallet, setwallet] = useState(0);
   const containerRef = useRef(null);
   const height = useDimensions(containerRef);
-  const connected = useSelector((state) => state.paper.wallet.connected);
-  const correctNetwork = useSelector(
-    (state) => state.paper.wallet.correctNetwork
+  const { connected, correctNetwork } = useSelector(
+    (state) => state.paper.wallet
   );
+
   const state = useSelector((state) => state.paper);
 
   useEffect(() => {
-    setWalletToggle(false);
-    setConnecting(false);
+    if (connected) {
+      setWalletToggle(false);
+      setConnecting(false);
+    }
   }, [connected]);
 
   useEffect(() => {
