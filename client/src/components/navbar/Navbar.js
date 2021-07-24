@@ -6,8 +6,8 @@ import { motion, useCycle } from "framer-motion";
 import "./Navbar.css";
 
 import logo from "../assets/logo.svg";
-import metamask from "../assets/metamask.png";
-import portis from "../assets/portis.png";
+import metamask from "../assets/metamask_icon.svg";
+import portis from "../assets/portis_icon.svg";
 import ConnectWallet from "../ConnectWallet";
 
 export const useDimensions = (ref) => {

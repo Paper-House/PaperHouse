@@ -216,9 +216,12 @@ input:focus {
 .connectwallet_portis:hover {
   border: 2px solid rgba(0, 151, 253, 1);
 }
-.connectwallet_metamask img,
+.connectwallet_metamask img
+{
+  width: 40px;
+}
 .connectwallet_portis img {
-  width: 50px;
+  width: 35px;
 }
 .ConnectWallet button:disabled {
   background-color: 2px solid rgba(0, 151, 253, 1) !important;
