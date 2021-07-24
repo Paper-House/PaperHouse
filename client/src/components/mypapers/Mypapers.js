@@ -9,7 +9,9 @@ import Web3 from "web3";
 export const Mypapers = ({ path }) => {
   const [category, setcategory] = useState("all");
   // const address = "0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6";
-  const { connected, address } = useSelector((state) => state.paper.wallet);
+  const { connected, address, correctNetwork } = useSelector(
+    (state) => state.paper.wallet
+  );
   const contract = useSelector((state) => state.paper.contract);
   const [updating, setUpdating] = useState(false);
 
@@ -113,21 +115,27 @@ export const Mypapers = ({ path }) => {
   function UpdatePaper(paperid, updateAmount, fundToggle) {
     //smart contract call
     // Web3.utils.toWei(fund, "ether");
-    setUpdating(true);
-    contract.methods
-      .updatepaper(paperid, fundToggle, Web3.utils.toWei(updateAmount, "ether"))
-      .send({ from: address })
-      .then(() => {
-        toast("🦄️ Research Paper Updated!", toastStyles);
-        setUpdating(false);
-      })
-      .catch((error) => {
-        toast("Error while updating paper, try again...", toastStyles);
-        setUpdating(false);
-        console.log(error);
-      });
+    if (connected && correctNetwork) {
+      setUpdating(true);
+      contract.methods
+        .updatepaper(
+          paperid,
+          fundToggle,
+          Web3.utils.toWei(updateAmount, "ether")
+        )
+        .send({ from: address })
+        .then(() => {
+          toast("🦄️ Research Paper Updated!", toastStyles);
+          setUpdating(false);
+        })
+        .catch((error) => {
+          toast("Error while updating paper, try again...", toastStyles);
+          setUpdating(false);
+          console.log(error);
+        });
 
-    console.log(paperid, fundToggle);
+      console.log(paperid, fundToggle);
+    }
   }
 
   return (

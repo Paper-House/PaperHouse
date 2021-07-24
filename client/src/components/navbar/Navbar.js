@@ -43,7 +43,7 @@ export const Navbar = () => {
   }, [connected]);
 
   useEffect(() => {
-    if (connected && !correctNetwork) {
+    if (connected && correctNetwork) {
       state.contract.methods
         .name()
         .call()
