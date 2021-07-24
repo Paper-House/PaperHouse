@@ -49,7 +49,7 @@ body {
 
 @media only screen and (max-width: 767px) {
   body {
-    background-attachment: fixed;
+    background-attachment: unset;
   }
 }
 
