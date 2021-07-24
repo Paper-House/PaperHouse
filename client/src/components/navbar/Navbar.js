@@ -304,8 +304,12 @@ export const Navbar = () => {
             </div>
             <button
               onClick={() => {
-                setwallet(1);
-                setConnecting(true);
+                if (wallet != 1) {
+                  setwallet(1);
+                  setConnecting(true);
+                } else {
+                  setWalletToggle(false);
+                }
               }}
               disabled={Connecting}
               className="connectwallet_metamask"
@@ -334,8 +338,12 @@ export const Navbar = () => {
             </button>
             <button
               onClick={() => {
-                setwallet(2);
-                setConnecting(true);
+                if (wallet != 2) {
+                  setwallet(2);
+                  setConnecting(true);
+                } else {
+                  setWalletToggle(false);
+                }
               }}
               disabled={Connecting}
               className="connectwallet_portis"

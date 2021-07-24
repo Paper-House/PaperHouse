@@ -10,7 +10,7 @@ import {
 } from "../redux/reducers/papersreducer";
 import PaperHouse from "../contracts/PaperHouse.json";
 
-const portis = new Portis("a7653496-491a-42cd-813c-471536ebf61e", "mainnet");
+const portis = new Portis("a7653496-491a-42cd-813c-471536ebf61e", "maticMumbai");
 
 const getInstance = (web3, Networkid) => {
   try {
@@ -41,7 +41,7 @@ export default function ConnectWallet({ wallet }) {
   useEffect(() => {
     if (web3 !== undefined) {
       if (wallet === 1) {
-        window.web3.currentProvider
+        window.ethereum
           .enable()
           .then(async (accounts) => {
             dispatch(
@@ -52,8 +52,7 @@ export default function ConnectWallet({ wallet }) {
               })
             );
             getNetworkid(web3).then((id) => {
-              if (id === 5777) {
-                console.log("hii")
+              if (id === 80001) {
                 dispatch(setContract(getInstance(web3, id)));
                 dispatch(setCorrectNetwork(true));
               } else {
@@ -76,9 +75,14 @@ export default function ConnectWallet({ wallet }) {
                 network: await web3.eth.net.getId(),
               })
             );
-            dispatch(
-              setContract(getInstance(web3, await web3.eth.net.getId()))
-            );
+            getNetworkid(web3).then((id) => {
+              if (id === 80001) {
+                dispatch(setContract(getInstance(web3, id)));
+                dispatch(setCorrectNetwork(true));
+              } else {
+                dispatch(setCorrectNetwork(false));
+              }
+            });
           })
           .catch((err) => {
             console.log(err);
