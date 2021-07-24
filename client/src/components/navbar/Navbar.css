@@ -316,6 +316,7 @@ input:focus {
     height: 18px;
     font-weight: bolder;
   }
+
   .mobile__name-motion-nav {
     position: absolute;
     top: 0;
@@ -372,12 +373,13 @@ input:focus {
     font-size: 1rem;
   }
 
-  .nav__mobile-dropdown-navigation-buttons a{ 
+  .nav__mobile-dropdown-navigation-buttons a {
     color: white;
     padding: 0px;
   }
 
-  #explore, #my-papers {
+  #explore,
+  #my-papers {
     padding: 0px;
   }
 
@@ -389,15 +391,13 @@ input:focus {
     margin-top: 55px;
   }
 
-
-.mobile-nav-social svg {
-  width: 30px;
-  height: 30px;
-}
-
+  .mobile-nav-social svg {
+    width: 30px;
+    height: 30px;
+  }
 }
 /* IPad */
-@media only screen and (max-width: 900px) {
+@media only screen and (min-height: 1024px) {
   nav {
     justify-content: space-between;
   }
@@ -480,10 +480,53 @@ input:focus {
     background-attachment: fixed;
     height: 100vh;
   }
-.mobile-nav-social svg {
-  width: 30px;
-  height:30px;
-}
+
+  .nav__mobile-dropdown-navigation {
+    height: 100vh;
+    display: grid;
+  }
+  .nav__mobile-dropdown-navigation-buttons {
+    display: grid;
+    grid-template-rows: auto auto auto auto 1fr;
+    grid-gap: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 400px;
+    justify-self: end;
+  }
+
+  .nav__mobile-dropdown-navigation-buttons-connect-publish {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    text-align: center;
+    font-size: 1rem;
+    width: 400px;
+    justify-self: end;
+  }
+
+  .nav__mobile-dropdown-navigation-buttons a {
+    color: white;
+    padding: 0px;
+  }
+
+  #explore,
+  #my-papers {
+    padding: 0px;
+  }
+
+  .mobile__nav-dropdown-socialMedia {
+    justify-self: end;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-gap: 30px;
+    margin-top: 20px;
+  }
+
+  .mobile-nav-social svg {
+    width: 30px;
+    height: 30px;
+  }
 }
 @keyframes glow {
   0% {

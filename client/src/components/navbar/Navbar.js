@@ -22,6 +22,7 @@ export const useDimensions = (ref) => {
 };
 
 export const Navbar = () => {
+  const [dropHeight, setDropHeight] = useState(2.2);
   const [isHamburgerOpen, setHamburgerOpen] = useState(false);
   const [walletToggle, setWalletToggle] = useState(false);
   const [Connecting, setConnecting] = useState(false);
@@ -48,24 +49,26 @@ export const Navbar = () => {
           console.log(data);
         });
     }
-    // window.addEventListener("", () => {
-    //   setWalletToggle(false)
-    // })
+    window.addEventListener("resize", () => {
+      window.innerHeight >= 1024 ? setDropHeight(2.5) : setDropHeight(2.2);
+      setHamburgerOpen(false);
+    });
+    window.innerHeight >= 1024 ? setDropHeight(2.5) : setDropHeight(2.2);
   }, [state.contract]);
 
   const sidebar = {
     open: (height = 1000) => ({
-      clipPath: `circle(${height / 1.8}px at 90% 30px)`,
+      clipPath: `circle(${height / dropHeight}px at 90% 30px)`,
       transition: {
         type: "spring",
-        stiffness: 20,
+        stiffness: 150,
         restDelta: 2,
       },
     }),
     closed: {
       clipPath: `circle(0px at 90% 35px)`,
       transition: {
-        delay: 0.5,
+        delay: 0,
         type: "spring",
         stiffness: 400,
         damping: 40,
