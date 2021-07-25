@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { apiEndpoint, getAllPapers, getFunding } from "../../graphQueries";
+import { apiEndpoint, getAllPapersQuery, getFundingQuery } from "../../graphQueries";
 
 let initialState = {
   wallet: {
@@ -24,7 +24,7 @@ export const getAllPapers = createAsyncThunk(
   "paper/getAllPapers",
   async (props) => {
     // axios call to get all papers
-    const data = axios.post(apiEndpoint, { query: getAllPapers.query });
+    const data = axios.post(apiEndpoint, { query: getAllPapersQuery.query });
     return { payload: data };
   }
 );
@@ -33,7 +33,7 @@ export const getfunders = createAsyncThunk(
   "paper/getfunders",
   async (props) => {
     // axios call to get all funders
-    const data = axios.post(apiEndpoint, { query: getFunding(props.address) });
+    const data = axios.post(apiEndpoint, { query: getFundingQuery(props.address).query });
     return { payload: data };
   }
 );

@@ -1,6 +1,7 @@
-export const apiEndpoint = "https://api.thegraph.com/subgraphs/name/sairajk19/paperhouse"
+export const apiEndpoint =
+  "https://api.thegraph.com/subgraphs/name/sairajk19/paperhouse";
 
-export const getAllPapers = {
+export const getAllPapersQuery = {
   query: `{
   papers {
     id
@@ -15,8 +16,9 @@ export const getAllPapers = {
 `,
 };
 
-export const getFunding = {
-  query: `{
+export const getFundingQuery = (address) => {
+  return {
+    query: `{
   fundings(where: {to: ${address}}) {
     id
     from
@@ -24,6 +26,6 @@ export const getFunding = {
     amount
     paperid
   }
-}
-`,
+}`,
+  };
 };
