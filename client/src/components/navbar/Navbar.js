@@ -68,7 +68,7 @@ export const Navbar = () => {
   }, [state.contract]);
 
   useEffect(() => {
-    if (walletToggle || correctNetwork) {
+    if (walletToggle || !correctNetwork) {
       window.document.body.style.overflow = "hidden";
     } else {
       window.document.body.style.overflow = "visible";
