@@ -2,7 +2,7 @@
   height: calc(100vh - 65px);
   display: flex;
   flex-direction: row;
-  margin-top: 69px;
+  margin-top: 65px;
 }
 .paper_pdf {
   position: relative;

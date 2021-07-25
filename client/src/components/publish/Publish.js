@@ -34,7 +34,9 @@ export const Publish = () => {
   });
   const [pdfPreviewUrl, setPdfPreviewUrl] = useState(null);
   const [thumbPreviewUrl, setThumbPreviewUrl] = useState(null);
-  const { connected, address } = useSelector((state) => state.paper.wallet);
+  const { connected, address, correctNetwork } = useSelector(
+    (state) => state.paper.wallet
+  );
   const contract = useSelector((state) => state.paper.contract);
 
   const title = useRef(null);
@@ -82,7 +84,7 @@ export const Publish = () => {
   };
 
   const PublishPaper = () => {
-    if (connected) {
+    if (connected && correctNetwork) {
       setpublishing(true);
       IPFSupload(
         title.current.value,
