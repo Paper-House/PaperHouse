@@ -1,13 +1,3 @@
-@@
-
-Compiling your contracts...
-===========================
-> Compiling ./contracts/paperhouse.sol
-> Artifacts written to /home/sairajkapdi/Documents/CODE STUFF/paperHouse/PaperHouse/client/src/contracts
-> Compiled successfully using:
-   - solc: 0.8.0+commit.c7dfd78e.Emscripten.clang
-
-Network up to date.
 Compiling your contracts...
 ===========================
 > Everything is up to date, there is nothing to compile.
@@ -26,13 +16,13 @@ Starting migrations...
 
    Replacing 'Migrations'
    ----------------------
-   > transaction hash:    0x1051ba4542d5d89c072505496beaab1eb6e875891500eaae90e2980f505b9809
-   > Blocks: 3            Seconds: 4
-   > contract address:    0x6F0cac0baC543EF65643C339dd72aDd9Dbc0aD68
-   > block number:        16508618
-   > block timestamp:     1626623976
+   > transaction hash:    0x4b5220fb8eccd8e28a3635aac92b61462a0ff9a1cf720743c6c2787544f4d9d7
+   > Blocks: 2            Seconds: 4
+   > contract address:    0x83136c8a4CeABbCE0562B40B4885e613BcDaA11c
+   > block number:        16783054
+   > block timestamp:     1627192944
    > account:             0xd4D2761e241b07a367E47a1f3c76d40d12283DF5
-   > balance:             0.48429426
+   > balance:             0.539851269999999951
    > gas used:            201187 (0x311e3)
    > gas price:           30 gwei
    > value sent:          0 ETH
@@ -40,7 +30,8 @@ Starting migrations...
 
    Pausing for 2 confirmations...
    ------------------------------
-   > confirmation number: 2 (block: 16508621)
+   > confirmation number: 1 (block: 16783056)
+   > confirmation number: 4 (block: 16783059)
 
    > Saving migration to chain.
    > Saving artifacts
@@ -53,29 +44,29 @@ Starting migrations...
 
    Replacing 'PaperHouse'
    ----------------------
-   > transaction hash:    0x3afaa0dbc35be977c73b2b2efb9c4a71b6fa4b65ce50b684b56b599489cbedca
-   > Blocks: 0            Seconds: 0
-   > contract address:    0x7fC940D109f0EE2391586bBeb8ec6902D5089479
-   > block number:        16508628
-   > block timestamp:     1626623996
+   > transaction hash:    0x86ca47f54e1c1ac0953b3e192393c8908f8b86d6a56da64924b03fbc59b5f8f6
+   > Blocks: 2            Seconds: 4
+   > contract address:    0x4cbAfb37e0126A8a57978B9435b8b77b73834fA9
+   > block number:        16783066
+   > block timestamp:     1627192968
    > account:             0xd4D2761e241b07a367E47a1f3c76d40d12283DF5
-   > balance:             0.38455779
-   > gas used:            3278633 (0x320729)
+   > balance:             0.448387509999999951
+   > gas used:            3002876 (0x2dd1fc)
    > gas price:           30 gwei
    > value sent:          0 ETH
-   > total cost:          0.09835899 ETH
+   > total cost:          0.09008628 ETH
 
    Pausing for 2 confirmations...
    ------------------------------
-   > confirmation number: 2 (block: 16508631)
+   > confirmation number: 2 (block: 16783069)
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.09835899 ETH
+   > Total cost:          0.09008628 ETH
 
 
 Summary
 =======
 > Total deployments:   2
-> Final cost:          0.1043946 ETH
+> Final cost:          0.09612189 ETH
