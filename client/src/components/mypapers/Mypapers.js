@@ -165,6 +165,7 @@ export const Mypapers = ({ path }) => {
                     UpdatePaper(paper.paperid, updateAmount, fundToggle)
                   }
                   updating={updating}
+                  allowFunding={false}
                 />
               );
           })}
