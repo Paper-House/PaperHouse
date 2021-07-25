@@ -412,8 +412,7 @@ export const Navbar = () => {
             </button>
             <h3 className="new_eth">
               New to Ethereum?{" "}
-              <a href="https://ethereum.org/en/wallets/">
-                {" "}
+              <a href="https://ethereum.org/en/wallets/" target="_blank">
                 Learn more about wallets
               </a>
             </h3>
