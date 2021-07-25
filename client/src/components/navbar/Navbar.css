@@ -214,7 +214,7 @@ input:focus {
   background: transparent;
   cursor: pointer;
   color: white;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 .connectwallet_metamask h3,
 .connectwallet_portis h3 {
@@ -225,7 +225,7 @@ input:focus {
 .connectwallet_metamask:hover,
 .connectwallet_portis:hover {
   border: 2px solid rgba(0, 151, 253, 1);
-  background-color: rgba(0, 151, 253, .1);
+  background-color: rgba(0, 151, 253, 0.1);
 }
 .connectwallet_metamask img {
   width: 40px;
@@ -246,7 +246,7 @@ input:focus {
   color: white;
   font-family: "Open Sans";
   font-weight: 400;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 .new_eth a {
   color: #0097fd;
@@ -269,14 +269,14 @@ input:focus {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8 );
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 999999;
   color: white;
 }
-.wrong_network_box{
+.wrong_network_box {
   width: fit-content;
   height: fit-content;
-  padding:30px;
+  padding: 30px;
   border-radius: 15px;
   background-color: #003c65;
   border: 2px solid rgba(0, 151, 253, 1);
@@ -286,13 +286,13 @@ input:focus {
   align-items: center;
   text-align: center;
 }
-.wrong_network_box h3{
+.wrong_network_box h3 {
   font-family: "Open Sans";
   font-weight: 600;
   font-size: 1.5em;
   margin-top: 10px;
 }
-.wrong_network_box p{
+.wrong_network_box p {
   font-weight: 500;
   font-size: 1em;
   margin-top: 10px;
@@ -345,8 +345,22 @@ input:focus {
       outset 0px 4px 30px #6447f4;
     border-radius: 50%;
     padding: 10px;
+    cursor: pointer;
+    z-index: 99;
   }
-
+  .search__icon--circle_cancel {
+    height: 40px;
+    border: 1px solid hsla(204, 100%, 50%, 0.733);
+    box-shadow: 8px 12px 14px rgba(0, 151, 253, 0.19),
+      outset 0px 4px 30px #6447f4;
+    border-radius: 50%;
+    padding: 10px 12px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .search__icon--circle_cancel svg {
+    color: #0097fd;
+  }
   .dropdown__icon--circle svg {
     width: 18px;
     height: 18px;

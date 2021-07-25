@@ -26,6 +26,8 @@ export const Navbar = () => {
   const [isHamburgerOpen, setHamburgerOpen] = useState(false);
   const [ismetamask, setismetamask] = useState(false);
   const [walletToggle, setWalletToggle] = useState(false);
+  const [SearchToggle, setSearchToggle] = useState(false);
+
   const [Connecting, setConnecting] = useState(false);
   const [wallet, setwallet] = useState(0);
   const containerRef = useRef(null);
@@ -119,9 +121,12 @@ export const Navbar = () => {
             exact
             activeClassName="active"
           >
-            <img src={logo} />
+            <img src={logo} style={SearchToggle ? { display: "none" } : null} />
           </NavLink>
-          <div className="paper-search">
+          <div
+            className="paper-search"
+            style={SearchToggle ? { display: "block", width: "100%" } : null}
+          >
             <form>
               <svg
                 width="18"
@@ -162,9 +167,38 @@ export const Navbar = () => {
               </a>
             </div>
           </div>
-
-          <div className="mobile__slider__toogle--search">
-            <div className="search__icon--circle">
+          <div
+            className="search__icon--circle_cancel"
+            onClick={() => setSearchToggle(!SearchToggle)}
+            style={SearchToggle ? { display: "block" } : { display: "none" }}
+          >
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              width="13.200000000000001"
+              height="13.200000000000001"
+              xlmns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 12L12 4"
+                stroke="currentColor"
+                stroke-width="2"
+              ></path>
+              <path
+                d="M12 12L4 4"
+                stroke="currentColor"
+                stroke-width="2"
+              ></path>
+            </svg>
+          </div>
+          <div
+            className="mobile__slider__toogle--search"
+            style={SearchToggle ? { display: "none" } : null}
+          >
+            <div
+              className="search__icon--circle"
+              onClick={() => setSearchToggle(!SearchToggle)}
+            >
               <svg
                 width="18"
                 height="18"
