@@ -1,4 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+import { apiEndpoint, getAllPapers, getFunding } from "../../graphQueries";
 
 let initialState = {
   wallet: {
@@ -16,15 +19,22 @@ let initialState = {
   contract: {},
   web3: {},
 };
-export const getpaper = createAsyncThunk("paper/getpaper", async (props) => {
-  // axios call to get all papers
-  return;
-});
+
+export const getAllPapers = createAsyncThunk(
+  "paper/getAllPapers",
+  async (props) => {
+    // axios call to get all papers
+    const data = axios.post(apiEndpoint, { query: getAllPapers.query });
+    return { payload: data };
+  }
+);
+
 export const getfunders = createAsyncThunk(
   "paper/getfunders",
   async (props) => {
     // axios call to get all funders
-    return;
+    const data = axios.post(apiEndpoint, { query: getFunding(props.address) });
+    return { payload: data };
   }
 );
 
@@ -49,8 +59,8 @@ const paperSlice = createSlice({
     },
   },
   extraReducers: {
-    [getpaper.pending]: (state) => {},
-    [getpaper.fulfilled]: (state, { payload }) => {
+    [getAllPapers.pending]: (state) => {},
+    [getAllPapers.fulfilled]: (state, { payload }) => {
       state.papers.data = payload;
     },
     [getfunders.pending]: (state) => {},
@@ -60,6 +70,10 @@ const paperSlice = createSlice({
   },
 });
 
-export const { setWallet, setWeb3, setContract, setCorrectNetwork } =
-  paperSlice.actions;
+export const {
+  setWallet,
+  setWeb3,
+  setContract,
+  setCorrectNetwork,
+} = paperSlice.actions;
 export default paperSlice.reducer;

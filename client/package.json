@@ -5,6 +5,7 @@
   "dependencies": {
     "@portis/web3": "^4.0.5",
     "@reduxjs/toolkit": "^1.6.1",
+    "axios": "^0.18.1",
     "framer-motion": "^4.1.17",
     "hamburger-react": "^2.4.1",
     "nft.storage": "^3.0.1",
