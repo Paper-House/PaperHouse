@@ -10,33 +10,29 @@ let initialState = {
     network: "",
     correctNetwork: false,
   },
-  papers: {
-    data: [],
-  },
-  funders: {
-    data: [],
-  },
+  // papers: {
+  //   data: [],
+  // },
+  // funders: {
+  //   data: [],
+  // },
   contract: {},
   web3: {},
 };
 
-export const getAllPapers = createAsyncThunk(
-  "paper/getAllPapers",
-  async (props) => {
-    // axios call to get all papers
-    const data = axios.post(apiEndpoint, { query: getAllPapersQuery.query });
-    return { payload: data };
-  }
-);
+// export const getAllPapers = createAsyncThunk(
+//   "paper/getAllPapers",
+//   async (props) => {
+//     // axios call to get all papers
+//   }
+// );
 
-export const getfunders = createAsyncThunk(
-  "paper/getfunders",
-  async (props) => {
-    // axios call to get all funders
-    const data = axios.post(apiEndpoint, { query: getFundingQuery(props.address).query });
-    return { payload: data };
-  }
-);
+// export const getfunders = createAsyncThunk(
+//   "paper/getfunders",
+//   async (props) => {
+//     // axios call to get all funders
+//   }
+// );
 
 const paperSlice = createSlice({
   name: "paper",
@@ -58,16 +54,16 @@ const paperSlice = createSlice({
       state.wallet.correctNetwork = payload;
     },
   },
-  extraReducers: {
-    [getAllPapers.pending]: (state) => {},
-    [getAllPapers.fulfilled]: (state, { payload }) => {
-      state.papers.data = payload;
-    },
-    [getfunders.pending]: (state) => {},
-    [getfunders.fulfilled]: (state, { payload }) => {
-      state.funders.data = payload;
-    },
-  },
+  // extraReducers: {
+  //   [getAllPapers.pending]: (state) => {},
+  //   [getAllPapers.fulfilled]: (state, { payload }) => {
+  //     state.papers.data = payload;
+  //   },
+  //   [getfunders.pending]: (state) => {},
+  //   [getfunders.fulfilled]: (state, { payload }) => {
+  //     state.funders.data = payload;
+  //   },
+  // },
 });
 
 export const {
