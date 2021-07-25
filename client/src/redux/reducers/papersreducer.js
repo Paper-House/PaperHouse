@@ -1,4 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+import { apiEndpoint, getAllPapersQuery, getFundingQuery } from "../../graphQueries";
 
 let initialState = {
   wallet: {
@@ -7,26 +10,29 @@ let initialState = {
     network: "",
     correctNetwork: false,
   },
-  papers: {
-    data: [],
-  },
-  funders: {
-    data: [],
-  },
+  // papers: {
+  //   data: [],
+  // },
+  // funders: {
+  //   data: [],
+  // },
   contract: {},
   web3: {},
 };
-export const getpaper = createAsyncThunk("paper/getpaper", async (props) => {
-  // axios call to get all papers
-  return;
-});
-export const getfunders = createAsyncThunk(
-  "paper/getfunders",
-  async (props) => {
-    // axios call to get all funders
-    return;
-  }
-);
+
+// export const getAllPapers = createAsyncThunk(
+//   "paper/getAllPapers",
+//   async (props) => {
+//     // axios call to get all papers
+//   }
+// );
+
+// export const getfunders = createAsyncThunk(
+//   "paper/getfunders",
+//   async (props) => {
+//     // axios call to get all funders
+//   }
+// );
 
 const paperSlice = createSlice({
   name: "paper",
@@ -48,18 +54,22 @@ const paperSlice = createSlice({
       state.wallet.correctNetwork = payload;
     },
   },
-  extraReducers: {
-    [getpaper.pending]: (state) => {},
-    [getpaper.fulfilled]: (state, { payload }) => {
-      state.papers.data = payload;
-    },
-    [getfunders.pending]: (state) => {},
-    [getfunders.fulfilled]: (state, { payload }) => {
-      state.funders.data = payload;
-    },
-  },
+  // extraReducers: {
+  //   [getAllPapers.pending]: (state) => {},
+  //   [getAllPapers.fulfilled]: (state, { payload }) => {
+  //     state.papers.data = payload;
+  //   },
+  //   [getfunders.pending]: (state) => {},
+  //   [getfunders.fulfilled]: (state, { payload }) => {
+  //     state.funders.data = payload;
+  //   },
+  // },
 });
 
-export const { setWallet, setWeb3, setContract, setCorrectNetwork } =
-  paperSlice.actions;
+export const {
+  setWallet,
+  setWeb3,
+  setContract,
+  setCorrectNetwork,
+} = paperSlice.actions;
 export default paperSlice.reducer;
