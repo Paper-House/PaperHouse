@@ -97,6 +97,14 @@ export const Paper = () => {
       );
     });
   }, []);
+  useEffect(() => {
+    if (ShowPopup) {
+      window.document.body.style.overflow = "hidden";
+    } else {
+      window.document.body.style.overflow = "visible";
+    }
+  }, [ShowPopup]);
+  
   function ScrollToTopOnMount() {
     useEffect(() => {
       window.scrollTo(0, 0);
