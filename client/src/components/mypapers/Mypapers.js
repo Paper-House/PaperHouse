@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./mypapers.css";
 import { Link } from "react-router-dom";
 import PaperCard from "../explore/PaperCard";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import { apiEndpoint, getMyPapers } from "../../graphQueries";
 import Web3 from "web3";
 
 export const Mypapers = ({ path }) => {
@@ -14,6 +16,16 @@ export const Mypapers = ({ path }) => {
   );
   const contract = useSelector((state) => state.paper.contract);
   const [updating, setUpdating] = useState(false);
+
+  useEffect(() => {
+    console.log({query: getMyPapers(address).query})
+    axios
+      .post(apiEndpoint, {query: getMyPapers(address).query})
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  }, [address]);
 
   const data = [
     {
@@ -98,8 +110,6 @@ export const Mypapers = ({ path }) => {
     },
   ];
 
-  console.log(address);
-
   const toastStyles = {
     position: "top-right",
     autoClose: 5000,
@@ -109,8 +119,6 @@ export const Mypapers = ({ path }) => {
     draggable: true,
     progress: undefined,
   };
-
-  console.log(typeof address);
 
   function UpdatePaper(paperid, updateAmount, fundToggle) {
     //smart contract call
