@@ -266,6 +266,8 @@
   height: 100%;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: 11;
   display: flex;
   justify-content: center;
   align-items: center;
