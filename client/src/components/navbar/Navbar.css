@@ -459,7 +459,7 @@ input:focus {
 }
 
 /* IPad */
-@media only screen and (max-height: 1024px) and (min-height: 824px) {
+@media only screen and (max-width: 768px) and (min-width: 767px) {
   nav {
     justify-content: space-between;
   }
