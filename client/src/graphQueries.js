@@ -1,5 +1,5 @@
 export const apiEndpoint =
-  "https://api.thegraph.com/subgraphs/name/sairajk19/paperhouse";
+  "https://api.thegraph.com/subgraphs/name/sairajk19/thepaperhousegraph";
 
 export const getAllPapersQuery = {
   query: `{
