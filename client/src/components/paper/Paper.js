@@ -73,7 +73,7 @@ export const Paper = () => {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       var scrollY = window.scrollY;
-      if (scrollY > 0) {
+      if (scrollY > 5) {
         setShowFundButton(true);
       } else {
         setShowFundButton(false);
