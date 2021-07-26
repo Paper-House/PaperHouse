@@ -19,7 +19,7 @@ export default function PaperCard({
       }
     >
       <div className="paper_card_img">
-        <img src={thumb} alt="" />
+        <img src={data.thumbnail} alt="" />
       </div>
       <div className="paper_card_details">
         <div className="paper_card_title">
