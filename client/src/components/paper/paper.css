@@ -297,7 +297,7 @@
 .paper_funding_popup_box_input_balanceinfo h3 {
   margin-top: 20px;
   font-family: "Open Sans";
-  font-size: 1em;
+  font-size: .9em;
   font-weight: 500;
   color: white;
 }
@@ -337,8 +337,11 @@
   + .paper_funding_popup_box_input_box {
   box-shadow: 0px 0px 10px rgba(0, 151, 253, 0.5) !important;
 } */
+.popup_input_row{
+  display: flex;
+  justify-content: space-between;
+}
 .paper_funding_popup_box_input_box h3 {
-  float: left;
   font-family: "Open Sans";
   font-size: 0.9em;
   font-weight: 600;
@@ -391,7 +394,7 @@
     height: 100%;
   }
   .paper_pdf {
-    height: 50vh;
+    height: 70vh;
     width: 100%;
     border: none;
     padding: 5px;
@@ -410,6 +413,11 @@
   .paper_fund {
     position: fixed;
     bottom: 0;
+    margin-bottom: 15px;
+    animation: popUpfund 0.15s linear;
+  }
+  .paper_fund_none {
+    display: none;
   }
   .paper_funder h3 {
     font-size: 0.75em;
@@ -417,5 +425,46 @@
 
   .paper_funder h2 {
     font-size: 0.7em;
+  }
+}
+@media screen and (max-width: 425px) {
+  .paper_funding_popup_box {
+    width: 90%;
+  }
+}
+
+@keyframes popUpfund {
+  0% {
+    transform: translateY(100px);
+  }
+  20% {
+    transform: translateY(70px);
+  }
+  50% {
+    transform: translateY(50px);
+  }
+  70% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes popDownfund {
+  0% {
+    transform: translateY(0px);
+  }
+  20% {
+    transform: translateY(20px);
+  }
+  50% {
+    transform: translateY(50px);
+  }
+  70% {
+    transform: translateY(70px);
+  }
+  100% {
+    transform: translateY(100px);
   }
 }

@@ -18,6 +18,8 @@ export const Paper = () => {
   const [ShowPopup, setShowPopup] = useState(false);
   const [fundAmount, setfundAmount] = useState("");
   const [loading, setloading] = useState(false);
+  const [ShowFundButton, setShowFundButton] = useState(false);
+  const [maticconversion, setmaticconversion] = useState(0);
   const { connected, address, correctNetwork, balance, network } = useSelector(
     (state) => state.paper.wallet
   );
@@ -68,6 +70,16 @@ export const Paper = () => {
         });
     }
   }
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      var scrollY = window.scrollY;
+      if (scrollY > 0) {
+        setShowFundButton(true);
+      } else {
+        setShowFundButton(false);
+      }
+    });
+  }, []);
   useEffect(() => {
     const viewSDKClient = new ViewSDKClient();
     viewSDKClient.ready().then(() => {
@@ -127,9 +139,14 @@ export const Paper = () => {
                 <input
                   type="number"
                   placeholder="0 MATIC"
-                  onChange={(e) => setfundAmount(e.target.value)}
+                  onChange={(e) => {
+                    setmaticconversion(e.target.value * 1.05);
+                    setfundAmount(e.target.value);
+                  }}
                 />
-                <h3>~100 USD</h3>
+                <div className="popup_input_row">
+                  <h3>~$ {maticconversion}</h3> <h3>Max 50.2 Matic</h3>
+                </div>
               </div>
             </div>
             <div className="paper_funding_popup_box_buttons">
@@ -296,7 +313,11 @@ export const Paper = () => {
             </div>
             <div className="fade"></div>
           </div>
-          <div className="paper_fund">
+          <div
+            className={
+              ShowFundButton ? "paper_fund" : "paper_fund paper_fund_none"
+            }
+          >
             <div className="paper_fund_info">
               <div>
                 {" "}

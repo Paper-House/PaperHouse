@@ -159,7 +159,7 @@ input:focus {
   align-items: center;
   width: 100%;
   height: calc(100vh - 65px);
-  z-index: 99;
+  z-index: 999;
 }
 .toggleoff {
   position: absolute;
