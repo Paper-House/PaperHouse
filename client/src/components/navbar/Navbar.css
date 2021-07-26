@@ -457,8 +457,9 @@ input:focus {
     display: none;
   }
 }
+
 /* IPad */
-@media only screen and (min-height: 1024px) {
+@media only screen and (max-width: 768px) and (min-width: 767px) {
   nav {
     justify-content: space-between;
   }
@@ -516,7 +517,6 @@ input:focus {
     right: 0;
     bottom: 0;
     width: 100vw;
-    /* background: #fff; */
     background: linear-gradient(
       133.99deg,
       #092537 -7.04%,
@@ -579,6 +579,7 @@ input:focus {
     height: 30px;
   }
 }
+
 @keyframes glow {
   0% {
     box-shadow: 0px 0px 5px #0097fd;
