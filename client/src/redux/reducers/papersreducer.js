@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { apiEndpoint, getAllPapersQuery, getFundingQuery } from "../../graphQueries";
+import {
+  apiEndpoint,
+  getAllPapersQuery,
+  getFundingQuery,
+} from "../../graphQueries";
 
 let initialState = {
   wallet: {
@@ -9,6 +13,7 @@ let initialState = {
     address: "",
     network: "",
     correctNetwork: false,
+    balance: "",
   },
   // papers: {
   //   data: [],
@@ -43,6 +48,7 @@ const paperSlice = createSlice({
       state.wallet.address = payload.address;
       state.wallet.network = payload.network;
       state.wallet.correctNetwork = payload.correctNetwork;
+      state.wallet.balance = payload.balance;
     },
     setContract: (state, { payload }) => {
       state.contract = payload;
@@ -66,10 +72,6 @@ const paperSlice = createSlice({
   // },
 });
 
-export const {
-  setWallet,
-  setWeb3,
-  setContract,
-  setCorrectNetwork,
-} = paperSlice.actions;
+export const { setWallet, setWeb3, setContract, setCorrectNetwork } =
+  paperSlice.actions;
 export default paperSlice.reducer;

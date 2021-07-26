@@ -50,6 +50,7 @@ export default function ConnectWallet({ wallet }) {
             address: "",
             network: "",
             correctNetwork: false,
+            balance:""
           })
         );
         window.ethereum
@@ -61,6 +62,7 @@ export default function ConnectWallet({ wallet }) {
                 address: accounts[0],
                 network: await web3.eth.net.getId(),
                 correctNetwork: false,
+                balance: await web3.eth.getBalance(accounts[0])
               })
             );
             getNetworkid(web3).then((id) => {
@@ -80,6 +82,7 @@ export default function ConnectWallet({ wallet }) {
                 address: "",
                 network: "",
                 correctNetwork: false,
+                balance:""
               })
             );
           });
@@ -90,6 +93,7 @@ export default function ConnectWallet({ wallet }) {
             address: "",
             network: "",
             correctNetwork: false,
+            balance:""
           })
         );
 
@@ -102,6 +106,7 @@ export default function ConnectWallet({ wallet }) {
                 address: accounts[0],
                 network: await web3.eth.net.getId(),
                 correctNetwork: false,
+                balance: await web3.eth.getBalance(accounts[0])
               })
             );
             getNetworkid(web3).then((id) => {

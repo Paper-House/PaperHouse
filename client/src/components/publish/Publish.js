@@ -13,7 +13,26 @@ const client = new NFTStorage({
   token:
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDAwZjA4NWQ0OEYzZjVFMDIwQjExNDM3YkI3NjQ5QzEzMzRkQjYyRUEiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYyNjg4NjYxMzY0MywibmFtZSI6IlBhcGVySG91c2UifQ.WQed-WCw9v-GhNGhbzfOaf3PwfCIiZAa44f0oc9SgGo",
 });
-
+export const toastStyles = {
+  default: {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  },
+  error: {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  },
+};
 export const Publish = () => {
   const [categoryOptions, setCategoryOptions] = useState([
     { value: "⚛️ Science", label: "⚛️ Science" },
@@ -44,26 +63,6 @@ export const Publish = () => {
   const description = useRef(null);
   const fundingAmount = useRef(undefined);
 
-  const toastStyles = {
-    default: {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    },
-    error: {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    },
-  };
   const IPFSupload = async (name, des, author, category) => {
     if (pdf && thumbnail && name && des && author && category) {
       toast("🦄 Uploading to IPFS!", toastStyles.default);

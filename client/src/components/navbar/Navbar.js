@@ -24,7 +24,10 @@ export const useDimensions = (ref) => {
 export const Navbar = () => {
   const [dropHeight, setDropHeight] = useState(2.2);
   const [isHamburgerOpen, setHamburgerOpen] = useState(false);
+  const [ismetamask, setismetamask] = useState(false);
   const [walletToggle, setWalletToggle] = useState(false);
+  const [SearchToggle, setSearchToggle] = useState(false);
+
   const [Connecting, setConnecting] = useState(false);
   const [wallet, setwallet] = useState(0);
   const containerRef = useRef(null);
@@ -34,6 +37,14 @@ export const Navbar = () => {
   );
 
   const state = useSelector((state) => state.paper);
+
+  useEffect(() => {
+    if (window.ethereum && window.ethereum.isMetaMask) {
+      setismetamask(true);
+    } else {
+      setismetamask(false);
+    }
+  }, [window.ethereum]);
 
   useEffect(() => {
     if (connected) {
@@ -57,6 +68,22 @@ export const Navbar = () => {
     });
     window.innerHeight >= 1024 ? setDropHeight(2.5) : setDropHeight(2.2);
   }, [state.contract]);
+
+  useEffect(() => {
+    if (walletToggle) {
+      window.document.body.style.overflow = "hidden";
+    } else {
+      window.document.body.style.overflow = "visible";
+    }
+
+    if (connected) {
+      if (correctNetwork) {
+        window.document.body.style.overflow = "visible";
+      } else {
+        window.document.body.style.overflow = "hidden";
+      }
+    }
+  }, [walletToggle, correctNetwork]);
 
   const sidebar = {
     open: (height = 1000) => ({
@@ -94,9 +121,12 @@ export const Navbar = () => {
             exact
             activeClassName="active"
           >
-            <img src={logo} />
+            <img src={logo} style={SearchToggle ? { display: "none" } : null} />
           </NavLink>
-          <div className="paper-search">
+          <div
+            className="paper-search"
+            style={SearchToggle ? { display: "block", width: "100%" } : null}
+          >
             <form>
               <svg
                 width="18"
@@ -137,9 +167,38 @@ export const Navbar = () => {
               </a>
             </div>
           </div>
-
-          <div className="mobile__slider__toogle--search">
-            <div className="search__icon--circle">
+          <div
+            className="search__icon--circle_cancel"
+            onClick={() => setSearchToggle(!SearchToggle)}
+            style={SearchToggle ? { display: "block" } : { display: "none" }}
+          >
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              width="13.200000000000001"
+              height="13.200000000000001"
+              xlmns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 12L12 4"
+                stroke="currentColor"
+                stroke-width="2"
+              ></path>
+              <path
+                d="M12 12L4 4"
+                stroke="currentColor"
+                stroke-width="2"
+              ></path>
+            </svg>
+          </div>
+          <div
+            className="mobile__slider__toogle--search"
+            style={SearchToggle ? { display: "none" } : null}
+          >
+            <div
+              className="search__icon--circle"
+              onClick={() => setSearchToggle(!SearchToggle)}
+            >
               <svg
                 width="18"
                 height="18"
@@ -304,40 +363,53 @@ export const Navbar = () => {
                 </svg>
               </button>
             </div>
-            <button
-              onClick={() => {
-                if (wallet != 1) {
-                  setwallet(1);
-                  setConnecting(true);
-                } else {
-                  setWalletToggle(false);
-                }
-              }}
-              disabled={Connecting}
-              className="connectwallet_metamask"
-            >
-              <h3>MetaMask</h3>
-              {Connecting && wallet == 1 ? <h3>Connecting...</h3> : ""}
-              {Connecting && wallet == 1 ? (
-                <div className="Wallet_loader">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="css-1p66nw2"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M12 2C6.477 2 2 6.477 2 12c0 1.46.312 2.843.872 4.09a1 1 0 01-1.825.82A11.961 11.961 0 010 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12c-2.89 0-5.545-1.023-7.617-2.727a1 1 0 111.27-1.544A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
-                      fill="currentColor"
-                    ></path>
-                  </svg>
-                </div>
-              ) : (
+            {ismetamask ? (
+              <button
+                onClick={() => {
+                  if (ismetamask) {
+                    if (wallet != 1) {
+                      setwallet(1);
+                      setConnecting(true);
+                    } else {
+                      setWalletToggle(false);
+                    }
+                  }
+                }}
+                disabled={Connecting}
+                className="connectwallet_metamask display_none_metamask"
+              >
+                <h3>{ismetamask ? "MetaMask" : "Install Metamask"}</h3>
+                {Connecting && wallet == 1 ? <h3>Connecting...</h3> : ""}
+                {Connecting && wallet == 1 ? (
+                  <div className="Wallet_loader">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="css-1p66nw2"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 2C6.477 2 2 6.477 2 12c0 1.46.312 2.843.872 4.09a1 1 0 01-1.825.82A11.961 11.961 0 010 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12c-2.89 0-5.545-1.023-7.617-2.727a1 1 0 111.27-1.544A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                ) : (
+                  <img src={metamask} alt="portis" />
+                )}{" "}
+              </button>
+            ) : (
+              <a
+                href="https://metamask.io/"
+                className="connectwallet_metamask display_none_metamask"
+                target="_blank"
+              >
+                <h3>{ismetamask ? "MetaMask" : "Install Metamask"}</h3>
                 <img src={metamask} alt="portis" />
-              )}{" "}
-            </button>
+              </a>
+            )}
             <button
               onClick={() => {
                 if (wallet != 2) {
@@ -372,6 +444,12 @@ export const Navbar = () => {
                 <img src={portis} alt="portis" />
               )}
             </button>
+            <h3 className="new_eth">
+              New to Ethereum?{" "}
+              <a href="https://ethereum.org/en/wallets/" target="_blank">
+                Learn more about wallets
+              </a>
+            </h3>
           </div>
         </div>
       ) : (
@@ -382,5 +460,27 @@ export const Navbar = () => {
 };
 
 function WrongNetwork() {
-  return <div className="wrong_network">wrong network</div>;
+  return (
+    <div className="wrong_network">
+      <div className="wrong_network_box">
+        <div className="Wallet_loader">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="css-1p66nw2"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12 2C6.477 2 2 6.477 2 12c0 1.46.312 2.843.872 4.09a1 1 0 01-1.825.82A11.961 11.961 0 010 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12c-2.89 0-5.545-1.023-7.617-2.727a1 1 0 111.27-1.544A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </div>
+        <h3>Wrong Network</h3>
+        <p>Change Network to polygon Mumbai Testnet</p>
+      </div>
+    </div>
+  );
 }

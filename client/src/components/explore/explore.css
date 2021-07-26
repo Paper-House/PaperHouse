@@ -63,9 +63,8 @@ button[aria-expanded="true"] {
   overflow: hidden;
   transition: 0.2s ease-in-out;
 }
-.papercard_myprofile{
+.papercard_myprofile {
   height: 470px;
-
 }
 .paper_card:hover {
   box-shadow: 0px 0px 8px #0097fd;
@@ -78,7 +77,6 @@ button[aria-expanded="true"] {
   width: 100%;
   height: 100%;
   object-fit: cover;
-
 }
 .paper_card_details {
   padding: 10px;
@@ -132,6 +130,9 @@ button[aria-expanded="true"] {
   font-size: 1em;
   color: #0097fd;
   font-weight: 600;
+}
+.paper_card_fundamount_input_disabled {
+  opacity: 0.5 !important;
 }
 .paper_card_update button {
   padding: 5px 15px;

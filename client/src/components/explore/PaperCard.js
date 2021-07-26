@@ -8,8 +8,9 @@ export default function PaperCard({
   callupdate,
   currentAmount,
   updating,
+  allowFunding,
 }) {
-  const [fundtoggle, setfundtoggle] = useState(false);
+  const [fundtoggle, setfundtoggle] = useState(allowFunding);
   const fundInput = useRef();
   return (
     <div
@@ -36,11 +37,21 @@ export default function PaperCard({
           <div className="paper_card_update">
             <div className="paper_card_fundtoggle">
               <h3>Allow Funding</h3>
-              <label htmlFor="" className="switch" onClick={() => setfundtoggle(!fundtoggle)}>
-                <input type="checkbox" />
+              <label
+                htmlFor=""
+                className="switch"
+                onClick={() => setfundtoggle(!fundtoggle)}
+              >
+                <input type="checkbox" checked={fundtoggle == true} />
               </label>
             </div>
-            <div className="paper_card_fundamount_input">
+            <div
+              className={
+                fundtoggle
+                  ? "paper_card_fundamount_input"
+                  : "paper_card_fundamount_input paper_card_fundamount_input_disabled"
+              }
+            >
               <h3>Funding Amount</h3>{" "}
               <input
                 type="text"
@@ -48,10 +59,13 @@ export default function PaperCard({
                 id="fundamoundt"
                 ref={fundInput}
                 placeholder={currentAmount}
+                disabled={fundtoggle == false}
               />
             </div>
             {!updating ? (
-              <button onClick={() => callupdate(fundInput.current.value, fundtoggle)}>
+              <button
+                onClick={() => callupdate(fundInput.current.value, fundtoggle)}
+              >
                 Update
               </button>
             ) : (

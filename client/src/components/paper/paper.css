@@ -179,6 +179,11 @@
   color: #35a2fc;
   font-weight: 400;
 }
+.paper_fund_info h5 {
+  color: #35a2fc;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
 
 .paper_fund_info h3 p {
   display: inline;
@@ -255,6 +260,128 @@
   width: 20px;
   margin-right: 5px;
 }
+
+.paper_funding_popup_container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paper_funding_popup_box {
+  height: fit-content;
+  width: 400px;
+  background-color: #011a2b;
+  border-radius: 15px;
+  border: 2px solid #0097fd;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+.paper_funding_popup_box_heading h3 {
+  font-family: "Open Sans";
+  font-size: 1.5em;
+  font-weight: 500;
+  color: white;
+}
+.paper_funding_popup_box_input_balanceinfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.paper_funding_popup_box_input_balanceinfo h3 {
+  margin-top: 20px;
+  font-family: "Open Sans";
+  font-size: 0.9em;
+  font-weight: 500;
+  color: white;
+}
+.paper_funding_popup_box_input_box {
+  width: 100%;
+  height: 75px;
+  border: 1px solid rgba(0, 151, 253, 1);
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 5px;
+  box-shadow: none;
+}
+.paper_funding_popup_box_input_box:hover {
+  box-shadow: 0px 0px 10px rgba(0, 151, 253, 0.5);
+}
+.paper_funding_popup_box_input_box input {
+  width: 100%;
+  height: 30px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-family: "Open Sans";
+
+  font-size: 1.3em;
+  font-weight: 400;
+  color: #0097fd;
+}
+.paper_funding_popup_box_input_box input::placeholder {
+  font-family: "Open Sans";
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: rgba(0, 151, 253, 0.5);
+}
+
+/* .paper_funding_popup_box_input_box
+  input:focus
+  + .paper_funding_popup_box_input_box {
+  box-shadow: 0px 0px 10px rgba(0, 151, 253, 0.5) !important;
+} */
+.popup_input_row {
+  display: flex;
+  justify-content: space-between;
+}
+.paper_funding_popup_box_input_box h3 {
+  font-family: "Open Sans";
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #0097fd;
+}
+.paper_funding_popup_box_buttons {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paper_funding_popup_box_buttons button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #0097fd;
+  font-family: "Open Sans";
+  font-size: 1.2em;
+  font-weight: 400;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paper_funding_popup_box_buttons button:nth-child(2) {
+  background-color: transparent;
+}
+.paper_funding_popup_box_buttons button:nth-child(2):hover {
+  color: #0097fd;
+}
+.paper_popup_fund {
+  margin-right: 10px;
+}
+.paper_funding_popup_box_buttons button:disabled {
+  cursor: default;
+  background-color: rgba(0, 151, 253, 0.3);
+  color: rgba(255, 255, 255, 0.3);
+}
 /* Tablet and below */
 @media screen and (max-width: 768px) {
   .paper_share {
@@ -266,7 +393,7 @@
     height: 100%;
   }
   .paper_pdf {
-    height: 50vh;
+    height: 70vh;
     width: 100%;
     border: none;
     padding: 5px;
@@ -285,6 +412,12 @@
   .paper_fund {
     position: fixed;
     bottom: 0;
+    margin-bottom: 15px;
+    animation: popUpfund 0.15s linear;
+    z-index: 10;
+  }
+  .paper_fund_none {
+    display: none;
   }
   .paper_funder h3 {
     font-size: 0.75em;
@@ -292,5 +425,49 @@
 
   .paper_funder h2 {
     font-size: 0.7em;
+  }
+  .paper_funding_popup_container {
+    z-index: 11;
+  }
+}
+@media screen and (max-width: 425px) {
+  .paper_funding_popup_box {
+    width: 90%;
+  }
+}
+
+@keyframes popUpfund {
+  0% {
+    transform: translateY(100px);
+  }
+  20% {
+    transform: translateY(70px);
+  }
+  50% {
+    transform: translateY(50px);
+  }
+  70% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes popDownfund {
+  0% {
+    transform: translateY(0px);
+  }
+  20% {
+    transform: translateY(20px);
+  }
+  50% {
+    transform: translateY(50px);
+  }
+  70% {
+    transform: translateY(70px);
+  }
+  100% {
+    transform: translateY(100px);
   }
 }
