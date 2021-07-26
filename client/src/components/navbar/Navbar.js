@@ -9,7 +9,12 @@ import logo from "../assets/logo.svg";
 import metamask from "../assets/metamask_icon.svg";
 import portis from "../assets/portis_icon.svg";
 import ConnectWallet from "../ConnectWallet";
+import { setPapers } from "../../redux/reducers/papersreducer";
+import { useDispatch } from "react-redux";
+import { apiEndpoint, getAllPapersQuery } from "../../graphQueries";
 
+import axios from "axios";
+import { getURL } from "../../utils/getURL";
 export const useDimensions = (ref) => {
   const dimensions = useRef({ width: 0, height: 0 });
 
@@ -27,7 +32,7 @@ export const Navbar = () => {
   const [ismetamask, setismetamask] = useState(false);
   const [walletToggle, setWalletToggle] = useState(false);
   const [SearchToggle, setSearchToggle] = useState(false);
-
+  const dispatch = useDispatch();
   const [Connecting, setConnecting] = useState(false);
   const [wallet, setwallet] = useState(0);
   const containerRef = useRef(null);
@@ -37,7 +42,25 @@ export const Navbar = () => {
   );
 
   const state = useSelector((state) => state.paper);
-
+  useEffect(() => {
+    axios
+      .post(apiEndpoint, { query: getAllPapersQuery.query })
+      .then(({ data }) => {
+        data.data.papers.map((data) => {
+          axios.get(getURL(data.tokenUri)).then((metadata) => {
+            var paper = {};
+            paper.paperid = data.paperId;
+            paper.title = metadata.data.name;
+            paper.thumbnail = getURL(metadata.data.image);
+            paper.category = metadata.data.category;
+            paper.author = metadata.data.author;
+            paper.date = metadata.data.publishDate;
+            paper.publisher = data.owner;
+            dispatch(setPapers(paper));
+          });
+        });
+      });
+  }, []);
   useEffect(() => {
     if (window.ethereum && window.ethereum.isMetaMask) {
       setismetamask(true);

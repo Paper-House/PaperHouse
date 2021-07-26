@@ -12,21 +12,91 @@ import { toastStyles } from "../publish/Publish";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setWallet } from "../../redux/reducers/papersreducer";
-export const Paper = () => {
+import axios from "axios";
+import { apiEndpoint, getPaper, getFundings } from "../../graphQueries";
+import { getURL } from "../../utils/getURL";
+import web3 from "web3";
+import Skeleton from "react-loading-skeleton";
+export const Paper = (props) => {
+  const { paperid } = props.match.params;
+  const [PaperData, setPaperData] = useState({
+    paper: {
+      title: "",
+      description: "",
+      author: "",
+      publisher: "",
+      thumbnail: "",
+      pdf: "",
+      allowFunding: false,
+      fundAmount: "",
+      totalAmountFunded: "",
+      metadata: "",
+    },
+    fundings: [],
+  });
+
   const [clipboard, setclipboard] = useState(false);
   const [Adobeloading, setAdobeloading] = useState(true);
+  const [UiLoading, setUiLoading] = useState(true);
   const [ShowPopup, setShowPopup] = useState(false);
   const [fundAmount, setfundAmount] = useState("");
   const [loading, setloading] = useState(false);
   const [ShowFundButton, setShowFundButton] = useState(false);
   const [maticconversion, setmaticconversion] = useState(0);
+  const dispatch = useDispatch();
+
   const { connected, address, correctNetwork, balance, network } = useSelector(
     (state) => state.paper.wallet
   );
   const contract = useSelector((state) => state.paper.contract);
-  const web3 = useSelector((state) => state.paper.web3);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (paperid) {
+      axios
+        .post(apiEndpoint, { query: getPaper(paperid).query })
+        .then(({ data }) => {
+          const paper = data.data.papers[0];
+          let finalData = {};
+          axios.get(getURL(paper.tokenUri)).then((response) => {
+            finalData = {
+              title: response.data.name,
+              description: response.data.description,
+              author: response.data.author,
+              publisher: paper.owner,
+              thumbnail: getURL(response.data.image),
+              pdf: getURL(response.data.pdf),
+              allowFunding: JSON.parse(paper.allowFunding),
+              fundAmount: web3.utils.fromWei(paper.fundAmount, "ether"),
+              totalAmountFunded: web3.utils.fromWei(
+                paper.totalAmountFunded,
+                "ether"
+              ),
+              metadata: getURL(paper.tokenUri),
+            };
+            setPaperData({
+              paper: finalData,
+              fundings: [],
+            });
+            if (!JSON.parse(paper.allowFunding)) {
+              setUiLoading(false);
+            }
+          });
+          if (JSON.parse(paper.allowFunding)) {
+            axios
+              .post(apiEndpoint, { query: getFundings(paperid).query })
+              .then(({ data }) => {
+                setPaperData({
+                  paper: finalData,
+                  fundings: data.data.paperFundings,
+                });
+                setUiLoading(false);
+              })
+              .catch((err) => console.log(err));
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [paperid]);
 
   function copyClip() {
     navigator.clipboard.writeText(window.location.href);
@@ -36,7 +106,6 @@ export const Paper = () => {
     }, 1500);
   }
   function FundPaper(paper_id, fundAmount) {
-    console.log(fundAmount);
     console.log(typeof fundAmount);
     if (connected && correctNetwork && paper_id && fundAmount) {
       setloading(true);
@@ -70,6 +139,7 @@ export const Paper = () => {
         });
     }
   }
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       var scrollY = window.scrollY;
@@ -80,23 +150,27 @@ export const Paper = () => {
       }
     });
   }, []);
+
   useEffect(() => {
-    const viewSDKClient = new ViewSDKClient();
-    viewSDKClient.ready().then(() => {
-      viewSDKClient.previewFile(
-        "adobe-dc-view",
-        {
-          dockPageControls: false,
-          showLeftHandPanel: false,
-          enableFormFilling: false,
-          showAnnotationTools: false,
-        },
-        "https://ipfs.io/ipfs/QmR7GSQM93Cx5eAg6a6yRzNde1FQv7uL6X1o4k7zrJa3LX/ipfs.draft3.pdf",
-        "IPFS - Content Addressed, Versioned, P2P File System",
-        () => setTimeout(() => setAdobeloading(false), 2000)
-      );
-    });
-  }, []);
+    if (!UiLoading) {
+      const viewSDKClient = new ViewSDKClient();
+      viewSDKClient.ready().then(() => {
+        viewSDKClient.previewFile(
+          "adobe-dc-view",
+          {
+            dockPageControls: false,
+            showLeftHandPanel: false,
+            enableFormFilling: false,
+            showAnnotationTools: false,
+          },
+          PaperData.paper.pdf,
+          PaperData.paper.title,
+          () => setTimeout(() => setAdobeloading(false), 2000)
+        );
+      });
+    }
+  }, [UiLoading]);
+
   useEffect(() => {
     if (ShowPopup) {
       window.document.body.style.overflow = "hidden";
@@ -104,7 +178,7 @@ export const Paper = () => {
       window.document.body.style.overflow = "visible";
     }
   }, [ShowPopup]);
-  
+
   function ScrollToTopOnMount() {
     useEffect(() => {
       window.scrollTo(0, 0);
@@ -153,7 +227,15 @@ export const Paper = () => {
                   }}
                 />
                 <div className="popup_input_row">
-                  <h3>~$ {maticconversion}</h3> <h3>Max 50.2 Matic</h3>
+                  <h3>~$ {maticconversion}</h3>{" "}
+                  <h3>
+                    Max{" "}
+                    <span>
+                      {PaperData.paper.fundAmount -
+                        PaperData.paper.totalAmountFunded}
+                    </span>{" "}
+                    Matic
+                  </h3>
                 </div>
               </div>
             </div>
@@ -161,7 +243,7 @@ export const Paper = () => {
               <button
                 className="paper_popup_fund"
                 disabled={connected == false || loading == true}
-                onClick={() => FundPaper(1, fundAmount)}
+                onClick={() => FundPaper(paperid, fundAmount)}
               >
                 {connected ? (
                   loading ? (
@@ -229,125 +311,192 @@ export const Paper = () => {
           ) : null}
         </div>
         <div className="paper_info">
-          <div className="paper_details">
+          <div
+            className="paper_details"
+            style={!PaperData.paper.allowFunding ? { height: "100%" } : null}
+          >
             <div className="paper_title">
               <h3>
-                Computing interaction effects and standard errors in logit and
-                probit models
+                {UiLoading ? (
+                  <Skeleton width={"100%"} height={"50px"} count={1} />
+                ) : (
+                  PaperData.paper.title
+                )}
               </h3>
             </div>
 
             <div className="paper_publisher">
-              <h3>Published By</h3>
-
-              <AddressBtn
-                address={"0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6"}
-              />
+              {UiLoading ? (
+                <Skeleton
+                  width={"150px"}
+                  height={"30px"}
+                  count={1}
+                  style={{ borderRadius: "100px" }}
+                />
+              ) : (
+                <>
+                  <h3>Published By</h3>
+                  <AddressBtn address={PaperData.paper.publisher} />
+                </>
+              )}
             </div>
 
             <p className="paper_description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse amet tellus elit eros, consectetur. Egestas
-              pellentesque hendrerit viverra condimentum nulla adipiscing
-              vulputate scelerisque. Urna ac nibh a eget. Nisl pharetra ornare
-              sed tellus metus. Sodales condimentum ac rhoncus viverra eu sed
-              et. Consequat cras posuere cursus risus turpis sapien at cras
-              condimentum. Augue facilisis vulputate nulla lacus, tellus eget
-              ut. Quam nisi lectus nulla eget elit commodo sapien gravida mi.
-              Vitae diam porttitor risus enim, ut volutpat parturient et
+              {UiLoading ? (
+                <Skeleton width={"100%"} height={"200px"} count={1} />
+              ) : (
+                PaperData.paper.description
+              )}
             </p>
             <div className="paper_authors_section">
-              <h3>Authors</h3>
-              <p>Edward C. Norton</p>
+              <h3>
+                {UiLoading ? <Skeleton width={"150px"} count={1} /> : "Authors"}
+              </h3>
+
+              {UiLoading ? (
+                <Skeleton width={"100%"} height={"50px"} count={1} />
+              ) : (
+                <p>{PaperData.paper.author}</p>
+              )}
             </div>
             <div className="paper_view">
-              <a href="#">
-                <button className="paper_view_polyscan">
-                  View on polygonscan <Icon icon={linkOut} />
-                </button>
-              </a>
-              <a href="#">
-                <button className="paper_view_ipfs_meta">
-                  View IPFS Metadata <Icon icon={linkOut} />
-                </button>
-              </a>{" "}
-              <a href="#">
-                <button className="paper_view_ipfs">
-                  View on IPFS <Icon icon={linkOut} />
-                </button>
-              </a>
+              {UiLoading ? (
+                [1, 2, 3].map(() => {
+                  return (
+                    <Skeleton
+                      width={"150px"}
+                      height={"35px"}
+                      style={{
+                        marginRight: "10px",
+                        marginBottom: "10px",
+                        borderRadius: "100px",
+                      }}
+                      count={1}
+                    />
+                  );
+                })
+              ) : (
+                <>
+                  <a
+                    href={`https://mumbai.polygonscan.com/token/0x4cbafb37e0126a8a57978b9435b8b77b73834fa9?a=${paperid}`}
+                    target="_blank"
+                  >
+                    <button className="paper_view_polyscan">
+                      View on polygonscan <Icon icon={linkOut} />
+                    </button>
+                  </a>
+                  <a href={PaperData.paper.metadata} target="_blank">
+                    <button className="paper_view_ipfs_meta">
+                      View IPFS Metadata <Icon icon={linkOut} />
+                    </button>
+                  </a>{" "}
+                  <a href={PaperData.paper.pdf} target="_blank">
+                    <button className="paper_view_ipfs">
+                      View on IPFS <Icon icon={linkOut} />
+                    </button>
+                  </a>
+                </>
+              )}
             </div>
-            <div className="paper_funders">
-              <div className="paper_funders_title">
-                <h3>Funders</h3>
+            {PaperData.paper.allowFunding ? (
+              <div className="paper_funders">
+                <div className="paper_funders_title">
+                  <h3>
+                    {" "}
+                    {UiLoading ? (
+                      <Skeleton width={"150px"} count={1} />
+                    ) : (
+                      "Funders"
+                    )}
+                  </h3>
+                </div>
+                <div className="paper_funders_list">
+                  {UiLoading
+                    ? [1, 2, 3].map(() => {
+                        return (
+                          <Skeleton
+                            width={"100%"}
+                            height={"50px"}
+                            style={{
+                              marginBottom: "5px",
+                              borderRadius: "12px",
+                            }}
+                            count={1}
+                          />
+                        );
+                      })
+                    : null}
+                  {UiLoading
+                    ? null
+                    : PaperData.fundings.map((fund) => {
+                        return (
+                          <div className="paper_funder">
+                            <img src={pf} alt="" srcset="" />
+                            <div className="paper_funder-address">
+                              {fund.from}
+                              <h2>
+                                Funded{" "}
+                                {web3.utils.fromWei(fund.amount, "ether") * 10}
+                                Matic
+                              </h2>
+                            </div>
+                          </div>
+                        );
+                      })}
+                </div>
               </div>
-              <div className="paper_funders_list">
-                <div className="paper_funder">
-                  <img src={pf} alt="" srcset="" />
-                  <div className="paper_funder-address">
-                    0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
-                    <h2>Funded 0.2ETH</h2>
-                  </div>
-                </div>
-                <div className="paper_funder">
-                  <img src={pf} alt="" srcset="" />
-                  <div className="paper_funder-address">
-                    0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
-                    <h2>Funded 0.2ETH</h2>
-                  </div>
-                </div>
-                <div className="paper_funder">
-                  <img src={pf} alt="" srcset="" />
-                  <div className="paper_funder-address">
-                    0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
-                    <h2>Funded 0.2ETH</h2>
-                  </div>
-                </div>
-                <div className="paper_funder">
-                  <img src={pf} alt="" srcset="" />
-                  <div className="paper_funder-address">
-                    0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
-                    <h2>Funded 0.2ETH</h2>
-                  </div>
-                </div>
-                <div className="paper_funder">
-                  <img src={pf} alt="" srcset="" />
-                  <div className="paper_funder-address">
-                    0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
-                    <h2>Funded 0.2ETH</h2>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ) : null}
             <div className="fade"></div>
           </div>
-          <div
-            className={
-              ShowFundButton ? "paper_fund" : "paper_fund paper_fund_none"
-            }
-          >
-            <div className="paper_fund_info">
-              <div>
-                {" "}
+          {PaperData.paper.allowFunding ? (
+            <div
+              className={
+                ShowFundButton ? "paper_fund" : "paper_fund paper_fund_none"
+              }
+            >
+              <div className="paper_fund_info">
+                <div>
+                  <h3>
+                    {UiLoading ? "0" : PaperData.paper.totalAmountFunded} MATIC
+                    <p> Funded</p>
+                  </h3>
+                  <h5>
+                    $
+                    {UiLoading ? "0" : (PaperData.paper.totalAmountFunded * 1.05).toFixed(3)}
+                  </h5>
+                </div>
+                <div>
+                  <h3>{UiLoading ? "0" : PaperData.paper.fundAmount} MATIC</h3>
+                  <h5>
+                    ${UiLoading ? "0" : (PaperData.paper.fundAmount * 1.05).toFixed(3)}
+                  </h5>
+                </div>
+              </div>
+              <div className="paper_fund_bar">
+                <div className="paper_fund_bar_bg"></div>
+                <div
+                  className="paper_fund_bar_current"
+                  style={{
+                    width:
+                      (PaperData.paper.totalAmountFunded /
+                        PaperData.paper.fundAmount) *
+                      100,
+                  }}
+                ></div>
                 <h3>
-                  1.3 MATIC <p> Funded</p>
+                  {(
+                    (PaperData.paper.totalAmountFunded /
+                      PaperData.paper.fundAmount) *
+                    100
+                  ).toFixed(3)}
+                  %
                 </h3>
-                <h5>$25.5</h5>
               </div>
-              <div>
-                <h3>2 MATIC</h3>
-                <h5>$50.5</h5>
-              </div>
+              <button onClick={() => setShowPopup(!ShowPopup)}>
+                FUND THIS RESEARCH PAPER{console.log(PaperData)}
+              </button>
             </div>
-            <div className="paper_fund_bar">
-              <div className="paper_fund_bar_bg"></div>
-              <div className="paper_fund_bar_current"></div>
-              <h3>50%</h3>
-            </div>
-            <button onClick={() => setShowPopup(!ShowPopup)}>
-              FUND THIS RESEARCH PAPER
-            </button>
-          </div>
+          ) : null}
         </div>
       </div>
     </>
