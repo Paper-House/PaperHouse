@@ -29,3 +29,19 @@ export const getFundingQuery = (address) => {
 }`,
   };
 };
+
+export const getMyPapers = (address) => {
+  return {
+    query: `{
+  papers(where: {owner: "${address}"}) {
+    id
+    owner
+    author
+    tokenUri
+    allowFunding
+    fundAmount
+    totalAmountFunded
+  }
+}`,
+  };
+};
