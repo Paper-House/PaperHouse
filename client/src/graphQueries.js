@@ -19,7 +19,7 @@ export const getAllPapersQuery = {
 export const getFundingQuery = (address) => {
   return {
     query: `{
-  fundings(where: {to: ${address}}) {
+  fundings(where: {to: "${address}"}) {
     id
     from
     to
