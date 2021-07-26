@@ -11,9 +11,9 @@ contract PaperHouse is ERC721URIStorage {
 
     constructor() ERC721("PaperHouse", "PH") {}
 
-    event Published(uint256 tokenId, string tokenUri, string author, address owner, bool allowFunding, uint256 fundAmount);
-    event Funding(address from, address to, uint256 amount, uint256 paperid, uint256 totalAmountFunded);
-    event UpdatePaper(uint256 paperid, bool allowFunding, uint256 amount);
+    event Published(uint256 paperId, string tokenUri, string author, address owner, bool allowFunding, uint256 fundAmount);
+    event Funding(address from, address to, uint256 amount, uint256 paperId, uint256 totalAmountFunded);
+    event UpdatePaper(uint256 paperId, bool allowFunding, uint256 amount);
 
     struct ResearchPaper {
         uint256 tokenId;
