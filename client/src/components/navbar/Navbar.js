@@ -14,6 +14,8 @@ import { setPapers } from "../../redux/reducers/papersreducer";
 import {
   setMyActivities,
   setMyPapers,
+  setMyPapersLoading,
+  setMyActivitiesLoading,
 } from "../../redux/reducers/papersreducer";
 import axios from "axios";
 import { toGatewayURL } from "nft.storage";
@@ -88,7 +90,7 @@ export const Navbar = () => {
     if (connected) {
       setWalletToggle(false);
       setConnecting(false);
-
+      dispatch(setMyPapersLoading(true));
       axios
         .post(apiEndpoint, {
           query: GETMYPAPES(address).query,
@@ -114,12 +116,14 @@ export const Navbar = () => {
                   category: data.category,
                 };
                 dispatch(setMyPapers(payloadData));
+                dispatch(setMyPapersLoading(false));
               })
               .catch((err) => console.log(err));
           });
         })
         .catch((err) => console.log(err));
 
+      setMyActivitiesLoading(true);
       axios
         .post(apiEndpoint, {
           query: myActivities(address).query,
@@ -138,6 +142,7 @@ export const Navbar = () => {
                 amount: activity.amount,
               };
               dispatch(setMyActivities(myActivitiesPayload));
+              dispatch(setMyActivitiesLoading(false));
             });
           });
         });

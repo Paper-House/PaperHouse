@@ -16,9 +16,11 @@ let initialState = {
   },
   myPapers: {
     data: [],
+    loading: false,
   },
   myActivities: {
     data: [],
+    loading: false,
   },
   contract: {},
   web3: {},
@@ -46,17 +48,22 @@ const paperSlice = createSlice({
     },
     setMyPapers: (state, { payload }) => {
       console.log(payload);
-      state.myPapers.data.push(payload)
+      state.myPapers.data.push(payload);
+    },
+    setMyPapersLoading: (state, { payload }) => {
+      state.myPapers.loading = payload;
     },
     setMyActivities: (state, { payload }) => {
-      state.myActivities.data.push(payload)
+      state.myActivities.data.push(payload);
+    },
+    setMyActivitiesLoading: (state, { payload }) => {
+      state.myActivities.loading = payload;
     },
     setPapers: (state, { payload }) => {
-      state.papers.data.push( payload);
+      state.papers.data.push(payload);
     },
   },
-  extraReducers: {
-  },
+  extraReducers: {},
 });
 
 export const {
@@ -66,6 +73,8 @@ export const {
   setCorrectNetwork,
   setPapers,
   setMyPapers,
+  setMyPapersLoading,
   setMyActivities,
+  setMyActivitiesLoading
 } = paperSlice.actions;
 export default paperSlice.reducer;

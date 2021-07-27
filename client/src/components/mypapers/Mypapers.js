@@ -8,6 +8,7 @@ import axios from "axios";
 import { apiEndpoint, GETMYPAPES, myActivities } from "../../graphQueries";
 import Web3 from "web3";
 import { NFTStorage, File, toGatewayURL } from "nft.storage";
+import Skeleton from "react-loading-skeleton";
 
 export const Mypapers = ({ path }) => {
   const [category, setcategory] = useState("all");
@@ -19,10 +20,14 @@ export const Mypapers = ({ path }) => {
   const { connected, address, correctNetwork } = useSelector(
     (state) => state.paper.wallet
   );
+  const myPapersLoading = useSelector((state) => state.paper.myPapers.loading);
+  // const myPapersLoading = true;
 
   if (paperData.length != 0) {
     console.log(paperData);
   }
+
+  console.log(`My Papers Loading ${myPapersLoading}`);
 
   useEffect(() => {
     setUrlAddress(window.location.search.slice(9));
@@ -55,7 +60,7 @@ export const Mypapers = ({ path }) => {
                   category: data.category,
                 });
                 // dispatch(setMyPapers(payloadData));
-                setProfileDataPapers(payloadData)
+                setProfileDataPapers(payloadData);
               })
               .catch((err) => console.log(err));
           });
@@ -67,6 +72,7 @@ export const Mypapers = ({ path }) => {
   }, [urlAddress]);
 
   console.log(profileDataPapers);
+  console.log(paperData);
 
   return (
     <>
@@ -84,14 +90,18 @@ export const Mypapers = ({ path }) => {
       />
       <div className="mypapers">
         <div className="mypapers_papers">
-          {paperData.length !== 0 ? (
-            <PaperCardRenderer data={paperData} path={path} />
-          ) : profileDataPapers.length !== 0 ? (
-            <PaperCardRenderer data={profileDataPapers} path={path} />
-          ) : !address ? (
-            "Connect Your Wallet"
+          {!myPapersLoading ? (
+            paperData.length !== 0 ? (
+              <PaperCardRenderer data={paperData} path={path} />
+            ) : profileDataPapers.length !== 0 ? (
+              <PaperCardRenderer data={profileDataPapers} path={path} />
+            ) : !address ? (
+              "Connect Your Wallet"
+            ) : (
+              ""
+            )
           ) : (
-            ""
+            [1, 2, 3, 4, 5].map((item) => <PaperLoading />)
           )}
         </div>
       </div>
@@ -158,4 +168,70 @@ const PaperCardRenderer = ({ data, path }) => {
       />
     );
   });
+};
+
+const PaperLoading = () => {
+  return (
+    <div className="paper_card papercard_myprofile" style={{ height: "unset" }}>
+      <div className="paper_card_img">
+        {/* <img src={data.thumbnail} alt="" /> */}
+        <Skeleton
+          width={"100%"}
+          height={"100%"}
+          style={{ overflow: "hidden" }}
+        />
+      </div>
+      <div className="paper_card_details">
+        <div className="paper_card_title">
+          <Skeleton
+            width={"100%"}
+            height={"100%"}
+            style={{ overflow: "hidden" }}
+          />
+        </div>
+        <div className="paper_card_date">
+          {/* <h3>Published on {data.date}</h3> */}
+          <Skeleton
+            width={"80%"}
+            height={"100%"}
+            style={{ overflow: "hidden" }}
+          />
+          <Skeleton
+            width={"50%"}
+            height={"100%"}
+            style={{ overflow: "hidden" }}
+          />
+        </div>
+        <div
+          className="paper_card_author"
+          style={{ display: "block", textAlign: "start" }}
+        >
+          {/* <h3>Sairaj Kapdi</h3> */}
+          {/* <AddressBtn address={data.publisher} /> */}
+          <Skeleton width={"40%"} height={"100%"} />
+        </div>
+        <div className="paper_card_update">
+          <div className="paper_card_fundtoggle" style={{ display: "block" }}>
+            {/* <h3>Allow Funding</h3> */}
+            <Skeleton width={"100%"} height={"100%"} count={4} />
+            {/* <input type="checkbox" checked={fundtoggle == true} /> */}
+          </div>
+          <div
+            className={"paper_card_fundamount_input"}
+            style={{ display: "block", textAlign: "start" }}
+          >
+            <Skeleton width={"40%"} height={"100%"} />
+            {/* <input
+                type="text"
+                name="fundamount"
+                id="fundamoundt"
+                ref={fundInput}
+                placeholder={currentAmount}
+                disabled={fundtoggle == false}
+              /> */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
