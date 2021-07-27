@@ -1,13 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { toGatewayURL } from "nft.storage";
-
-import {
-  apiEndpoint,
-  getAllPapersQuery,
-  getFundingQuery,
-  GETMYPAPES,
-} from "../../graphQueries";
 
 let initialState = {
   wallet: {
@@ -65,17 +56,6 @@ const paperSlice = createSlice({
     },
   },
   extraReducers: {
-    // [getMyPapers.pending]: (state) => {
-    //   console.log("pending");
-    // },
-    // [getAllPapers.pending]: (state) => {},
-    // [getAllPapers.fulfilled]: (state, { payload }) => {
-    //   state.papers.data = payload;
-    // },
-    // [getfunders.pending]: (state) => {},
-    // [getfunders.fulfilled]: (state, { payload }) => {
-    //   state.funders.data = payload;
-    // },
   },
 });
 
