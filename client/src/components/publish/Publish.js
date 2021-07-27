@@ -66,10 +66,14 @@ export const Publish = () => {
   const IPFSupload = async (name, des, author, category) => {
     if (pdf && thumbnail && name && des && author && category) {
       toast("🦄 Uploading to IPFS!", toastStyles.default);
+
+      let date = new Date().toString().split(" ");
+
       const metadata = await client.store({
         name: name,
         description: des,
         author: author,
+        publishDate:date[2] + " " + date[1] + " " + date[3],
         category: category,
         image: new File([thumbnail], `${thumbnail.name}`, {
           type: "image/jpg",
@@ -322,7 +326,7 @@ export const Publish = () => {
                   type="text"
                   placeholder="Bitcoin: A Peer-to-Peer Electron..."
                   ref={title}
-                  maxlength="40"
+                  maxlength="100"
                   required
                 />
               </div>
@@ -342,7 +346,7 @@ export const Publish = () => {
                   type="text"
                   placeholder="A Peer-to-Peer Electronic Cash System..."
                   ref={description}
-                  maxlength="120"
+                  maxlength="150"
                   required
                 />
               </div>
