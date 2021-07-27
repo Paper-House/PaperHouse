@@ -215,7 +215,9 @@ export const Paper = (props) => {
                 <h3>
                   Balance{" "}
                   {balance
-                    ? `${web3.utils.fromWei(balance, "ether")} Matic`
+                    ? `${Number(web3.utils.fromWei(balance, "ether")*10).toFixed(
+                        4
+                      )} Matic`
                     : "0 Matic"}
                 </h3>
               </div>
@@ -471,7 +473,12 @@ export const Paper = (props) => {
               <div className="paper_fund_info">
                 <div>
                   <h3>
-                    {UiLoading ? "0" : Number(PaperData.paper.totalAmountFunded).toFixed(3)} MATIC
+                    {UiLoading
+                      ? "0"
+                      : Number(PaperData.paper.totalAmountFunded).toFixed(
+                          3
+                        )}{" "}
+                    MATIC
                     <p> Funded</p>
                   </h3>
                   <h5>
@@ -482,7 +489,12 @@ export const Paper = (props) => {
                   </h5>
                 </div>
                 <div>
-                  <h3>{UiLoading ? "0" : Number(PaperData.paper.fundAmount).toFixed(3)} MATIC</h3>
+                  <h3>
+                    {UiLoading
+                      ? "0"
+                      : Number(PaperData.paper.fundAmount).toFixed(3)}{" "}
+                    MATIC
+                  </h3>
                   <h5>
                     $
                     {UiLoading
