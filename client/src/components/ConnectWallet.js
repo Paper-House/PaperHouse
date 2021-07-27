@@ -49,7 +49,7 @@ export default function ConnectWallet({ wallet }) {
             connected: false,
             address: "",
             network: "",
-            correctNetwork: false,
+            correctNetwork: true,
             balance: "",
           })
         );
@@ -61,7 +61,7 @@ export default function ConnectWallet({ wallet }) {
                 connected: true,
                 address: accounts[0],
                 network: await web3.eth.net.getId(),
-                correctNetwork: false,
+                correctNetwork: true,
                 balance: await web3.eth.getBalance(accounts[0]),
               })
             );
@@ -81,7 +81,7 @@ export default function ConnectWallet({ wallet }) {
                 connected: false,
                 address: "",
                 network: "",
-                correctNetwork: false,
+                correctNetwork: true,
                 balance: "",
               })
             );
@@ -92,7 +92,7 @@ export default function ConnectWallet({ wallet }) {
             connected: false,
             address: "",
             network: "",
-            correctNetwork: false,
+            correctNetwork: true,
             balance: "",
           })
         );
@@ -105,7 +105,7 @@ export default function ConnectWallet({ wallet }) {
                 connected: true,
                 address: accounts[0],
                 network: await web3.eth.net.getId(),
-                correctNetwork: false,
+                correctNetwork: true,
                 balance: await web3.eth.getBalance(accounts[0]),
               })
             );
@@ -126,15 +126,15 @@ export default function ConnectWallet({ wallet }) {
   }, [web3, networkChange]);
   useEffect(() => {
     if (window.ethereum) {
-      window.ethereum.on("accountsChanged", (accounts) => {
-        dispatch(
-          setWallet({
-            connected: true,
-            address: accounts[0],
-          })
-        );
-        console.log(accounts);
-      });
+      // window.ethereum.on("accountsChanged", (accounts) => {
+      //   dispatch(
+      //     setWallet({
+      //       connected: true,
+      //       address: accounts[0],
+      //     })
+      //   );
+      //   console.log(accounts);
+      // });
 
       window.ethereum.on("chainChanged", (chainId) => {
         setnetworkChange(chainId);

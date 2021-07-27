@@ -5,7 +5,7 @@ let initialState = {
     connected: false,
     address: "",
     network: "",
-    correctNetwork: false,
+    correctNetwork: true,
     balance: "",
   },
   papers: {
