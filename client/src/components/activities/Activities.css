@@ -47,7 +47,7 @@
   grid-template-columns: auto auto;
   grid-template-rows: 30px;
   width: 50%;
-  padding: 10px 10px 10px 0px;
+  padding: 10px 10px 0px 0px;
   align-items: center;
   grid-gap: 10px;
 }
@@ -71,6 +71,10 @@
 
 .Activities__nav--section-mob {
   display: none;
+}
+
+#fundAmount {
+  padding-top: 10px;
 }
 
 /* Mobile */
