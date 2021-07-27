@@ -100,6 +100,7 @@ export const Navbar = () => {
           let payloadData = {};
           data.map((paper) => {
             let nftUrl = toGatewayURL(paper.tokenUri).href;
+            dispatch(setMyPapersLoading(true));
             axios
               .get(nftUrl)
               .then(({ data }) => {
@@ -132,6 +133,7 @@ export const Navbar = () => {
           activityData = activityData.data.data.paperFundings;
           let myActivitiesPayload = {};
           activityData.map((activity) => {
+            dispatch(setMyActivitiesLoading(true));
             let nftUrl = toGatewayURL(activity.tokenUri).href;
             axios.get(nftUrl).then(({ data }) => {
               let thumbnail = "https://ipfs.io" + "/ipfs" + data.image.slice(6);
