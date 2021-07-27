@@ -211,7 +211,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <ConnectWallet wallet={wallet} />
+      <ConnectWallet wallet={wallet} setWallconnect={(prop) => setwallet(prop)} />
       {connected ? correctNetwork ? null : <WrongNetwork /> : null}
       <div className="nav__backdrop">
         <nav>

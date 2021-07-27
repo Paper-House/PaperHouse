@@ -10,7 +10,10 @@ import {
 } from "../redux/reducers/papersreducer";
 import PaperHouse from "../contracts/PaperHouse.json";
 
-const portis = new Portis("175d7ef0-8644-4b07-9ce9-d40ce13ed8cb", "maticMumbai");
+const portis = new Portis(
+  "175d7ef0-8644-4b07-9ce9-d40ce13ed8cb",
+  "maticMumbai"
+);
 
 const getInstance = (web3, Networkid) => {
   try {
@@ -26,11 +29,18 @@ const getInstance = (web3, Networkid) => {
 const getNetworkid = async (web3) => {
   return await web3.eth.net.getId();
 };
-export default function ConnectWallet({ wallet }) {
+export default function ConnectWallet({ wallet, setWallconnect }) {
   const dispatch = useDispatch();
   const [networkChange, setnetworkChange] = useState("");
+  const [accountChange, setaccountChange] = useState("");
   const state = useSelector((state) => state.paper);
   const web3 = state.web3;
+  useEffect(() => {
+    if (window.ethereum !== undefined) {
+      setWallconnect(1);
+      dispatch(setWeb3(new Web3(window.ethereum)));
+    }
+  }, []);
   useEffect(() => {
     if (wallet === 1 && window.web3 !== undefined) {
       dispatch(setWeb3(new Web3(window.ethereum)));
@@ -120,21 +130,29 @@ export default function ConnectWallet({ wallet }) {
           });
       }
     }
-  }, [web3, networkChange]);
+  }, [web3, networkChange, accountChange]);
   useEffect(() => {
     if (window.ethereum) {
-      // window.ethereum.on("accountsChanged", (accounts) => {
-      //   dispatch(
-      //     setWallet({
-      //       connected: true,
-      //       address: accounts[0],
-      //     })
-      //   );
-      //   console.log(accounts);
-      // });
+      window.ethereum.on("accountsChanged", (accounts) => {
+        setaccountChange(accounts[0]);
+      });
 
       window.ethereum.on("chainChanged", (chainId) => {
         setnetworkChange(chainId);
+      });
+
+      window.ethereum.on("disconnect", () => {
+        setWallconnect(0);
+
+        dispatch(
+          setWallet({
+            connected: false,
+            address: "",
+            network: "",
+            correctNetwork: true,
+            balance: "",
+          })
+        );
       });
     }
   }, []);
