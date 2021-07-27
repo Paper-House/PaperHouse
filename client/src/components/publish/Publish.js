@@ -1,4 +1,4 @@
-import React, { useState, useref, useRef } from "react";
+import React, { useState, useref, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
@@ -73,7 +73,7 @@ export const Publish = () => {
         name: name,
         description: des,
         author: author,
-        publishDate:date[2] + " " + date[1] + " " + date[3],
+        publishDate: date[2] + " " + date[1] + " " + date[3],
         category: category,
         image: new File([thumbnail], `${thumbnail.name}`, {
           type: "image/jpg",
@@ -99,8 +99,11 @@ export const Publish = () => {
           toast("🦄 Uploaded to IPFS!", toastStyles.default);
           console.log(tokenURI);
           let fund;
-          if (fundingAmount.current.value) {
-            fund = funding ? fundingAmount.current.value : "0";
+          // if (fundingAmount.current.value) {
+          //   fund = funding ? fundingAmount.current.value : "0";
+          // }
+          if (!fundingAmount.current) {
+            fund = "0"
           }
           contract.methods
             .publish(
@@ -369,7 +372,9 @@ export const Publish = () => {
                   <input
                     type="checkbox"
                     style={{ padding: "0px" }}
-                    onChange={() => setfunding(!funding)}
+                    onChange={() => {
+                      setfunding(!funding);
+                    }}
                     checked={funding == true}
                   />
                 </label>
