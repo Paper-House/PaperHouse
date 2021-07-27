@@ -30,7 +30,7 @@ export const getFundingQuery = (address) => {
   };
 };
 
-export const getMyPapers = (address) => {
+export const GETMYPAPES = (address) => {
   return {
     query: `{
   papers(where: {owner: "${address}"}) {
@@ -41,6 +41,20 @@ export const getMyPapers = (address) => {
     allowFunding
     fundAmount
     totalAmountFunded
+  }
+}`,
+  };
+};
+
+export const myActivities = (address) => {
+  return {
+    query: `{
+  paperFundings(where: {to: "${address}"}) {
+    id
+    from
+    to
+    amount
+    tokenUri
   }
 }`,
   };

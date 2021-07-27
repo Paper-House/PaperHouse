@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toGatewayURL } from "nft.storage";
 
 import {
   apiEndpoint,
   getAllPapersQuery,
   getFundingQuery,
+  GETMYPAPES,
 } from "../../graphQueries";
 
 let initialState = {
@@ -15,29 +17,21 @@ let initialState = {
     correctNetwork: false,
     balance: "",
   },
-  // papers: {
-  //   data: [],
-  // },
-  // funders: {
-  //   data: [],
-  // },
+  papers: {
+    data: [],
+  },
+  funders: {
+    data: [],
+  },
+  myPapers: {
+    data: [],
+  },
+  myActivities: {
+    data: [],
+  },
   contract: {},
   web3: {},
 };
-
-// export const getAllPapers = createAsyncThunk(
-//   "paper/getAllPapers",
-//   async (props) => {
-//     // axios call to get all papers
-//   }
-// );
-
-// export const getfunders = createAsyncThunk(
-//   "paper/getfunders",
-//   async (props) => {
-//     // axios call to get all funders
-//   }
-// );
 
 const paperSlice = createSlice({
   name: "paper",
@@ -59,19 +53,35 @@ const paperSlice = createSlice({
     setCorrectNetwork: (state, { payload }) => {
       state.wallet.correctNetwork = payload;
     },
+    setMyPapers: (state, { payload }) => {
+      console.log(payload);
+      state.myPapers.data = payload;
+    },
+    setMyActivities: (state, { payload }) => {
+      state.myActivities.data = payload;
+    },
   },
-  // extraReducers: {
-  //   [getAllPapers.pending]: (state) => {},
-  //   [getAllPapers.fulfilled]: (state, { payload }) => {
-  //     state.papers.data = payload;
-  //   },
-  //   [getfunders.pending]: (state) => {},
-  //   [getfunders.fulfilled]: (state, { payload }) => {
-  //     state.funders.data = payload;
-  //   },
-  // },
+  extraReducers: {
+    // [getMyPapers.pending]: (state) => {
+    //   console.log("pending");
+    // },
+    // [getAllPapers.pending]: (state) => {},
+    // [getAllPapers.fulfilled]: (state, { payload }) => {
+    //   state.papers.data = payload;
+    // },
+    // [getfunders.pending]: (state) => {},
+    // [getfunders.fulfilled]: (state, { payload }) => {
+    //   state.funders.data = payload;
+    // },
+  },
 });
 
-export const { setWallet, setWeb3, setContract, setCorrectNetwork } =
-  paperSlice.actions;
+export const {
+  setWallet,
+  setWeb3,
+  setContract,
+  setCorrectNetwork,
+  setMyPapers,
+  setMyActivities,
+} = paperSlice.actions;
 export default paperSlice.reducer;

@@ -1,70 +1,47 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import "./Activities.css";
 
 import pf from "../assets/pf.png";
-import thumbnail from "../assets/thumb.png";
+
+const ActivityCard = ({ image, title, address, fundAmount }) => {
+  return (
+    <div className="Activities__main--card">
+      <img src={image} alt="thumbnail" />
+      <div className="Activities__main--section--info">
+        <h5>{title}</h5>
+        <div className="Activities__main--section--transaction--info">
+          <div className="Activities__main--address">
+            <img src={pf} alt="pf" />
+            <p>{address}</p>
+          </div>
+          <p id="fundAmount">Funded {fundAmount}ETH</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Activities = () => {
+  const myActivities = useSelector((state) => state.paper.myActivities).data;
+  const { address } = useSelector((state) => state.paper.wallet);
   return (
     <div className="Activities__container">
       <div className="Activities__main--section">
-        {" "}
-        {/* flex */}
-        <div className="Activities__main--card">
-          <img src={thumbnail} alt="thumbnail" />
-          <div className="Activities__main--section--info">
-            <h5>
-              Computing interaction effects and standard errors in logit and
-              probit models
-            </h5>
-            <div className="Activities__main--section--transaction--info">
-              <div className="Activities__main--address">
-                <img src={pf} alt="pf" />
-                <p>
-                0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
-                </p>
-              </div>
-              <p>Funded 0.5ETH</p>
-            </div>
-          </div>
-        </div>
-        <div className="Activities__main--card">
-          <img src={thumbnail} alt="thumbnail" />
-          <div className="Activities__main--section--info">
-            <h5>
-              Computing interaction effects and standard errors in logit and
-              probit models
-            </h5>
-            <div className="Activities__main--section--transaction--info">
-              <div className="Activities__main--address">
-                <img src={pf} alt="pf" />
-                <p>
-                0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
-                </p>
-              </div>
-              <p>Funded 0.5ETH</p>
-            </div>
-          </div>
-        </div>
-        <div className="Activities__main--card">
-          <img src={thumbnail} alt="thumbnail" />
-          <div className="Activities__main--section--info">
-            <h5>
-              Computing interaction effects and standard errors in logit and
-              probit models
-            </h5>
-            <div className="Activities__main--section--transaction--info">
-              <div className="Activities__main--address">
-                <img src={pf} alt="pf" />
-                <p>
-                0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6
-                </p>
-              </div>
-              <p>Funded 0.5ETH</p>
-            </div>
-          </div>
-        </div>
+        {myActivities.length != 0
+          ? myActivities.map((activity) => {
+            console.log(activity.title)
+              return (
+                <ActivityCard
+                  image={activity.thumbnail}
+                  title={activity.title}
+                  address={address}
+                  fundAmount={activity.amount}
+                />
+              );
+            })
+          : (!address) ? "Connect Your Wallet" : "Loading"}
       </div>
       <div></div>
     </div>

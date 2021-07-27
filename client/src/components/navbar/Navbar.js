@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Hamburger from "hamburger-react";
 import { motion, useCycle } from "framer-motion";
 import "./Navbar.css";
@@ -9,6 +9,18 @@ import logo from "../assets/logo.svg";
 import metamask from "../assets/metamask_icon.svg";
 import portis from "../assets/portis_icon.svg";
 import ConnectWallet from "../ConnectWallet";
+
+import { setMyActivities, setMyPapers } from "../../redux/reducers/papersreducer";
+import axios from "axios";
+import { toGatewayURL } from "nft.storage";
+
+import {
+  apiEndpoint,
+  getAllPapersQuery,
+  getFundingQuery,
+  GETMYPAPES,
+  myActivities,
+} from "../../graphQueries";
 
 export const useDimensions = (ref) => {
   const dimensions = useRef({ width: 0, height: 0 });
@@ -32,11 +44,12 @@ export const Navbar = () => {
   const [wallet, setwallet] = useState(0);
   const containerRef = useRef(null);
   const height = useDimensions(containerRef);
-  const { connected, correctNetwork } = useSelector(
+  const { connected, correctNetwork, address } = useSelector(
     (state) => state.paper.wallet
   );
 
   const state = useSelector((state) => state.paper);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (window.ethereum && window.ethereum.isMetaMask) {
@@ -50,6 +63,62 @@ export const Navbar = () => {
     if (connected) {
       setWalletToggle(false);
       setConnecting(false);
+
+      let payloadData = [];
+      axios
+        .post(apiEndpoint, {
+          query: GETMYPAPES(address).query,
+        })
+        .then(({ data }) => {
+          data = data.data.papers;
+          data.map((paper) => {
+            let nftUrl = toGatewayURL(paper.tokenUri).href;
+            axios
+              .get(nftUrl)
+              .then(({ data }) => {
+                console.log(data);
+                let thumbnail =
+                  "https://ipfs.io" + "/ipfs" + data.image.slice(6);
+                payloadData.push({
+                  paperid: paper.id.slice(2),
+                  title: data.name,
+                  author: data.author,
+                  publisher: paper.owner,
+                  date: data.publishDate,
+                  thumbnail: thumbnail,
+                  category: data.category,
+                });
+                dispatch(setMyPapers(payloadData));
+              })
+              .catch((err) => console.log(err));
+          });
+        })
+        .catch((err) => console.log(err));
+
+      let myActivitiesPayload = [];
+
+      axios
+        .post(apiEndpoint, {
+          query: myActivities(address).query,
+        })
+        .then((activityData) => {
+          activityData = activityData.data.data.paperFundings;
+          console.log(activityData)
+          activityData.map((activity) => {
+            let nftUrl = toGatewayURL(activity.tokenUri).href;
+            axios.get(nftUrl).then(({ data }) => {
+              let thumbnail = "https://ipfs.io" + "/ipfs" + data.image.slice(6);
+              myActivitiesPayload.push({
+                thumbnail: thumbnail,
+                title: data.name,
+                from: activity.from,
+                amount: activity.amount,
+              });
+              console.log(myActivitiesPayload)
+              dispatch(setMyActivities(myActivitiesPayload))
+            });
+          });
+        });
     }
   }, [connected]);
 
