@@ -11,7 +11,10 @@ import portis from "../assets/portis_icon.svg";
 import ConnectWallet from "../ConnectWallet";
 import { setPapers } from "../../redux/reducers/papersreducer";
 
-import { setMyActivities, setMyPapers } from "../../redux/reducers/papersreducer";
+import {
+  setMyActivities,
+  setMyPapers,
+} from "../../redux/reducers/papersreducer";
 import axios from "axios";
 import { toGatewayURL } from "nft.storage";
 
@@ -62,7 +65,7 @@ export const Navbar = () => {
             paper.paperid = data.paperId;
             paper.title = metadata.data.name;
             paper.thumbnail = getURL(metadata.data.image);
-            paper.category = metadata.data.category;
+            paper.category = metadata.data.category.toLowerCase();
             paper.author = metadata.data.author;
             paper.date = metadata.data.publishDate;
             paper.publisher = data.owner;
@@ -124,7 +127,7 @@ export const Navbar = () => {
         })
         .then((activityData) => {
           activityData = activityData.data.data.paperFundings;
-          console.log(activityData)
+          console.log(activityData);
           activityData.map((activity) => {
             let nftUrl = toGatewayURL(activity.tokenUri).href;
             axios.get(nftUrl).then(({ data }) => {
@@ -135,8 +138,8 @@ export const Navbar = () => {
                 from: activity.from,
                 amount: activity.amount,
               });
-              console.log(myActivitiesPayload)
-              dispatch(setMyActivities(myActivitiesPayload))
+              console.log(myActivitiesPayload);
+              dispatch(setMyActivities(myActivitiesPayload));
             });
           });
         });
