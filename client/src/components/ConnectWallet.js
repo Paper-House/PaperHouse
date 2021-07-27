@@ -11,7 +11,7 @@ import {
 import PaperHouse from "../contracts/PaperHouse.json";
 
 const portis = new Portis(
-  "a7653496-491a-42cd-813c-471536ebf61e",
+  "175d7ef0-8644-4b07-9ce9-d40ce13ed8cb",
   "maticMumbai"
 );
 
@@ -50,7 +50,7 @@ export default function ConnectWallet({ wallet }) {
             address: "",
             network: "",
             correctNetwork: false,
-            balance:""
+            balance: "",
           })
         );
         window.ethereum
@@ -62,7 +62,7 @@ export default function ConnectWallet({ wallet }) {
                 address: accounts[0],
                 network: await web3.eth.net.getId(),
                 correctNetwork: false,
-                balance: await web3.eth.getBalance(accounts[0])
+                balance: await web3.eth.getBalance(accounts[0]),
               })
             );
             getNetworkid(web3).then((id) => {
@@ -82,7 +82,7 @@ export default function ConnectWallet({ wallet }) {
                 address: "",
                 network: "",
                 correctNetwork: false,
-                balance:""
+                balance: "",
               })
             );
           });
@@ -93,7 +93,7 @@ export default function ConnectWallet({ wallet }) {
             address: "",
             network: "",
             correctNetwork: false,
-            balance:""
+            balance: "",
           })
         );
 
@@ -106,7 +106,7 @@ export default function ConnectWallet({ wallet }) {
                 address: accounts[0],
                 network: await web3.eth.net.getId(),
                 correctNetwork: false,
-                balance: await web3.eth.getBalance(accounts[0])
+                balance: await web3.eth.getBalance(accounts[0]),
               })
             );
             getNetworkid(web3).then((id) => {
