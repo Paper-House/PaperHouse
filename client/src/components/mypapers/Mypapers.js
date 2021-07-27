@@ -10,6 +10,7 @@ import Web3 from "web3";
 import { NFTStorage, File, toGatewayURL } from "nft.storage";
 import Skeleton from "react-loading-skeleton";
 import { PaperCardLoading } from "../paperCardLoading/index";
+import ConnectWallet from "../connectWallet/ConnectWallet";
 
 export const Mypapers = ({ path }) => {
   const [category, setcategory] = useState("all");
@@ -90,14 +91,17 @@ export const Mypapers = ({ path }) => {
         pauseOnHover
       />
       <div className="mypapers">
-        <div className="mypapers_papers">
+        <div
+          className="mypapers_papers"
+          style={!connected ? { display: "block" } : { display: "grid" }}
+        >
           {!myPapersLoading ? (
             paperData.length !== 0 ? (
               <PaperCardRenderer data={paperData} path={path} />
             ) : profileDataPapers.length !== 0 ? (
               <PaperCardRenderer data={profileDataPapers} path={path} />
             ) : !address ? (
-              "Connect Your Wallet"
+              <ConnectWallet />
             ) : (
               ""
             )
