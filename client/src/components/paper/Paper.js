@@ -51,6 +51,18 @@ export const Paper = (props) => {
   const contract = useSelector((state) => state.paper.contract);
 
   useEffect(() => {
+    window.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.keyCode === 27) {
+          setShowPopup(false);
+        }
+      },
+      false
+    );
+  }, []);
+
+  useEffect(() => {
     if (paperid) {
       axios
         .post(apiEndpoint, { query: getPaper(paperid).query })
@@ -506,11 +518,9 @@ export const Paper = (props) => {
                 <div
                   className="paper_fund_bar_current"
                   style={{
-                    width: `${
-                      ((PaperData.paper.totalAmountFunded * 10) /
-                        PaperData.paper.fundAmount) *
-                      100
-                    }%`,
+                    width: `${((PaperData.paper.totalAmountFunded * 10) /
+                      PaperData.paper.fundAmount) *
+                      100}%`,
                   }}
                 ></div>
                 <h3>
