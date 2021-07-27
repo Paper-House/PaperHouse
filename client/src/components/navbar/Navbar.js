@@ -10,7 +10,7 @@ import metamask from "../assets/metamask_icon.svg";
 import portis from "../assets/portis_icon.svg";
 import ConnectWallet from "../ConnectWallet";
 import { setPapers } from "../../redux/reducers/papersreducer";
-
+import web3 from "web3";
 import {
   setMyActivities,
   setMyPapers,
@@ -77,11 +77,15 @@ export const Navbar = () => {
         });
       });
 
-    window.addEventListener("keydown", (event) => {
-      if (event.keyCode === 27) {
-        setWalletToggle(false)
-      }
-    }, false)
+    window.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.keyCode === 27) {
+          setWalletToggle(false);
+        }
+      },
+      false
+    );
   }, []);
 
   useEffect(() => {
@@ -121,6 +125,8 @@ export const Navbar = () => {
                   date: data.publishDate,
                   thumbnail: thumbnail,
                   category: data.category,
+                  allowFunding: JSON.parse(paper.allowFunding),
+                  fundAmount: web3.utils.fromWei(paper.fundAmount, "ether"),
                 };
                 dispatch(setMyPapers(payloadData));
                 dispatch(setMyPapersLoading(false));
@@ -147,7 +153,7 @@ export const Navbar = () => {
                 thumbnail: thumbnail,
                 title: data.name,
                 from: activity.from,
-                amount: activity.amount,
+                amount: web3.utils.fromWei(activity.amount, "ether"),
               };
               dispatch(setMyActivities(myActivitiesPayload));
               dispatch(setMyActivitiesLoading(false));
@@ -217,7 +223,10 @@ export const Navbar = () => {
 
   return (
     <>
-      <ConnectWallet wallet={wallet} setWallconnect={(prop) => setwallet(prop)} />
+      <ConnectWallet
+        wallet={wallet}
+        setWallconnect={(prop) => setwallet(prop)}
+      />
       {connected ? correctNetwork ? null : <WrongNetwork /> : null}
       <div className="nav__backdrop">
         <nav>
