@@ -74,6 +74,7 @@ button[aria-expanded="true"] {
 .paper_card_img {
   width: 100%;
   height: 170px;
+  height: 50%;
 }
 .paper_card img {
   width: 100%;
@@ -82,10 +83,11 @@ button[aria-expanded="true"] {
 }
 .paper_card_details {
   padding: 10px;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  height: 50%;
+
 }
 .paper_card_title h3 {
   font-family: "Open Sans";
