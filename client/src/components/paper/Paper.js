@@ -206,9 +206,9 @@ export const Paper = (props) => {
                 <h3>
                   Balance{" "}
                   {balance
-                    ? `${Number(web3.utils.fromWei(balance, "ether")*10).toFixed(
-                        4
-                      )} Matic`
+                    ? `${Number(
+                        web3.utils.fromWei(balance, "ether") * 10
+                      ).toFixed(4)} Matic`
                     : "0 Matic"}
                 </h3>
               </div>
@@ -240,7 +240,7 @@ export const Paper = (props) => {
               <button
                 className="paper_popup_fund"
                 disabled={connected == false || loading == true}
-                onClick={() => FundPaper(paperid, fundAmount)}
+                onClick={() => FundPaper(Number(paperid), fundAmount)}
               >
                 {connected ? (
                   loading ? (
