@@ -1728,12 +1728,12 @@
     "80001": {
       "events": {},
       "links": {},
-      "address": "0x1eDC60612dC3ABE82882fF5eACb3e45d5EE13F0b",
-      "transactionHash": "0xc9e9a41dc84a9a06dc71e84f73179adc4f187c3ccd9fbe199d5c456d5839eb01"
+      "address": "0x88A775718C9B3d91cAE87051b7A631e69b726Ac5",
+      "transactionHash": "0x2b16d1acb5dd87c22fd24bb5b200e002edff4bab51980c111f95cdd66e92cf9b"
     }
   },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-07-26T16:23:37.640Z",
+  "updatedAt": "2021-07-27T07:12:51.774Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

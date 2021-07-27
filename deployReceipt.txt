@@ -17,13 +17,13 @@ Starting migrations...
 
    Replacing 'Migrations'
    ----------------------
-   > transaction hash:    0xc9e9a41dc84a9a06dc71e84f73179adc4f187c3ccd9fbe199d5c456d5839eb01
+   > transaction hash:    0x2b16d1acb5dd87c22fd24bb5b200e002edff4bab51980c111f95cdd66e92cf9b
    > Blocks: 2            Seconds: 4
-   > contract address:    0x1eDC60612dC3ABE82882fF5eACb3e45d5EE13F0b
-   > block number:        16842779
-   > block timestamp:     1627316638
+   > contract address:    0x88A775718C9B3d91cAE87051b7A631e69b726Ac5
+   > block number:        16868513
+   > block timestamp:     1627369970
    > account:             0xd4D2761e241b07a367E47a1f3c76d40d12283DF5
-   > balance:             0.262636779999999951
+   > balance:             0.356008970000000951
    > gas used:            201187 (0x311e3)
    > gas price:           30 gwei
    > value sent:          0 ETH
@@ -31,7 +31,7 @@ Starting migrations...
 
    Pausing for 2 confirmations...
    ------------------------------
-   > confirmation number: 2 (block: 16842782)
+   > confirmation number: 2 (block: 16868516)
 
    > Saving migration to chain.
    > Saving artifacts
@@ -44,13 +44,13 @@ Starting migrations...
 
    Replacing 'PaperHouse'
    ----------------------
-   > transaction hash:    0x3edb471674ac6d9e6d8e683808f5394936b4e9433c4721ed5ecface0568fd417
-   > Blocks: 1            Seconds: 4
-   > contract address:    0xa3783F27D4b9135ba38453a00A5eFF1f667Fc11a
-   > block number:        16842791
-   > block timestamp:     1627316662
+   > transaction hash:    0xe7e7a1ef5411a5b49bc0eb139a176c69117180289e0ab16397dd47d04c58b47a
+   > Blocks: 3            Seconds: 4
+   > contract address:    0x3E48cdcbFA783D24d85F380EbE76eA13DF835DF7
+   > block number:        16868525
+   > block timestamp:     1627369994
    > account:             0xd4D2761e241b07a367E47a1f3c76d40d12283DF5
-   > balance:             0.171173019999999951
+   > balance:             0.264545210000000951
    > gas used:            3002876 (0x2dd1fc)
    > gas price:           30 gwei
    > value sent:          0 ETH
@@ -58,4 +58,17 @@ Starting migrations...
 
    Pausing for 2 confirmations...
    ------------------------------
-   > confirmation number: 2 (block: 16842794)
+   > confirmation number: 3 (block: 16868529)
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.09008628 ETH
+
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.09612189 ETH
+
+
