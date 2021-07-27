@@ -76,6 +76,12 @@ export const Navbar = () => {
           });
         });
       });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.keyCode === 27) {
+        setWalletToggle(false)
+      }
+    }, false)
   }, []);
 
   useEffect(() => {
