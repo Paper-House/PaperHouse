@@ -119,15 +119,6 @@ export const Paper = (props) => {
           console.log(receipt);
           setloading(false);
           toast("Research Paper Funded", toastStyles.default);
-          dispatch(
-            setWallet({
-              connected: connected,
-              address: address,
-              network: network,
-              correctNetwork: correctNetwork,
-              balance: await web3.eth.getBalance(address),
-            })
-          );
           setmaticconversion(0);
           setfundAmount(0);
           setShowPopup(false);
