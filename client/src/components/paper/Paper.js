@@ -128,6 +128,8 @@ export const Paper = (props) => {
               balance: await web3.eth.getBalance(address),
             })
           );
+          setmaticconversion(0);
+          setfundAmount(0);
           setShowPopup(false);
         })
         .catch((err) => {
@@ -143,7 +145,7 @@ export const Paper = (props) => {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       var scrollY = window.scrollY;
-      if (scrollY > 5) {
+      if (scrollY > 10) {
         setShowFundButton(true);
       } else {
         setShowFundButton(false);
@@ -227,12 +229,14 @@ export const Paper = (props) => {
                   }}
                 />
                 <div className="popup_input_row">
-                  <h3>~$ {maticconversion}</h3>{" "}
+                  <h3>~$ {maticconversion.toFixed(3)}</h3>{" "}
                   <h3>
                     Max{" "}
                     <span>
-                      {PaperData.paper.fundAmount -
-                        PaperData.paper.totalAmountFunded}
+                      {(
+                        PaperData.paper.fundAmount -
+                        PaperData.paper.totalAmountFunded
+                      ).toFixed(3)}
                     </span>{" "}
                     Matic
                   </h3>
@@ -269,7 +273,15 @@ export const Paper = (props) => {
                   "Connect Wallet"
                 )}
               </button>
-              <button onClick={() => setShowPopup(!ShowPopup)}>Decline</button>
+              <button
+                onClick={() => {
+                  setShowPopup(!ShowPopup);
+                  setmaticconversion(0);
+                  setfundAmount(0);
+                }}
+              >
+                Decline
+              </button>
             </div>
           </div>
         </div>
@@ -436,7 +448,9 @@ export const Paper = (props) => {
                               {fund.from}
                               <h2>
                                 Funded{" "}
-                                {web3.utils.fromWei(fund.amount, "ether") * 10}
+                                {(
+                                  web3.utils.fromWei(fund.amount, "ether") * 10
+                                ).toFixed(3)}
                                 Matic
                               </h2>
                             </div>
@@ -457,18 +471,23 @@ export const Paper = (props) => {
               <div className="paper_fund_info">
                 <div>
                   <h3>
-                    {UiLoading ? "0" : PaperData.paper.totalAmountFunded} MATIC
+                    {UiLoading ? "0" : Number(PaperData.paper.totalAmountFunded).toFixed(3)} MATIC
                     <p> Funded</p>
                   </h3>
                   <h5>
                     $
-                    {UiLoading ? "0" : (PaperData.paper.totalAmountFunded * 1.05).toFixed(3)}
+                    {UiLoading
+                      ? "0"
+                      : (PaperData.paper.totalAmountFunded * 1.05).toFixed(3)}
                   </h5>
                 </div>
                 <div>
-                  <h3>{UiLoading ? "0" : PaperData.paper.fundAmount} MATIC</h3>
+                  <h3>{UiLoading ? "0" : Number(PaperData.paper.fundAmount).toFixed(3)} MATIC</h3>
                   <h5>
-                    ${UiLoading ? "0" : (PaperData.paper.fundAmount * 1.05).toFixed(3)}
+                    $
+                    {UiLoading
+                      ? "0"
+                      : (PaperData.paper.fundAmount * 1.05).toFixed(3)}
                   </h5>
                 </div>
               </div>
@@ -493,7 +512,7 @@ export const Paper = (props) => {
                 </h3>
               </div>
               <button onClick={() => setShowPopup(!ShowPopup)}>
-                FUND THIS RESEARCH PAPER{console.log(PaperData)}
+                FUND THIS RESEARCH PAPER
               </button>
             </div>
           ) : null}
