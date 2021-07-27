@@ -319,7 +319,11 @@ export const Paper = (props) => {
         <div className="paper_info">
           <div
             className="paper_details"
-            style={!PaperData.paper.allowFunding ? { height: "100%" } : null}
+            style={
+              !PaperData.paper.allowFunding
+                ? { height: "100%", marginBottom: "0" }
+                : null
+            }
           >
             <div className="paper_title">
               <h3>
