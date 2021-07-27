@@ -49,6 +49,7 @@ export const Navbar = () => {
   const [wallet, setwallet] = useState(0);
   const containerRef = useRef(null);
   const height = useDimensions(containerRef);
+
   const { connected, correctNetwork, address } = useSelector(
     (state) => state.paper.wallet
   );
@@ -88,13 +89,13 @@ export const Navbar = () => {
       setWalletToggle(false);
       setConnecting(false);
 
-      let payloadData = [];
       axios
         .post(apiEndpoint, {
           query: GETMYPAPES(address).query,
         })
         .then(({ data }) => {
           data = data.data.papers;
+          let payloadData = {};
           data.map((paper) => {
             let nftUrl = toGatewayURL(paper.tokenUri).href;
             axios
@@ -103,7 +104,7 @@ export const Navbar = () => {
                 console.log(data);
                 let thumbnail =
                   "https://ipfs.io" + "/ipfs" + data.image.slice(6);
-                payloadData.push({
+                payloadData = {
                   paperid: paper.id.slice(2),
                   title: data.name,
                   author: data.author,
@@ -111,7 +112,7 @@ export const Navbar = () => {
                   date: data.publishDate,
                   thumbnail: thumbnail,
                   category: data.category,
-                });
+                };
                 dispatch(setMyPapers(payloadData));
               })
               .catch((err) => console.log(err));
@@ -119,32 +120,31 @@ export const Navbar = () => {
         })
         .catch((err) => console.log(err));
 
-      let myActivitiesPayload = [];
-
       axios
         .post(apiEndpoint, {
           query: myActivities(address).query,
         })
         .then((activityData) => {
           activityData = activityData.data.data.paperFundings;
-          console.log(activityData);
+          let myActivitiesPayload = {};
           activityData.map((activity) => {
             let nftUrl = toGatewayURL(activity.tokenUri).href;
             axios.get(nftUrl).then(({ data }) => {
               let thumbnail = "https://ipfs.io" + "/ipfs" + data.image.slice(6);
-              myActivitiesPayload.push({
+              myActivitiesPayload = {
                 thumbnail: thumbnail,
                 title: data.name,
                 from: activity.from,
                 amount: activity.amount,
-              });
-              console.log(myActivitiesPayload);
+              };
               dispatch(setMyActivities(myActivitiesPayload));
             });
           });
         });
+    } else {
+      console.log("Not connected");
     }
-  }, [connected]);
+  }, [address]);
 
   useEffect(() => {
     if (connected && correctNetwork) {

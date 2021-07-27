@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import "./Activities.css";
@@ -26,12 +26,18 @@ const ActivityCard = ({ image, title, address, fundAmount }) => {
 const Activities = () => {
   const myActivities = useSelector((state) => state.paper.myActivities).data;
   const { address } = useSelector((state) => state.paper.wallet);
+  const [urlAddress, setUrlAddress] = useState(null);
+
+  useEffect(() => {
+    setUrlAddress(window.location.search.slice(9));
+  });
+
   return (
     <div className="Activities__container">
       <div className="Activities__main--section">
         {myActivities.length != 0
           ? myActivities.map((activity) => {
-            console.log(activity.title)
+              console.log(activity.title);
               return (
                 <ActivityCard
                   image={activity.thumbnail}
@@ -41,7 +47,9 @@ const Activities = () => {
                 />
               );
             })
-          : (!address) ? "Connect Your Wallet" : "Loading"}
+          : !address
+          ? "Connect Your Wallet"
+          : "Loading"}
       </div>
       <div></div>
     </div>

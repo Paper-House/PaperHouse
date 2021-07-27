@@ -46,10 +46,10 @@ const paperSlice = createSlice({
     },
     setMyPapers: (state, { payload }) => {
       console.log(payload);
-      state.myPapers.data = payload;
+      state.myPapers.data.push(payload)
     },
     setMyActivities: (state, { payload }) => {
-      state.myActivities.data = payload;
+      state.myActivities.data.push(payload)
     },
     setPapers: (state, { payload }) => {
       state.papers.data.push( payload);
