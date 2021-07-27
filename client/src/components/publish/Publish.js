@@ -35,11 +35,11 @@ export const toastStyles = {
 };
 export const Publish = () => {
   const [categoryOptions, setCategoryOptions] = useState([
-    { value: "⚛️ Science", label: "⚛️ Science" },
-    { value: "🤖️ ML/AI", label: "🤖️ ML/AI" },
-    { value: "🚀️ Space", label: "🚀️ Space" },
-    { value: "⚕️ Medical", label: "⚕️ Medical" },
-    { value: "📊 Economics", label: "📊 Economics" },
+    { value: "Science", label: "⚛️ Science" },
+    { value: "ML/AI", label: "🤖️ ML/AI" },
+    { value: "Space", label: "🚀️ Space" },
+    { value: "Medical", label: "⚕️ Medical" },
+    { value: "Economics", label: "📊 Economics" },
     { value: "Other", label: "Other" },
   ]);
 
@@ -48,7 +48,7 @@ export const Publish = () => {
   const [pdf, setPdf] = useState(null);
   const [publishing, setpublishing] = useState(false);
   const [categories, setCategories] = useState({
-    value: "⚛️ Science",
+    value: "Science",
     label: "⚛️ Science",
   });
   const [pdfPreviewUrl, setPdfPreviewUrl] = useState(null);

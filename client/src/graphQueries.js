@@ -5,6 +5,7 @@ export const getAllPapersQuery = {
   query: `{
   papers {
     id
+    paperId
     owner
     author
     tokenUri
@@ -14,6 +15,35 @@ export const getAllPapersQuery = {
   }
 }
 `,
+};
+export const getPaper = (paperid) => {
+  return {
+    query: `{
+  papers(where: {id: "0x${paperid}"}) {
+    id
+    owner
+    author
+    tokenUri
+    allowFunding
+    fundAmount
+    totalAmountFunded
+  }
+}`,
+  };
+};
+
+export const getFundings = (paperid) => {
+  return {
+    query: `{
+      paperFundings(where: {paperid: "${paperid}"}) {
+    id
+    from
+    to
+    amount
+    paperid
+  }
+}`,
+  };
 };
 
 export const getFundingQuery = (address) => {
