@@ -10,8 +10,6 @@ import metamask from "../assets/metamask_icon.svg";
 import portis from "../assets/portis_icon.svg";
 import ConnectWallet from "../ConnectWallet";
 import { setPapers } from "../../redux/reducers/papersreducer";
-import { useDispatch } from "react-redux";
-import { apiEndpoint, getAllPapersQuery } from "../../graphQueries";
 
 import { setMyActivities, setMyPapers } from "../../redux/reducers/papersreducer";
 import axios from "axios";
@@ -53,7 +51,6 @@ export const Navbar = () => {
   );
 
   const state = useSelector((state) => state.paper);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -74,6 +71,7 @@ export const Navbar = () => {
         });
       });
   }, []);
+
   useEffect(() => {
     if (window.ethereum && window.ethereum.isMetaMask) {
       setismetamask(true);

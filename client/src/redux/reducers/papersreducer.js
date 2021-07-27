@@ -60,6 +60,9 @@ const paperSlice = createSlice({
     setMyActivities: (state, { payload }) => {
       state.myActivities.data = payload;
     },
+    setPapers: (state, { payload }) => {
+      state.papers.data.push( payload);
+    },
   },
   extraReducers: {
     // [getMyPapers.pending]: (state) => {
@@ -73,9 +76,6 @@ const paperSlice = createSlice({
     // [getfunders.fulfilled]: (state, { payload }) => {
     //   state.funders.data = payload;
     // },
-    setPapers: (state, { payload }) => {
-      state.papers.data.push( payload);
-    },
   },
 });
 
