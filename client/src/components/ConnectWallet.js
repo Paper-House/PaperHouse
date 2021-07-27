@@ -10,10 +10,7 @@ import {
 } from "../redux/reducers/papersreducer";
 import PaperHouse from "../contracts/PaperHouse.json";
 
-const portis = new Portis(
-  "175d7ef0-8644-4b07-9ce9-d40ce13ed8cb",
-  "maticMumbai"
-);
+const portis = new Portis("175d7ef0-8644-4b07-9ce9-d40ce13ed8cb", "mainnet");
 
 const getInstance = (web3, Networkid) => {
   try {
@@ -54,7 +51,7 @@ export default function ConnectWallet({ wallet }) {
           })
         );
         window.ethereum
-          .enable()
+          .request({ method: "eth_requestAccounts" })
           .then(async (accounts) => {
             dispatch(
               setWallet({
