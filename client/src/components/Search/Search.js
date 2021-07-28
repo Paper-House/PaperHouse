@@ -9,7 +9,7 @@ export default function Search({ input }) {
   const [result, setresult] = useState([]);
   useEffect(() => {
     papers.map((paper, index) => {
-      if (paper.title.toLowerCase().search(input) != -1) {
+      if (paper.title.toLowerCase().search(input.toLowerCase()) != -1) {
         if (!result.find((res) => res.paperid === paper.paperid)) {
           setresult([
             {
