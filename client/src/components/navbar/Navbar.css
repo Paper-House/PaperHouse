@@ -35,6 +35,7 @@ nav img {
 
 .paper-search {
   width: 70%;
+  position: relative;
   /* margin-top: 15px; */
 }
 
