@@ -123,7 +123,7 @@ export const Publish = () => {
                 setpublishing(false);
                 resetValues();
                 setTimeout(() => {
-                  location.reload();
+                  window.location.reload();
                 }, 1500);
               })
               .catch((err) => {
