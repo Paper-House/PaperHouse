@@ -64,7 +64,7 @@ button[aria-expanded="true"] {
   transition: 0.2s ease-in-out;
 }
 .papercard_myprofile {
-  height: 470px;
+  height: 430px;
 }
 .paper_card:hover {
   box-shadow: 0px 0px 8px #0097fd;
@@ -134,6 +134,13 @@ button[aria-expanded="true"] {
 .paper_card_fundamount_input_disabled {
   opacity: 0.5 !important;
 }
+
+.paper_card_title h3 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .paper_card_update button {
   padding: 5px 15px;
   background-color: #0097fd;
