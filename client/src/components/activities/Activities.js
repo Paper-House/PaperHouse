@@ -19,7 +19,7 @@ const ActivityCard = ({ image, title, address, fundAmount }) => {
             <img src={pf} alt="pf" />
             <p>{address}</p>
           </div>
-          <p id="fundAmount">Funded {(fundAmount * 10).toFixed(3)} MATIC</p>
+          <p id="fundAmount">Funded {Number(fundAmount).toFixed(3)} MATIC</p>
         </div>
       </div>
     </div>

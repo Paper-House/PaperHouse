@@ -45,7 +45,7 @@ export const Paper = (props) => {
   const [maticconversion, setmaticconversion] = useState(0);
   const dispatch = useDispatch();
 
-  const { connected, address, correctNetwork, balance, network } = useSelector(
+  const { connected, address, correctNetwork, balance } = useSelector(
     (state) => state.paper.wallet
   );
   const contract = useSelector((state) => state.paper.contract);
@@ -137,7 +137,7 @@ export const Paper = (props) => {
         })
         .catch((err) => {
           console.log(err);
-          toast.error("Transaction Faild", toastStyles.error);
+          toast.error("Transaction Failed", toastStyles.error);
 
           setloading(false);
           setShowPopup(false);
@@ -218,9 +218,9 @@ export const Paper = (props) => {
                 <h3>
                   Balance{" "}
                   {balance
-                    ? `${Number(
-                        web3.utils.fromWei(balance, "ether") * 10
-                      ).toFixed(4)} Matic`
+                    ? `${Number(web3.utils.fromWei(balance, "ether")).toFixed(
+                        4
+                      )} Matic`
                     : "0 Matic"}
                 </h3>
               </div>
@@ -230,7 +230,7 @@ export const Paper = (props) => {
                   placeholder="0 MATIC"
                   onChange={(e) => {
                     setmaticconversion(e.target.value * 1.05);
-                    setfundAmount(e.target.value / 10);
+                    setfundAmount(e.target.value);
                   }}
                 />
                 <div className="popup_input_row">
@@ -240,7 +240,7 @@ export const Paper = (props) => {
                     <span>
                       {(
                         PaperData.paper.fundAmount -
-                        PaperData.paper.totalAmountFunded * 10
+                        PaperData.paper.totalAmountFunded
                       ).toFixed(3)}
                     </span>{" "}
                     Matic
@@ -452,13 +452,13 @@ export const Paper = (props) => {
                     : PaperData.fundings.map((fund) => {
                         return (
                           <div className="paper_funder">
-                            <img src={pf} alt="" srcset="" />
+                            <img src={pf} alt="" />
                             <div className="paper_funder-address">
                               {fund.from}
                               <h2>
                                 Funded{" "}
-                                {(
-                                  web3.utils.fromWei(fund.amount, "ether") * 10
+                                {Number(
+                                  web3.utils.fromWei(fund.amount, "ether")
                                 ).toFixed(3)}
                                 Matic
                               </h2>
@@ -482,7 +482,7 @@ export const Paper = (props) => {
                   <h3>
                     {UiLoading
                       ? "0"
-                      : Number(PaperData.paper.totalAmountFunded * 10).toFixed(
+                      : Number(PaperData.paper.totalAmountFunded).toFixed(
                           3
                         )}{" "}
                     MATIC
@@ -492,9 +492,7 @@ export const Paper = (props) => {
                     $
                     {UiLoading
                       ? "0"
-                      : (PaperData.paper.totalAmountFunded * 10 * 1.05).toFixed(
-                          3
-                        )}
+                      : (PaperData.paper.totalAmountFunded * 1.05).toFixed(3)}
                   </h5>
                 </div>
                 <div>
@@ -517,14 +515,16 @@ export const Paper = (props) => {
                 <div
                   className="paper_fund_bar_current"
                   style={{
-                    width: `${((PaperData.paper.totalAmountFunded * 10) /
-                      PaperData.paper.fundAmount) *
-                      100}%`,
+                    width: `${
+                      (PaperData.paper.totalAmountFunded /
+                        PaperData.paper.fundAmount) *
+                      100
+                    }%`,
                   }}
                 ></div>
                 <h3>
                   {(
-                    ((PaperData.paper.totalAmountFunded * 10) /
+                    (PaperData.paper.totalAmountFunded /
                       PaperData.paper.fundAmount) *
                     100
                   ).toFixed(2)}
