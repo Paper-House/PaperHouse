@@ -150,8 +150,8 @@ export const Navbar = () => {
         .then((activityData) => {
           activityData = activityData.data.data.paperFundings;
           activityData.length == 0
-            ? dispatch(setProfilePaperLoading(false))
-            : dispatch(setProfilePaperLoading(true));
+            ? dispatch(setMyActivitiesLoading(false))
+            : dispatch(setMyActivitiesLoading(true));
           let myActivitiesPayload = {};
           activityData.map((activity) => {
             dispatch(setMyActivitiesLoading(true));

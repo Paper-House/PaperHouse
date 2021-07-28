@@ -32,6 +32,7 @@ const ProfilePapers = () => {
   useEffect(() => {
     if (urlAddress && profilePaper.length === 0) {
       dispatch(setProfilePaperLoading(true));
+      console.log("dispatching as true");
       axios
         .post(apiEndpoint, {
           query: GETMYPAPES(urlAddress).query,
@@ -61,6 +62,7 @@ const ProfilePapers = () => {
               .catch((err) => console.log(err));
           });
           dispatch(setProfilePaperLoading(false));
+          console.log("dispatching as false");
         })
         .catch((err) => console.log(err));
     } else {
