@@ -265,6 +265,8 @@ export const Navbar = () => {
                 onChange={(e) => setSearchinput(e.target.value)}
               />
             </form>
+            {!Searchinput ? null : <Search input={Searchinput} />}
+
           </div>
           <div className="nav-buttons">
             <div className="nav-buttons-left">
@@ -576,7 +578,6 @@ export const Navbar = () => {
           </div>
         </div>
       ) : null}
-      {!Searchinput ? null : <Search input={Searchinput} />}
     </>
   );
 };
