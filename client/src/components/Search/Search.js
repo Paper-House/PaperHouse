@@ -10,16 +10,17 @@ export default function Search({ input }) {
   useEffect(() => {
     papers.map((paper, index) => {
       if (paper.title.toLowerCase().search(input) != -1) {
-        setresult([
-          ...result,
-          {
-            paperid: paper.paperid,
-            title: paper.title,
-            thumbnail: paper.thumbnail,
-            publisher: paper.publisher,
-            returnVal: paper.title.toLowerCase().search(input),
-          },
-        ]);
+        if (!result.find((res) => res.paperid === paper.paperid)) {
+          setresult([
+            {
+              paperid: paper.paperid,
+              title: paper.title,
+              thumbnail: paper.thumbnail,
+              publisher: paper.publisher,
+            },
+            ...result,
+          ]);
+        }
       }
     });
   }, [input]);
