@@ -1,0 +1,7 @@
+.nav_search_container {
+  position: fixed;
+  width: 250px;
+  height: 200px;
+  background-color: #0097fd;
+  z-index: 99;
+}
