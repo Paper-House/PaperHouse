@@ -231,7 +231,6 @@ export const Paper = (props) => {
                   onChange={(e) => {
                     setmaticconversion(e.target.value * 1.05);
                     setfundAmount(e.target.value / 10);
-                    console.log(e.target.value / 10);
                   }}
                 />
                 <div className="popup_input_row">
@@ -528,7 +527,7 @@ export const Paper = (props) => {
                     ((PaperData.paper.totalAmountFunded * 10) /
                       PaperData.paper.fundAmount) *
                     100
-                  ).toFixed(3)}
+                  ).toFixed(2)}
                   %
                 </h3>
               </div>

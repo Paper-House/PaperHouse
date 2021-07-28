@@ -37,8 +37,8 @@ export default function ConnectWallet({ wallet, setWallconnect }) {
   const web3 = state.web3;
   useEffect(() => {
     if (window.ethereum !== undefined) {
-      setWallconnect(1);
       dispatch(setWeb3(new Web3(window.ethereum)));
+      setWallconnect(1);
     }
   }, []);
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function ConnectWallet({ wallet, setWallconnect }) {
     }
   }, [wallet]);
   useEffect(() => {
-    if (web3 !== undefined) {
+    if (window.web3 !== undefined) {
       if (wallet === 1) {
         dispatch(
           setWallet({
@@ -142,8 +142,6 @@ export default function ConnectWallet({ wallet, setWallconnect }) {
       });
 
       window.ethereum.on("disconnect", () => {
-        setWallconnect(0);
-
         dispatch(
           setWallet({
             connected: false,
