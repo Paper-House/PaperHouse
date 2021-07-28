@@ -179,20 +179,12 @@ export const Navbar = () => {
   }, [address]);
 
   useEffect(() => {
-    if (connected && correctNetwork) {
-      state.contract.methods
-        .name()
-        .call()
-        .then((data) => {
-          console.log(data);
-        });
-    }
     window.addEventListener("resize", () => {
       window.innerHeight >= 1024 ? setDropHeight(2.5) : setDropHeight(2.2);
       setHamburgerOpen(false);
     });
     window.innerHeight >= 1024 ? setDropHeight(2.5) : setDropHeight(2.2);
-  }, [state.contract]);
+  }, []);
 
   useEffect(() => {
     if (walletToggle) {
