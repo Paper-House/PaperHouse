@@ -6,8 +6,10 @@ export default function Search({ input }) {
   const papers = useSelector((state) => state.paper.papers.data);
   const [result, setresult] = useState([]);
   useEffect(() => {
-    papers.map((paper,index) => {
-      console.log(paper.title.search(input),index);
+    papers.map((paper, index) => {
+      if (paper.title.toLowerCase().search(input) != -1) {
+        console.log(paper);
+      }
     });
   }, [input]);
   return <div className="nav_search_container">You searched :{input}</div>;
