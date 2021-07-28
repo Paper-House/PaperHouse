@@ -32,6 +32,8 @@ import {
 } from "../../graphQueries";
 
 import { getURL } from "../../utils/getURL";
+import Search from "../Search/Search";
+
 export const useDimensions = (ref) => {
   const dimensions = useRef({ width: 0, height: 0 });
 
@@ -576,9 +578,8 @@ export const Navbar = () => {
             </h3>
           </div>
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
+      <Search />
     </>
   );
 };
