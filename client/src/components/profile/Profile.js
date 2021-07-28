@@ -6,9 +6,12 @@ import "./Profile.css";
 
 import { Mypapers } from "../mypapers/index";
 import Activities from "../activities/Activities";
+import { useSelector } from "react-redux";
 
 const Profile = (props) => {
   const path = props.location.pathname;
+
+  const { connected, address } = useSelector((state) => state.paper.wallet);
 
   const [navComponent, setNavComponent] = useState("My Papers");
   const [heading, setHeading] = useState(
@@ -55,14 +58,14 @@ const Profile = (props) => {
           </div>
         </div>
         <div className="Activities__person--proflie">
-          <p>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</p>
+          {connected ? <p>{address}</p> : "Loading"}
           <img src={pf} alt="pf" />
         </div>
       </div>
       <div className="Activities__nav--section-mob">
         <h2 id="heading">{heading}</h2>
         <div className="Activities__person--proflie">
-          <p>0x0aa121493Ba3f231570dBB3aAA62a9De64F374f6</p>
+          {connected ? <p>{address}</p> : "Loading"}
           <img src={pf} alt="pf" />
         </div>
         <div className="Activities__navigation">
