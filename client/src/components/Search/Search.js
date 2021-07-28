@@ -5,7 +5,7 @@ import pf from "../assets/pf.png";
 import NoActivities from "../NoActivities/NoActivities";
 import "./search.css";
 
-export default function Search({ input }) {
+export default function Search({ input, resetInput }) {
   const papers = useSelector((state) => state.paper.papers.data);
   const [result, setresult] = useState([]);
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function Search({ input }) {
       {result.length !== 0 ? (
         result.map((paper) => {
           return (
-            <li>
+            <li onClick={() => resetInput("")}>
               <Link to={`/paper/${paper.paperid}`}>
                 <SearchResultCard
                   image={paper.thumbnail}
