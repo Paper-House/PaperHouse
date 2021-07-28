@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./mypapers.css";
 import { Link } from "react-router-dom";
 import PaperCard from "../explore/PaperCard";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { apiEndpoint, GETMYPAPES, myActivities } from "../../graphQueries";
@@ -11,6 +11,7 @@ import { NFTStorage, File, toGatewayURL } from "nft.storage";
 import Skeleton from "react-loading-skeleton";
 import { PaperCardLoading } from "../paperCardLoading/index";
 import ConnectWallet from "../connectWallet/ConnectWallet";
+import { setProfilePaper } from "../../redux/reducers/papersreducer";
 
 export const Mypapers = ({ path }) => {
   const [category, setcategory] = useState("all");
@@ -18,11 +19,14 @@ export const Mypapers = ({ path }) => {
   const [urlAddress, setUrlAddress] = useState(null);
   const [profileDataPapers, setProfileDataPapers] = useState([]);
 
+  const dispatch = useDispatch();
+
   const paperData = useSelector((state) => state.paper.myPapers).data;
   const { connected, address, correctNetwork } = useSelector(
     (state) => state.paper.wallet
   );
   const myPapersLoading = useSelector((state) => state.paper.myPapers.loading);
+  const profilePaper = useSelector((state) => state.paper.profilePaper.data);
   // const myPapersLoading = true;
 
   if (paperData.length != 0) {
@@ -35,15 +39,17 @@ export const Mypapers = ({ path }) => {
     setUrlAddress(window.location.search.slice(9));
   }, []);
 
+  console.log(profileDataPapers);
   useEffect(() => {
-    if (urlAddress) {
-      let payloadData = [];
+    if (urlAddress && profilePaper.length === 0) {
       axios
         .post(apiEndpoint, {
           query: GETMYPAPES(urlAddress).query,
         })
         .then(({ data }) => {
+          console.log(data);
           data = data.data.papers;
+          let payloadData = {};
           data.map((paper) => {
             let nftUrl = toGatewayURL(paper.tokenUri).href;
             axios
@@ -52,7 +58,7 @@ export const Mypapers = ({ path }) => {
                 console.log(data);
                 let thumbnail =
                   "https://ipfs.io" + "/ipfs" + data.image.slice(6);
-                payloadData.push({
+                payloadData = {
                   paperid: paper.id.slice(2),
                   title: data.name,
                   author: data.author,
@@ -60,9 +66,9 @@ export const Mypapers = ({ path }) => {
                   date: data.publishDate,
                   thumbnail: thumbnail,
                   category: data.category,
-                });
-                // dispatch(setMyPapers(payloadData));
-                setProfileDataPapers(payloadData);
+                };
+                console.log(payloadData);
+                dispatch(setProfilePaper(payloadData));
               })
               .catch((err) => console.log(err));
           });
@@ -74,7 +80,7 @@ export const Mypapers = ({ path }) => {
   }, [urlAddress]);
 
   console.log(profileDataPapers);
-  console.log(paperData);
+  console.log(profilePaper);
 
   return (
     <>
@@ -91,25 +97,31 @@ export const Mypapers = ({ path }) => {
         pauseOnHover
       />
       <div className="mypapers">
-        <div
-          className="mypapers_papers"
-          style={!connected ? { display: "block" } : { display: "grid" }}
-        >
-          {!myPapersLoading ? (
-            paperData.length !== 0 ? (
+        {!myPapersLoading ? (
+          paperData.length !== 0 ? (
+            <div className="mypapers_papers">
               <PaperCardRenderer data={paperData} path={path} />
-            ) : profileDataPapers.length !== 0 ? (
-              <PaperCardRenderer data={profileDataPapers} path={path} />
-            ) : !address ? (
+            </div>
+          ) : profilePaper.length !== 0 ? (
+            <div className="mypapers_papers">
+              <PaperCardRenderer data={profilePaper} path={path} />
+            </div>
+          ) : !address ? (
+            <div className="mypapers_papers" style={{ display: "block" }}>
               <ConnectWallet />
-            ) : (
-              ""
-            )
+            </div>
           ) : (
-            [1, 2, 3, 4, 5].map((item) => <PaperCardLoading />)
-          )}
-        </div>
+            ""
+          )
+        ) : (
+          <div className="mypapers_papers">
+            {[1, 2, 3, 4, 5].map((item) => (
+              <PaperCardLoading />
+            ))}
+          </div>
+        )}
       </div>
+      {/* </div> */}
     </>
   );
 };
@@ -159,7 +171,11 @@ const PaperCardRenderer = ({ data, path }) => {
     }
   }
 
+  console.log(data);
+
+  // console.log(data)
   return data.map((paper) => {
+    console.log(paper);
     return (
       <PaperCard
         data={paper}

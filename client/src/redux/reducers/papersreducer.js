@@ -22,6 +22,10 @@ let initialState = {
     data: [],
     loading: false,
   },
+  profilePaper : {
+    data: [],
+    loadings: false,
+  },
   contract: {},
   web3: {},
 };
@@ -62,6 +66,9 @@ const paperSlice = createSlice({
     setPapers: (state, { payload }) => {
       state.papers.data.push(payload);
     },
+    setProfilePaper: (state, {payload}) => {
+      state.profilePaper.data.push(payload);
+    }
   },
   extraReducers: {},
 });
@@ -75,6 +82,7 @@ export const {
   setMyPapers,
   setMyPapersLoading,
   setMyActivities,
-  setMyActivitiesLoading
+  setMyActivitiesLoading,
+  setProfilePaper
 } = paperSlice.actions;
 export default paperSlice.reducer;
