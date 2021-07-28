@@ -16,7 +16,7 @@ import ProfilePapers from "./components/ProfilePapers/ProfilePapers";
 export default function App() {
   return (
     <Router>
-      <SkeletonTheme color="#a4a6ab" highlightColor="#ffffff">
+      <SkeletonTheme color="#1e5383" highlightColor="#ffffff">
         <Navbar />
         <Switch>
           <Route exact path="/" component={Explore} />
