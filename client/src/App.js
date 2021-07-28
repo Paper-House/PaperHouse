@@ -10,13 +10,14 @@ import { Mypapers } from "./components/mypapers/index";
 import Profile from "./components/profile/Profile";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import ProfilePapers from "./components/ProfilePapers/ProfilePapers";
+
 
 export default function App() {
   return (
     <Router>
       <SkeletonTheme color="#a4a6ab" highlightColor="#ffffff">
         <Navbar />
-
         <Switch>
           <Route exact path="/" component={Explore} />
           <Route path="/explore" component={Explore} />
@@ -24,7 +25,7 @@ export default function App() {
           <Route path="/mypaper" component={Mypapers} />
           <Route path="/paper/:paperid" component={Paper} />
           <Route path="/myprofile" component={Profile} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={ProfilePapers} />
         </Switch>
       </SkeletonTheme>
     </Router>

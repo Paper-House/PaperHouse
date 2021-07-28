@@ -1,0 +1,95 @@
+.ProfilePapers__navigation img {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.ProfilePapersContainer {
+  margin-top: 73px;
+}
+
+.ProfilePapers__nav--section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 10px;
+  height: fit-content;
+  margin-top: 20px;
+}
+
+.ProfilePapers__nav--section h2 {
+  font-weight: bolder;
+  font-size: 1.9rem;
+  color: var(--pH-heading-color);
+  margin: auto 0;
+}
+
+.ProfilePapers__person--proflie {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto auto;
+  margin-left: auto;
+  grid-gap: 20px;
+  width: 30%;
+  align-self: flex-end;
+  color: white;
+}
+
+.ProfilePapers__person--proflie p {
+  font-weight: 500;
+  font-size: 1em;
+  padding: 12px 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  background-color: rgba(53, 162, 252, 0.34);
+  margin: auto;
+  border-radius: 27px;
+}
+
+.ProfilePapers__person--proflie img {
+  width: 50px;
+}
+
+  .ProfilePapers__nav--section-mob {
+	  display: none;
+  }
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  .ProfilePapers__nav--section {
+    display: none;
+  }
+  .ProfilePapers__person--proflie {
+    width: 100%;
+  }
+
+  .ProfilePapers__nav--section-mob {
+    display: grid;
+    grid-gap: 20px;
+    max-width: 100vw;
+    margin-top: 20px;
+  }
+
+  .ProfilePapers__nav--section-mob h2 {
+    color: var(--pH-heading-color);
+    font-size: 2rem;
+  }
+}
+
+/** IPad **/
+@media all and (device-width: 768px) and (device-height: 1024px) {
+  .mypapers_papers {
+    grid-template-columns: repeat(auto-fit, 350px);
+  }
+  .paper_card {
+    width: 100%;
+  }
+  .ProfilePapers__nav--section-mob {
+	  display: none;
+  }
+}
+
+

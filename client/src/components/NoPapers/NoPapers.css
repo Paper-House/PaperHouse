@@ -1,0 +1,42 @@
+.NoPapers--container {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.NoPapers--container img {
+  width: 300px;
+  height: 450px;
+}
+
+.NoPapers--container h2 {
+  color: white;
+  font-size: 2rem;
+  font-weight: bolder;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .NoPapers--container {
+    justify-content: flex-start;
+  }
+  .NoPapers--container svg {
+    width: 100%;
+    max-height: 400px;
+  }
+  .NoPapers--container h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .NoPapers--container svg {
+    width: 500px;
+    height: 300px;
+  }
+}

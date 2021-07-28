@@ -6,6 +6,7 @@ import "./Activities.css";
 
 import pf from "../assets/pf.png";
 import ConnectWallet from "../connectWallet/ConnectWallet";
+import NoActivities from "../NoActivities/NoActivities";
 
 const ActivityCard = ({ image, title, address, fundAmount }) => {
   return (
@@ -58,12 +59,9 @@ const Activities = () => {
     <>
       {!activityLoading ? (
         <div className="Activities__container">
-          <div
-            className="Activities__main--section"
-            style={!connected ? { display: "block" } : { display: "grid" }}
-          >
-            {myActivities.length != 0 ? (
-              myActivities.map((activity) => {
+          {myActivities.length != 0 ? (
+            <div className="Activities__main--section">
+              {myActivities.map((activity) => {
                 console.log(activity.title);
                 return (
                   <ActivityCard
@@ -73,13 +71,23 @@ const Activities = () => {
                     fundAmount={activity.amount}
                   />
                 );
-              })
-            ) : !address ? (
+              })}
+            </div>
+          ) : !address ? (
+            <div
+              className="Activities__main--section"
+              style={{ display: "block" }}
+            >
               <ConnectWallet />
-            ) : (
-              "Loading"
-            )}
-          </div>
+            </div>
+          ) : (
+            <div
+              className="Activities__main--section"
+              style={{ display: "block" }}
+            >
+              <NoActivities />
+            </div>
+          )}
         </div>
       ) : (
         <div className="Activities__container">

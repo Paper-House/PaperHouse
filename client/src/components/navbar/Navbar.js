@@ -9,7 +9,10 @@ import logo from "../assets/logo.svg";
 import metamask from "../assets/metamask_icon.svg";
 import portis from "../assets/portis_icon.svg";
 import ConnectWallet from "../ConnectWallet";
-import { setPapers } from "../../redux/reducers/papersreducer";
+import {
+  setPapers,
+  setProfilePaperLoading,
+} from "../../redux/reducers/papersreducer";
 import web3 from "web3";
 import {
   setMyActivities,
@@ -107,6 +110,9 @@ export const Navbar = () => {
         })
         .then(({ data }) => {
           data = data.data.papers;
+          data.length === 0
+            ? dispatch(setMyPapersLoading(false))
+            : dispatch(setMyPapersLoading(true));
           let payloadData = {};
           data.map((paper) => {
             let nftUrl = toGatewayURL(paper.tokenUri).href;
@@ -143,6 +149,9 @@ export const Navbar = () => {
         })
         .then((activityData) => {
           activityData = activityData.data.data.paperFundings;
+          activityData.length == 0
+            ? dispatch(setMyActivitiesLoading(false))
+            : dispatch(setMyActivitiesLoading(true));
           let myActivitiesPayload = {};
           activityData.map((activity) => {
             dispatch(setMyActivitiesLoading(true));
