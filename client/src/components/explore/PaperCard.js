@@ -13,11 +13,7 @@ export default function PaperCard({
   const [fundtoggle, setfundtoggle] = useState(allowFunding);
   const fundInput = useRef();
   return (
-    <div
-      className={
-        page === "mypapers" ? "paper_card papercard_myprofile" : "paper_card"
-      }
-    >
+    <div className="paper_card">
       <div className="paper_card_img">
         <img src={data.thumbnail} alt="" />
       </div>
