@@ -8,7 +8,7 @@ export default function Search({ input }) {
   useEffect(() => {
     papers.map((paper, index) => {
       if (paper.title.toLowerCase().search(input) != -1) {
-        if (result.length == 0) {
+        if (!result.find((res) => res.paperid === paper.paperid)) {
           setresult([
             {
               paperid: paper.paperid,
@@ -18,21 +18,6 @@ export default function Search({ input }) {
             },
             ...result,
           ]);
-        }
-        if (result.length != 0) {
-          result.forEach((data, key) => {
-            if (data.paperid !== paper.paperid) {
-              setresult([
-                {
-                  paperid: paper.paperid,
-                  title: paper.title,
-                  thumbnail: paper.thumbnail,
-                  publisher: paper.publisher,
-                },
-                ...result,
-              ]);
-            }
-          });
         }
       }
     });
