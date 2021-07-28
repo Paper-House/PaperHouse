@@ -32,7 +32,6 @@ const getNetworkid = async (web3) => {
 export default function ConnectWallet({ wallet, setWallconnect }) {
   const dispatch = useDispatch();
   const [networkChange, setnetworkChange] = useState("");
-  const [accountChange, setaccountChange] = useState("");
   const state = useSelector((state) => state.paper);
   const web3 = state.web3;
   useEffect(() => {
@@ -130,11 +129,11 @@ export default function ConnectWallet({ wallet, setWallconnect }) {
           });
       }
     }
-  }, [web3, networkChange, accountChange]);
+  }, [web3, networkChange]);
   useEffect(() => {
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", (accounts) => {
-        setaccountChange(accounts[0]);
+        window.location.reload();
       });
 
       window.ethereum.on("chainChanged", (chainId) => {
