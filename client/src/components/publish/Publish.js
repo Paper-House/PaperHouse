@@ -94,41 +94,51 @@ export const Publish = () => {
         description.current.value,
         author.current.value,
         categories.value
-      ).then((tokenURI) => {
-        if (tokenURI) {
-          toast("🦄 Uploaded to IPFS!", toastStyles.default);
-          console.log(tokenURI);
-          let fund;
-          // if (fundingAmount.current.value) {
-          //   fund = funding ? fundingAmount.current.value : "0";
-          // }
-          if (!fundingAmount.current) {
-            fund = "0"
+      )
+        .then((tokenURI) => {
+          if (tokenURI) {
+            toast("🦄 Uploaded to IPFS!", toastStyles.default);
+            let fund = "0";
+            if (funding) {
+              if (fundingAmount.current) {
+                if (Number(fundingAmount.current.value) !== 0) {
+                  if (fundingAmount.current.value < 0) {
+                    fund = String(fundingAmount.current.value * -1);
+                  } else {
+                    fund = String(fundingAmount.current.value);
+                  }
+                }
+              }
+            }
+            contract.methods
+              .publish(
+                tokenURI,
+                author.current.value,
+                funding,
+                Web3.utils.toWei(fund, "ether")
+              )
+              .send({ from: address })
+              .then(() => {
+                toast("🚀️ Research Paper Published!", toastStyles.default);
+                setpublishing(false);
+                resetValues();
+              })
+              .catch((err) => {
+                toast.error("❗Transaction Failed", toastStyles.error);
+                setpublishing(false);
+                // resetValues();
+                console.log(err);
+              });
+          } else {
+            setpublishing(false);
+            // resetValues();
           }
-          contract.methods
-            .publish(
-              tokenURI,
-              author.current.value,
-              funding,
-              Web3.utils.toWei(fund.toString(), "ether")
-            )
-            .send({ from: address })
-            .then(() => {
-              toast("🚀️ Research Paper Published!", toastStyles.default);
-              setpublishing(false);
-              resetValues();
-            })
-            .catch((err) => {
-              toast.error("❗Transaction Failed", toastStyles.error);
-              setpublishing(false);
-              // resetValues();
-              console.log(err);
-            });
-        } else {
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("❗ Error Uploading to IPFS", toastStyles.error);
           setpublishing(false);
-          // resetValues();
-        }
-      });
+        });
     }
   };
 
