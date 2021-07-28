@@ -122,7 +122,9 @@ export const Publish = () => {
                 toast("🚀️ Research Paper Published!", toastStyles.default);
                 setpublishing(false);
                 resetValues();
-                location.reload();
+                setTimeout(() => {
+                  location.reload();
+                }, 1500);
               })
               .catch((err) => {
                 toast.error("❗Transaction Failed", toastStyles.error);
