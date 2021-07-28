@@ -8,9 +8,23 @@ export default function Search({ input }) {
   useEffect(() => {
     papers.map((paper, index) => {
       if (paper.title.toLowerCase().search(input) != -1) {
-        console.log(paper);
+        setresult([
+          ...result,
+          {
+            paperid: paper.paperid,
+            title: paper.title,
+            thumbnail: paper.thumbnail,
+            publisher: paper.publisher,
+          },
+        ]);
       }
     });
   }, [input]);
-  return <div className="nav_search_container">You searched :{input}</div>;
+  return (
+    <div className="nav_search_container">
+      {result.map((paper) => {
+        return <li>{paper.title}</li>;
+      })}
+    </div>
+  );
 }
