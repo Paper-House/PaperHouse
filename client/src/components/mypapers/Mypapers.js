@@ -148,14 +148,11 @@ const PaperCardRenderer = ({ data, path }) => {
   function UpdatePaper(paperid, updateAmount, fundToggle) {
     //smart contract call
     // Web3.utils.toWei(fund, "ether");
+    let fund = fundToggle ? updateAmount : "0";
     if (connected && correctNetwork) {
       setUpdating(true);
       contract.methods
-        .updatepaper(
-          paperid,
-          fundToggle,
-          Web3.utils.toWei(updateAmount, "ether")
-        )
+        .updatepaper(paperid, fundToggle, Web3.utils.toWei(fund, "ether"))
         .send({ from: address })
         .then(() => {
           toast("🦄️ Research Paper Updated!", toastStyles);
@@ -180,12 +177,12 @@ const PaperCardRenderer = ({ data, path }) => {
       <PaperCard
         data={paper}
         page={path === "/profile" ? "" : "mypapers"}
-        currentAmount="2.5ETH"
+        currentAmount={`${paper.fundAmount} MATIC`}
         callupdate={(updateAmount, fundToggle) =>
           UpdatePaper(paper.paperid, updateAmount, fundToggle)
         }
         updating={updating}
-        allowFunding={false}
+        allowFunding={paper.allowFunding}
       />
     );
   });
