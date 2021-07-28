@@ -66,7 +66,7 @@ export const Publish = () => {
   const fundingAmount = useRef(undefined);
 
   const IPFSupload = async (name, des, author, category) => {
-    if (pdf && thumbnail && name && des && author && category) {
+    if (pdf && thumbnail && name && des && author && category && imageType !== "image/svg+xml" && imageType !== "image/svg") {
       toast("🦄 Uploading to IPFS!", toastStyles.default);
 
       let date = new Date().toString().split(" ");
@@ -84,7 +84,7 @@ export const Publish = () => {
       });
       return metadata.url;
     } else if (!pdf || !thumbnail || !name || !des || !author) {
-      console.log(typeof imageType);
+      console.log(imageType);
       toast.error("😢️ All inputs are required!!", toastStyles.error);
     }
   };
