@@ -13,8 +13,6 @@ export const Mypapers = ({ path }) => {
   const { address } = useSelector((state) => state.paper.wallet);
   const myPapersLoading = useSelector((state) => state.paper.myPapers.loading);
 
-  console.log(myPapersLoading)
-
   return (
     <>
       <ToastContainer
@@ -59,7 +57,6 @@ const PaperCardRenderer = ({ data, path }) => {
     (state) => state.paper.wallet
   );
   const contract = useSelector((state) => state.paper.contract);
-  const [updating, setUpdating] = useState(false);
 
   const toastStyles = {
     position: "top-right",
@@ -71,7 +68,7 @@ const PaperCardRenderer = ({ data, path }) => {
     progress: undefined,
   };
 
-  function UpdatePaper(paperid, updateAmount, fundToggle) {
+  function UpdatePaper(paperid, updateAmount, fundToggle, setUpdating) {
     let fund = fundToggle ? updateAmount : "0";
     if (connected && correctNetwork) {
       setUpdating(true);
@@ -96,10 +93,9 @@ const PaperCardRenderer = ({ data, path }) => {
         data={paper}
         page={path === "/profile" ? "" : "mypapers"}
         currentAmount={`${paper.fundAmount} MATIC`}
-        callupdate={(updateAmount, fundToggle) =>
-          UpdatePaper(paper.paperid, updateAmount, fundToggle)
+        callupdate={(updateAmount, fundToggle, setUpdating) =>
+          UpdatePaper(paper.paperid, updateAmount, fundToggle, setUpdating)
         }
-        updating={updating}
         allowFunding={paper.allowFunding}
       />
     );

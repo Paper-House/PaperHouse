@@ -7,10 +7,11 @@ export default function PaperCard({
   page,
   callupdate,
   currentAmount,
-  updating,
   allowFunding,
 }) {
   const [fundtoggle, setfundtoggle] = useState(allowFunding);
+  const [updating, setUpdating] = useState(false);
+ 
   const fundInput = useRef();
   return (
     <div className="paper_card">
@@ -60,7 +61,15 @@ export default function PaperCard({
             </div>
             {!updating ? (
               <button
-                onClick={() => callupdate(fundInput.current.value, fundtoggle)}
+                onClick={() =>
+                  callupdate(
+                    fundInput.current.value,
+                    fundtoggle,
+                    (prop) => {
+                      setUpdating(prop);
+                    }
+                  )
+                }
               >
                 Update
               </button>
