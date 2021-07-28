@@ -51,13 +51,12 @@ export const Navbar = () => {
   const [ismetamask, setismetamask] = useState(false);
   const [walletToggle, setWalletToggle] = useState(false);
   const [SearchToggle, setSearchToggle] = useState(false);
-  const [searchData, setSearchData] = useState(null);
   const dispatch = useDispatch();
   const [Connecting, setConnecting] = useState(false);
   const [wallet, setwallet] = useState(0);
   const containerRef = useRef(null);
   const height = useDimensions(containerRef);
-  const search = useRef(null);
+  const [Searchinput, setSearchinput] = useState(undefined);
 
   const { connected, correctNetwork, address } = useSelector(
     (state) => state.paper.wallet
@@ -202,11 +201,6 @@ export const Navbar = () => {
     }
   }, [walletToggle, correctNetwork]);
 
-  // useEffect(() => {
-  //   setSearchData(search)
-  //   console.log("lalala")
-  // }, [search])
-
   const sidebar = {
     open: (height = 1000) => ({
       clipPath: `circle(${height / dropHeight}px at 90% 30px)`,
@@ -265,7 +259,11 @@ export const Navbar = () => {
                   fill="#0097fd"
                 />
               </svg>
-              <input type="text" placeholder="Search Papers" ref={search} />
+              <input
+                type="text"
+                placeholder="Search Papers"
+                onChange={(e) => setSearchinput(e.target.value)}
+              />
             </form>
           </div>
           <div className="nav-buttons">
@@ -578,7 +576,7 @@ export const Navbar = () => {
           </div>
         </div>
       ) : null}
-      <Search  data={searchData} />
+      {!Searchinput ? null : <Search input={Searchinput} />}
     </>
   );
 };
