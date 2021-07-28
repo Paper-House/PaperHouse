@@ -8,15 +8,32 @@ export default function Search({ input }) {
   useEffect(() => {
     papers.map((paper, index) => {
       if (paper.title.toLowerCase().search(input) != -1) {
-        setresult([
-          ...result,
-          {
-            paperid: paper.paperid,
-            title: paper.title,
-            thumbnail: paper.thumbnail,
-            publisher: paper.publisher,
-          },
-        ]);
+        if (result.length == 0) {
+          setresult([
+            {
+              paperid: paper.paperid,
+              title: paper.title,
+              thumbnail: paper.thumbnail,
+              publisher: paper.publisher,
+            },
+            ...result,
+          ]);
+        }
+        if (result.length != 0) {
+          result.forEach((data, key) => {
+            if (data.paperid !== paper.paperid) {
+              setresult([
+                {
+                  paperid: paper.paperid,
+                  title: paper.title,
+                  thumbnail: paper.thumbnail,
+                  publisher: paper.publisher,
+                },
+                ...result,
+              ]);
+            }
+          });
+        }
       }
     });
   }, [input]);
