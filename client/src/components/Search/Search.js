@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import pf from "../assets/pf.png";
+import NoActivities from "../NoActivities/NoActivities";
 import "./search.css";
 
 export default function Search({ input }) {
@@ -26,19 +27,23 @@ export default function Search({ input }) {
   }, [input]);
   return (
     <div className="nav_search_container">
-      {result.map((paper) => {
-        return (
-          <li>
-            <Link to={`/paper/${paper.paperid}`}>
-              <SearchResultCard
-                image={paper.thumbnail}
-                title={paper.title}
-                address={paper.publisher}
-              />
-            </Link>
-          </li>
-        );
-      })}
+      {result.length !== 0 ? (
+        result.map((paper) => {
+          return (
+            <li>
+              <Link to={`/paper/${paper.paperid}`}>
+                <SearchResultCard
+                  image={paper.thumbnail}
+                  title={paper.title}
+                  address={paper.publisher}
+                />
+              </Link>
+            </li>
+          );
+        })
+      ) : (
+        <h3 style={{ textAlign: "center", color: "white" }}>No Results</h3>
+      )}
     </div>
   );
 }
