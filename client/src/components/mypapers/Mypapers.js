@@ -70,6 +70,12 @@ const PaperCardRenderer = ({ data, path }) => {
 
   function UpdatePaper(paperid, updateAmount, fundToggle, setUpdating) {
     let fund = fundToggle ? updateAmount : "0";
+
+    if (!updateAmount) fund = "0";
+    if (Number(updateAmount) < 0) fund = "0";
+
+    console.log(updateAmount);
+
     if (connected && correctNetwork) {
       setUpdating(true);
       contract.methods
