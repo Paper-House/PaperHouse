@@ -18,6 +18,8 @@
   padding: 20px;
   overflow: auto;
   max-height: 85vh;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3 );
+
 }
 
 .nav_search_container li {
@@ -38,19 +40,21 @@
 }
 
 .SearchNav__main--card img {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   margin: auto;
   border-radius: 50%;
 }
-
+.SearchNav__main--card:hover{
+  box-shadow: 0px 0px 7px #0097fd;
+}
 .SearchNav__main--section--info {
   display: grid;
   color: white;
 }
 
 .SearchNav__main--section--info h5 {
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 600;
 }
 
@@ -69,14 +73,14 @@
 }
 
 .SearchNav__main--address p {
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 400;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 .SearchNav__main--section--info p {
-  font-size: 1em;
+  font-size: .9em;
   font-weight: 400;
 }
 .SearchNav__main--address img {
