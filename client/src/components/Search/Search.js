@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import pf from "../assets/pf.png";
 import "./search.css";
 
 export default function Search({ input }) {
@@ -15,6 +17,7 @@ export default function Search({ input }) {
             title: paper.title,
             thumbnail: paper.thumbnail,
             publisher: paper.publisher,
+            returnVal: paper.title.toLowerCase().search(input),
           },
         ]);
       }
@@ -23,8 +26,35 @@ export default function Search({ input }) {
   return (
     <div className="nav_search_container">
       {result.map((paper) => {
-        return <li>{paper.title}</li>;
+        return (
+          <li>
+            <Link to={`/paper/${paper.paperid}`}>
+              <SearchResultCard
+                image={paper.thumbnail}
+                title={paper.title}
+                address={paper.publisher}
+              />
+            </Link>
+          </li>
+        );
       })}
     </div>
   );
 }
+
+const SearchResultCard = ({ image, title, address }) => {
+  return (
+    <div className="SearchNav__main--card">
+      <img src={image} alt="thumbnail" />
+      <div className="SearchNav__main--section--info">
+        <h5>{title}</h5>
+        <div className="SearchNav__main--section--transaction--info">
+          <div className="SearchNav__main--address">
+            <img src={pf} alt="pf" />
+            <p>{address}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

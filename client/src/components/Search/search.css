@@ -2,8 +2,187 @@
   position: absolute;
   margin-top: 15px;
   width: 100%;
-  height: 200px;
-  background-color: #0097fd;
+  height: fit-content;
+  background: linear-gradient(
+    133.99deg,
+    #092537 -7.04%,
+    #0067ad -7.04%,
+    #0061a2 -7.04%,
+    #005b99 -7.04%,
+    #005792 -7.04%,
+    #003c65 13.92%,
+    #000000 100%
+  );
   z-index: 99;
   border-radius: 10px;
+  padding: 20px;
+  overflow: auto;
+  max-height: 85vh;
+  border: 10px solid black;
+}
+
+.nav_search_container li {
+  list-style: none;
+  margin: 10px 0px;
+}
+
+.SearchNav__main--card {
+  display: grid;
+  max-width: 800px;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: fit-content;
+  border: 1px solid #0097fd;
+  border-radius: 10px;
+  height: fit-content;
+  min-width: 100%;
+  padding: 9px 5px;
+}
+
+.SearchNav__main--card img {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.SearchNav__main--section--info {
+  display: grid;
+  color: white;
+}
+
+.SearchNav__main--section--info h5 {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.SearchNav__main--section--transaction--info {
+  display: flex;
+  align-items: center;
+}
+
+.SearchNav__main--address {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 30px;
+  padding: 10px 10px 0px 0px;
+  align-items: center;
+  grid-gap: 10px;
+}
+
+.SearchNav__main--address p {
+  font-size: 1em;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.SearchNav__main--section--info p {
+  font-size: 1em;
+  font-weight: 400;
+}
+.SearchNav__main--address img {
+  width: 25px;
+  height: 25px;
+  margin: 0;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  .SearchNav__main--section {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .SearchNav__main--card {
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .SearchNav__main--card img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .SearchNav__main--section--info h5 {
+    font-size: 0.6em;
+  }
+
+  .SearchNav__person--proflie {
+    margin: 0;
+    width: auto;
+  }
+
+  .SearchNav__nav--section {
+    display: none;
+  }
+
+  .SearchNav__nav--section-mob {
+    display: grid;
+    grid-gap: 20px;
+    max-width: 100vw;
+    margin-top: 20px;
+  }
+
+  .SearchNav__main--address {
+    width: 100%;
+  }
+
+  .SearchNav__main--address p {
+    font-size: 0.9rem;
+  }
+  .SearchNav__main--address img {
+    width: 30px;
+    height: 30px;
+  }
+  .SearchNav__nav--section-mob h2 {
+    color: var(--pH-heading-color);
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .SearchNav__main--section--info h5 {
+    font-size: 0.7em;
+  }
+
+  .SearchNav__main--section--transaction--info p {
+    font-size: 0.8em;
+  }
+
+  .SearchNav__main--card img {
+    width: 40px;
+    height: 40px;
+  }
+  .SearchNav__main--address img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) {
+  .SearchNav__navigation {
+    width: 100%;
+  }
+  .SearchNav__main--section {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 280px) {
+  .SearchNav__navigation {
+    width: 100%;
+  }
+  .SearchNav__main--section {
+    width: 100%;
+  }
+  .SearchNav__navigation-mypapers {
+    font-size: 0.8em;
+  }
+  .SearchNav__navigation-SearchNav {
+    font-size: 0.8em;
+  }
+  .SearchNav__main--section--transaction--info p {
+    font-size: 0.7em;
+  }
 }
