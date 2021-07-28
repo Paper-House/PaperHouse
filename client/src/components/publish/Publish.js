@@ -110,7 +110,7 @@ export const Publish = () => {
               tokenURI,
               author.current.value,
               funding,
-              Web3.utils.toWei(fund, "ether")
+              Web3.utils.toWei(fund.toString(), "ether")
             )
             .send({ from: address })
             .then(() => {
@@ -121,12 +121,12 @@ export const Publish = () => {
             .catch((err) => {
               toast.error("❗Transaction Failed", toastStyles.error);
               setpublishing(false);
-              resetValues();
+              // resetValues();
               console.log(err);
             });
         } else {
           setpublishing(false);
-          resetValues();
+          // resetValues();
         }
       });
     }
@@ -349,7 +349,6 @@ export const Publish = () => {
                   type="text"
                   placeholder="A Peer-to-Peer Electronic Cash System..."
                   ref={description}
-                  maxlength="150"
                   required
                 />
               </div>
