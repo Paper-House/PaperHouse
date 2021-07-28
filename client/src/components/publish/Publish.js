@@ -40,6 +40,7 @@ export const Publish = () => {
     { value: "Space", label: "🚀️ Space" },
     { value: "Medical", label: "⚕️ Medical" },
     { value: "Economics", label: "📊 Economics" },
+    { value: "WhitePapers", label: "WhitePapers" },
     { value: "Other", label: "Other" },
   ]);
 
@@ -47,6 +48,7 @@ export const Publish = () => {
   const [thumbnail, setThumbnail] = useState(null);
   const [pdf, setPdf] = useState(null);
   const [publishing, setpublishing] = useState(false);
+  const [imageType, setImageType] = useState(null);
   const [categories, setCategories] = useState({
     value: "Science",
     label: "⚛️ Science",
@@ -76,12 +78,13 @@ export const Publish = () => {
         publishDate: date[2] + " " + date[1] + " " + date[3],
         category: category,
         image: new File([thumbnail], `${thumbnail.name}`, {
-          type: "image/jpg",
+          type: imageType,
         }),
         pdf: new File([pdf], `${pdf.name}`, { type: "application/pdf" }),
       });
       return metadata.url;
     } else if (!pdf || !thumbnail || !name || !des || !author) {
+      console.log(typeof imageType);
       toast.error("😢️ All inputs are required!!", toastStyles.error);
     }
   };
@@ -172,6 +175,10 @@ export const Publish = () => {
       console.log(thumbnail);
     }
   };
+
+  useEffect(() => {
+    thumbnail ? setImageType(thumbnail.type) : setImageType(null);
+  }, [thumbnail]);
 
   const resetValues = () => {
     setPdf(null);
