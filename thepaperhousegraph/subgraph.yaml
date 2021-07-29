@@ -1,0 +1,38 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: PaperHouse
+    network: mumbai
+    source:
+      address: "0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3"
+      abi: PaperHouse
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - Funding
+        - Published
+        - Transfer
+        - UpdatePaper
+      abis:
+        - name: PaperHouse
+          file: ./abis/PaperHouse.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: Funding(address,address,uint256,uint256,uint256)
+          handler: handleFunding
+        - event: Published(uint256,string,string,address,bool,uint256)
+          handler: handlePublished
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: UpdatePaper(uint256,bool,uint256)
+          handler: handleUpdatePaper
+      file: ./src/mapping.ts
