@@ -40,7 +40,7 @@ export const Publish = () => {
     { value: "Space", label: "🚀️ Space" },
     { value: "Medical", label: "⚕️ Medical" },
     { value: "Economics", label: "📊 Economics" },
-    { value: "WhitePapers", label: "WhitePapers" },
+    { value: "WhitePapers", label: "📃 WhitePapers" },
     { value: "Other", label: "Other" },
   ]);
 
