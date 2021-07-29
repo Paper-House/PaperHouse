@@ -119,7 +119,12 @@ export const Paper = (props) => {
   }
   function FundPaper(paper_id, fundAmount) {
     if (connected && correctNetwork && paper_id && fundAmount) {
-      if (fundAmount <= PaperData.paper.fundAmount) {
+      if (
+        fundAmount <= PaperData.paper.fundAmount &&
+        fundAmount <=
+          Number(PaperData.paper.fundAmount) -
+            Number(PaperData.paper.totalAmountFunded)
+      ) {
         setloading(true);
         contract.methods
           .fundapaper(paper_id)
@@ -545,7 +550,8 @@ export const Paper = (props) => {
               <button
                 disabled={
                   (PaperData.paper.fundAmount == "0") == true ||
-                  PaperData.paper.fundAmount == PaperData.paper.totalAmountFunded
+                  PaperData.paper.fundAmount ==
+                    PaperData.paper.totalAmountFunded
                 }
                 onClick={() => setShowPopup(!ShowPopup)}
               >
