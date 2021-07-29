@@ -403,7 +403,7 @@ export const Publish = () => {
                   <h2>Funding Amount</h2>
                   <input
                     type="number"
-                    placeholder="0Eth"
+                    placeholder="0 MATIC"
                     ref={fundingAmount}
                     required
                   />
