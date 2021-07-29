@@ -26,7 +26,7 @@ const Profile = (props) => {
   function checkNav() {
     const navcomp = path === "/profile" ? "Papers Published" : "My Papers";
     if (navComponent === navcomp) return <Mypapers path={path} />;
-    else if (navComponent == "Activities") return <Activities />;
+    else if (navComponent === "Activities") return <Activities />;
     else return <Mypapers path={path} />;
   }
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Portis from "@portis/web3";
 import Web3 from "web3";
 import { useDispatch, useSelector } from "react-redux";

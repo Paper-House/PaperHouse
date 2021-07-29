@@ -77,18 +77,17 @@ export const Explore = () => {
       </div>
       <div className="explore_papers">
         {papers.length > 0
-          ? papers.map((paper) => {
+          ? papers.map((paper,key) => {
               if (category === "all") {
-                console.log(paper.paperid)
                 return (
-                  <Link to={`/paper/${paper.paperid}`}>
+                  <Link to={`/paper/${paper.paperid}`} key={key}>
                     <PaperCard data={paper} />
                   </Link>
                 );
               }
               if (paper.category === category) {
                 return (
-                  <Link to={`/paper/${paper.paperid}`}>
+                  <Link to={`/paper/${paper.paperid}`} key={key}>
                     <PaperCard data={paper} />
                   </Link>
                 );

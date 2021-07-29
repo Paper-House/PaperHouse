@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./paper.css";
 import { useSelector } from "react-redux";
 import { AddressBtn } from "../addressBtn";
@@ -10,8 +10,6 @@ import ViewSDKClient from "../ViewSDKClient";
 import Web3 from "web3";
 import { toastStyles } from "../publish/Publish";
 import { ToastContainer, toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { setWallet } from "../../redux/reducers/papersreducer";
 import axios from "axios";
 import { apiEndpoint, getPaper, getFundings } from "../../graphQueries";
 import { getURL } from "../../utils/getURL";
@@ -270,11 +268,10 @@ export const Paper = (props) => {
                         viewBox="0 0 24 24"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
-                        class="css-1p66nw2"
                       >
                         <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
+                          fillRule="evenodd"
+                          clipRule="evenodd"
                           d="M12 2C6.477 2 2 6.477 2 12c0 1.46.312 2.843.872 4.09a1 1 0 01-1.825.82A11.961 11.961 0 010 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12c-2.89 0-5.545-1.023-7.617-2.727a1 1 0 111.27-1.544A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
                           fill="currentColor"
                         ></path>
@@ -301,7 +298,7 @@ export const Paper = (props) => {
         </div>
       ) : null}
 
-      <div class="paper_container container">
+      <div className="paper_container container">
         <div className="paper_pdf">
           {Adobeloading ? (
             <div className="pdf_loading">
@@ -310,11 +307,10 @@ export const Paper = (props) => {
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="css-1p66nw2"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M12 2C6.477 2 2 6.477 2 12c0 1.46.312 2.843.872 4.09a1 1 0 01-1.825.82A11.961 11.961 0 010 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12c-2.89 0-5.545-1.023-7.617-2.727a1 1 0 111.27-1.544A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
                     fill="currentColor"
                   ></path>
@@ -391,7 +387,7 @@ export const Paper = (props) => {
             </div>
             <div className="paper_view">
               {UiLoading ? (
-                [1, 2, 3].map(() => {
+                [1, 2, 3].map((data, index) => {
                   return (
                     <Skeleton
                       width={"150px"}
@@ -402,6 +398,7 @@ export const Paper = (props) => {
                         borderRadius: "100px",
                       }}
                       count={1}
+                      key={index}
                     />
                   );
                 })
@@ -442,7 +439,7 @@ export const Paper = (props) => {
                 </div>
                 <div className="paper_funders_list">
                   {UiLoading
-                    ? [1, 2, 3].map(() => {
+                    ? [1, 2, 3].map((data, index) => {
                         return (
                           <Skeleton
                             width={"100%"}
@@ -452,14 +449,15 @@ export const Paper = (props) => {
                               borderRadius: "12px",
                             }}
                             count={1}
+                            key={index}
                           />
                         );
                       })
                     : null}
                   {UiLoading ? null : PaperData.fundings.length != 0 ? (
-                    PaperData.fundings.map((fund) => {
+                    PaperData.fundings.map((fund, index) => {
                       return (
-                        <div className="paper_funder">
+                        <div className="paper_funder" key={index}>
                           <img src={pf} alt="" />
                           <div className="paper_funder-address">
                             {fund.from}

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Hamburger from "hamburger-react";
-import { motion, useCycle } from "framer-motion";
+import { motion } from "framer-motion";
 import "./Navbar.css";
 
 import logo from "../assets/logo.svg";
@@ -11,7 +11,6 @@ import portis from "../assets/portis_icon.svg";
 import ConnectWallet from "../ConnectWallet";
 import {
   setPapers,
-  setProfilePaperLoading,
 } from "../../redux/reducers/papersreducer";
 import web3 from "web3";
 import {
@@ -26,7 +25,6 @@ import { toGatewayURL } from "nft.storage";
 import {
   apiEndpoint,
   getAllPapersQuery,
-  getFundingQuery,
   GETMYPAPES,
   myActivities,
 } from "../../graphQueries";
@@ -306,12 +304,12 @@ export const Navbar = () => {
               <path
                 d="M4 12L12 4"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
               ></path>
               <path
                 d="M12 12L4 4"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
               ></path>
             </svg>
           </div>

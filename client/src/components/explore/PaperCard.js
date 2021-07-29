@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { AddressBtn } from "../addressBtn";
-import thumb from "../assets/thumb.png";
 import { Link } from "react-router-dom";
 
 export default function PaperCard({
@@ -55,7 +54,7 @@ export default function PaperCard({
                 className="switch"
                 onClick={() => setfundtoggle(!fundtoggle)}
               >
-                <input type="checkbox" checked={fundtoggle == true} />
+                <input type="checkbox" checked={fundtoggle === true} />
               </label>
             </div>
             <div
@@ -72,7 +71,7 @@ export default function PaperCard({
                 id="fundamoundt"
                 ref={fundInput}
                 placeholder={currentAmount}
-                disabled={fundtoggle == false}
+                disabled={fundtoggle === false}
               />
             </div>
             {!updating ? (

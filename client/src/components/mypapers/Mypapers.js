@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./mypapers.css";
 import PaperCard from "../explore/PaperCard";
 import { useSelector } from "react-redux";
@@ -7,7 +7,6 @@ import Web3 from "web3";
 import { PaperCardLoading } from "../paperCardLoading/index";
 import ConnectWallet from "../connectWallet/ConnectWallet";
 import NoPapers from "../NoPapers/NoPapers";
-import { Link } from "react-router-dom";
 
 export const Mypapers = ({ path }) => {
   const paperData = useSelector((state) => state.paper.myPapers).data;
