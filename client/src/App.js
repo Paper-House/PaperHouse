@@ -26,6 +26,7 @@ export default function App() {
           <Route path="/paper/:paperid" component={Paper} />
           <Route path="/myprofile" component={Profile} />
           <Route path="/profile" component={ProfilePapers} />
+          <Route path="/not-found" component={NotFound} />
           <Route component={NotFound} />
         </Switch>
       </SkeletonTheme>
