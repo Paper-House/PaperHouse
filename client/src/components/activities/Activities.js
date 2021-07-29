@@ -67,7 +67,7 @@ const Activities = () => {
                   <ActivityCard
                     image={activity.thumbnail}
                     title={activity.title}
-                    address={address}
+                    address={activity.from}
                     fundAmount={activity.amount}
                   />
                 );
