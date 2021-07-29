@@ -159,7 +159,22 @@
   font-weight: 400;
   font-size: 1em;
 }
-
+.paper_nofunding {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+.paper_nofunding h3 {
+  color: white;
+  font-weight: 600;
+  font-size: 0.9em;
+  padding: 15px;
+  border: 1px solid #0097fd;
+  border-radius: 10px;
+  width: fit-content;
+}
 /* fund section */
 .paper_fund {
   width: 90%;
@@ -228,6 +243,14 @@
   font-size: 1em;
   align-self: center;
   cursor: pointer;
+}
+.paper_fund button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.paper_fund button:disabled:hover {
+  cursor: default;
+  opacity: 0.5;
 }
 .paper_fund button:hover,
 .paper_view button:hover {
@@ -370,10 +393,10 @@
   justify-content: center;
   align-items: center;
 }
-.paper_funding_popup_box_buttons button:active{
+.paper_funding_popup_box_buttons button:active {
   transform: scale(0.95);
 }
-.paper_funding_popup_box_buttons button:hover{
+.paper_funding_popup_box_buttons button:hover {
   background-color: rgba(0, 151, 253, 0.8);
 }
 .paper_funding_popup_box_buttons button:nth-child(2) {

@@ -118,30 +118,36 @@ export const Paper = (props) => {
     }, 1500);
   }
   function FundPaper(paper_id, fundAmount) {
-    console.log(typeof fundAmount);
     if (connected && correctNetwork && paper_id && fundAmount) {
-      setloading(true);
-      contract.methods
-        .fundapaper(paper_id)
-        .send({
-          from: address,
-          value: Web3.utils.toWei(String(fundAmount), "ether"),
-        })
-        .then(async (receipt) => {
-          console.log(receipt);
-          setloading(false);
-          toast("Research Paper Funded", toastStyles.default);
-          setmaticconversion(0);
-          setfundAmount(0);
-          setShowPopup(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error("Transaction Failed", toastStyles.error);
+      if (
+        fundAmount <= PaperData.paper.fundAmount &&
+        fundAmount <=
+          Number(PaperData.paper.fundAmount) -
+            Number(PaperData.paper.totalAmountFunded)
+      ) {
+        setloading(true);
+        contract.methods
+          .fundapaper(paper_id)
+          .send({
+            from: address,
+            value: Web3.utils.toWei(String(fundAmount), "ether"),
+          })
+          .then(async (receipt) => {
+            setloading(false);
+            toast("Research Paper Funded", toastStyles.default);
+            setmaticconversion(0);
+            setfundAmount(0);
+            setShowPopup(false);
+            setTimeout(() => window.location.reload(), 1000);
+          })
+          .catch((err) => {
+            console.log(err);
+            toast.error("Transaction Failed", toastStyles.error);
 
-          setloading(false);
-          setShowPopup(false);
-        });
+            setloading(false);
+            setShowPopup(false);
+          });
+      }
     }
   }
 
@@ -447,25 +453,29 @@ export const Paper = (props) => {
                         );
                       })
                     : null}
-                  {UiLoading
-                    ? null
-                    : PaperData.fundings.map((fund) => {
-                        return (
-                          <div className="paper_funder">
-                            <img src={pf} alt="" />
-                            <div className="paper_funder-address">
-                              {fund.from}
-                              <h2>
-                                Funded{" "}
-                                {Number(
-                                  web3.utils.fromWei(fund.amount, "ether")
-                                ).toFixed(3)}
-                                Matic
-                              </h2>
-                            </div>
+                  {UiLoading ? null : PaperData.fundings.length != 0 ? (
+                    PaperData.fundings.map((fund) => {
+                      return (
+                        <div className="paper_funder">
+                          <img src={pf} alt="" />
+                          <div className="paper_funder-address">
+                            {fund.from}
+                            <h2>
+                              Funded{" "}
+                              {Number(
+                                web3.utils.fromWei(fund.amount, "ether")
+                              ).toFixed(4)}
+                              Matic
+                            </h2>
                           </div>
-                        );
-                      })}
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="paper_nofunding">
+                      <h3>No Funders</h3>
+                    </div>
+                  )}
                 </div>
               </div>
             ) : null}
@@ -514,24 +524,37 @@ export const Paper = (props) => {
                 <div className="paper_fund_bar_bg"></div>
                 <div
                   className="paper_fund_bar_current"
-                  style={{
-                    width: `${
-                      (PaperData.paper.totalAmountFunded /
-                        PaperData.paper.fundAmount) *
-                      100
-                    }%`,
-                  }}
+                  style={
+                    PaperData.paper.fundAmount != "0"
+                      ? {
+                          width: `${
+                            (Number(PaperData.paper.totalAmountFunded) /
+                              Number(PaperData.paper.fundAmount)) *
+                            100
+                          }%`,
+                        }
+                      : { width: "0px" }
+                  }
                 ></div>
                 <h3>
-                  {(
-                    (PaperData.paper.totalAmountFunded /
-                      PaperData.paper.fundAmount) *
-                    100
-                  ).toFixed(2)}
+                  {PaperData.paper.fundAmount != "0"
+                    ? (
+                        (Number(PaperData.paper.totalAmountFunded) /
+                          Number(PaperData.paper.fundAmount)) *
+                        100
+                      ).toFixed(2)
+                    : "0"}
                   %
                 </h3>
               </div>
-              <button onClick={() => setShowPopup(!ShowPopup)}>
+              <button
+                disabled={
+                  (PaperData.paper.fundAmount == "0") == true ||
+                  PaperData.paper.fundAmount ==
+                    PaperData.paper.totalAmountFunded
+                }
+                onClick={() => setShowPopup(!ShowPopup)}
+              >
                 FUND THIS RESEARCH PAPER
               </button>
             </div>
