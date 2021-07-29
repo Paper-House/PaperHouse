@@ -1,11 +1,12 @@
 .NotFound--container {
   width: 100%;
-  height: 80vh;
+  height: calc(100vh - 65px);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  margin-top: 65px;
 }
 
 .NotFound--container svg {
@@ -21,23 +22,21 @@
 }
 
 @media only screen and (max-width: 767px) {
-.NotFound--container {
-	justify-content: flex-start;
-  margin-top: 100px;
-  height: 100vh;
-}
+  .NotFound--container {
+    justify-content: flex-start;
+  }
   .NotFound--container svg {
     width: 80%;
     max-height: 400px;
   }
   .NotFound--container h2 {
-	  font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 }
 
 @media only screen and (min-width: 1000px) {
   .NotFound--container svg {
-  width: 500px;
-  height: 300px;
+    width: 500px;
+    height: 300px;
   }
 }
