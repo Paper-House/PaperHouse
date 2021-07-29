@@ -7,6 +7,7 @@ import Web3 from "web3";
 import { PaperCardLoading } from "../paperCardLoading/index";
 import ConnectWallet from "../connectWallet/ConnectWallet";
 import NoPapers from "../NoPapers/NoPapers";
+import { Link } from "react-router-dom";
 
 export const Mypapers = ({ path }) => {
   const paperData = useSelector((state) => state.paper.myPapers).data;
@@ -95,15 +96,17 @@ const PaperCardRenderer = ({ data, path }) => {
 
   return data.map((paper) => {
     return (
-      <PaperCard
-        data={paper}
-        page={path === "/profile" ? "" : "mypapers"}
-        currentAmount={`${paper.fundAmount} MATIC`}
-        callupdate={(updateAmount, fundToggle, setUpdating) =>
-          UpdatePaper(paper.paperid, updateAmount, fundToggle, setUpdating)
-        }
-        allowFunding={paper.allowFunding}
-      />
+      <Link to={`/paper/${paper.paperid}`}>
+        <PaperCard
+          data={paper}
+          page={path === "/profile" ? "" : "mypapers"}
+          currentAmount={`${paper.fundAmount} MATIC`}
+          callupdate={(updateAmount, fundToggle, setUpdating) =>
+            UpdatePaper(paper.paperid, updateAmount, fundToggle, setUpdating)
+          }
+          allowFunding={paper.allowFunding}
+        />
+      </Link>
     );
   });
 };
