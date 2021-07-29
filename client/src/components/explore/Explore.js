@@ -79,6 +79,7 @@ export const Explore = () => {
         {papers.length > 0
           ? papers.map((paper) => {
               if (category === "all") {
+                console.log(paper.paperid)
                 return (
                   <Link to={`/paper/${paper.paperid}`}>
                     <PaperCard data={paper} />

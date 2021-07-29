@@ -123,11 +123,10 @@ export const Navbar = () => {
             axios
               .get(nftUrl)
               .then(({ data }) => {
-                console.log(data);
                 let thumbnail =
                   "https://ipfs.io" + "/ipfs" + data.image.slice(6);
                 payloadData = {
-                  paperid: paper.id.slice(2),
+                  paperid: paper.paperId,
                   title: data.name,
                   author: data.author,
                   publisher: paper.owner,
