@@ -97,7 +97,6 @@ const PaperCardRenderer = ({ data, path }) => {
   return data.map((paper) => {
     console.log(paper.paperid, paper.title);
     return (
-      <Link to={`/paper/${paper.paperid}`}>
         <PaperCard
           data={paper}
           page={path === "/profile" ? "" : "mypapers"}
@@ -106,8 +105,8 @@ const PaperCardRenderer = ({ data, path }) => {
             UpdatePaper(paper.paperid, updateAmount, fundToggle, setUpdating)
           }
           allowFunding={paper.allowFunding}
+          paperLink={`/paper/${paper.paperid}`}
         />
-      </Link>
     );
   });
 };

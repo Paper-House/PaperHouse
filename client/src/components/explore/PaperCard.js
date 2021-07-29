@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { AddressBtn } from "../addressBtn";
 import thumb from "../assets/thumb.png";
+import { Link } from "react-router-dom";
 
 export default function PaperCard({
   data,
@@ -8,19 +9,34 @@ export default function PaperCard({
   callupdate,
   currentAmount,
   allowFunding,
+  paperLink,
 }) {
   const [fundtoggle, setfundtoggle] = useState(allowFunding);
   const [updating, setUpdating] = useState(false);
- 
+
   const fundInput = useRef();
   return (
     <div className="paper_card">
-      <div className="paper_card_img">
-        <img src={data.thumbnail} alt="" />
-      </div>
+      {paperLink ? (
+        <Link to={paperLink}>
+          <div className="paper_card_img">
+            <img src={data.thumbnail} alt="" />
+          </div>
+        </Link>
+      ) : (
+        <div className="paper_card_img">
+          <img src={data.thumbnail} alt="" />
+        </div>
+      )}
       <div className="paper_card_details">
         <div className="paper_card_title">
-          <h3>{data.title}</h3>
+          {paperLink ? (
+            <Link to={paperLink}>
+              <h3>{data.title}</h3>
+            </Link>
+          ) : (
+            <h3>{data.title}</h3>
+          )}
         </div>
         <div className="paper_card_category">{data.category.toUpperCase()}</div>
         <div className="paper_card_date">
@@ -62,13 +78,9 @@ export default function PaperCard({
             {!updating ? (
               <button
                 onClick={() =>
-                  callupdate(
-                    fundInput.current.value,
-                    fundtoggle,
-                    (prop) => {
-                      setUpdating(prop);
-                    }
-                  )
+                  callupdate(fundInput.current.value, fundtoggle, (prop) => {
+                    setUpdating(prop);
+                  })
                 }
               >
                 Update
