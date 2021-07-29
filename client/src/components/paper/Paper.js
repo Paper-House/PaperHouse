@@ -16,6 +16,8 @@ import { getURL } from "../../utils/getURL";
 import web3 from "web3";
 import Skeleton from "react-loading-skeleton";
 import { getMATIC } from "../../utils/getmarketprice";
+import { useHistory } from "react-router-dom";
+
 export const Paper = (props) => {
   const { paperid } = props.match.params;
   const [PaperData, setPaperData] = useState({
@@ -43,6 +45,8 @@ export const Paper = (props) => {
   const [ShowFundButton, setShowFundButton] = useState(false);
   const [maticconversion, setmaticconversion] = useState(0);
   const [Maticprice, setMaticprice] = useState(0);
+  const history = useHistory();
+
   getMATIC().then((price) => {
     setMaticprice(price);
   });
@@ -69,47 +73,51 @@ export const Paper = (props) => {
         .post(apiEndpoint, { query: getPaper(paperid).query })
         .then(({ data }) => {
           const paper = data.data.papers[0];
-          let finalData = {};
-          axios.get(getURL(paper.tokenUri)).then((response) => {
-            finalData = {
-              title: response.data.name,
-              description: response.data.description,
-              author: response.data.author,
-              publisher: paper.owner,
-              thumbnail: getURL(response.data.image),
-              pdf: getURL(response.data.pdf),
-              allowFunding: JSON.parse(paper.allowFunding),
-              fundAmount: web3.utils.fromWei(paper.fundAmount, "ether"),
-              totalAmountFunded: web3.utils.fromWei(
-                paper.totalAmountFunded,
-                "ether"
-              ),
-              metadata: getURL(paper.tokenUri),
-            };
-            setPaperData({
-              paper: finalData,
-              fundings: [],
-            });
-            if (!JSON.parse(paper.allowFunding)) {
-              setUiLoading(false);
-            }
-          });
-          if (JSON.parse(paper.allowFunding)) {
-            axios
-              .post(apiEndpoint, { query: getFundings(paperid).query })
-              .then(({ data }) => {
-                setPaperData({
-                  paper: finalData,
-                  fundings: data.data.paperFundings,
-                });
+          if (paper != undefined) {
+            let finalData = {};
+            axios.get(getURL(paper.tokenUri)).then((response) => {
+              finalData = {
+                title: response.data.name,
+                description: response.data.description,
+                author: response.data.author,
+                publisher: paper.owner,
+                thumbnail: getURL(response.data.image),
+                pdf: getURL(response.data.pdf),
+                allowFunding: JSON.parse(paper.allowFunding),
+                fundAmount: web3.utils.fromWei(paper.fundAmount, "ether"),
+                totalAmountFunded: web3.utils.fromWei(
+                  paper.totalAmountFunded,
+                  "ether"
+                ),
+                metadata: getURL(paper.tokenUri),
+              };
+              setPaperData({
+                paper: finalData,
+                fundings: [],
+              });
+              if (!JSON.parse(paper.allowFunding)) {
                 setUiLoading(false);
-              })
-              .catch((err) => console.log(err));
+              }
+            });
+            if (JSON.parse(paper.allowFunding)) {
+              axios
+                .post(apiEndpoint, { query: getFundings(paperid).query })
+                .then(({ data }) => {
+                  setPaperData({
+                    paper: finalData,
+                    fundings: data.data.paperFundings,
+                  });
+                  setUiLoading(false);
+                })
+                .catch((err) => console.log(err));
+            }
+          } else {
+            history.push("/not-found");
           }
         })
         .catch((err) => console.log(err));
     }
-  }, [paperid]);
+  }, []);
 
   function copyClip() {
     navigator.clipboard.writeText(window.location.href);
@@ -405,11 +413,11 @@ export const Paper = (props) => {
               ) : (
                 <>
                   <a
-                    href={`https://mumbai.polygonscan.com/token/0x4cbafb37e0126a8a57978b9435b8b77b73834fa9?a=${paperid}`}
+                    href={`https://mumbai.polygonscan.com/token/0xea1ac3a3c4b29f55d1271658e8c864b40a6c68e3?a=${paperid}`}
                     target="_blank"
                   >
                     <button className="paper_view_polyscan">
-                      View on polygonscan <Icon icon={linkOut} />
+                      View on Polygonscan <Icon icon={linkOut} />
                     </button>
                   </a>
                   <a href={PaperData.paper.metadata} target="_blank">
