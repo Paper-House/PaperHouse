@@ -14,10 +14,12 @@ import {
 import axios from "axios";
 import pf from "../assets/pf.png";
 import "./ProfilePapers.css";
+import { useHistory } from "react-router-dom";
 
 const ProfilePapers = () => {
   const dispatch = useDispatch();
   const [urlAddress, setUrlAddress] = useState(null);
+  const history = useHistory();
 
   const profilePaper = useSelector((state) => state.paper.profilePaper.data);
   const profilePaperLoading = useSelector(
@@ -67,6 +69,7 @@ const ProfilePapers = () => {
         .catch((err) => console.log(err));
     } else {
       console.log("no url address");
+      history.push("/not-found")
     }
   }, [urlAddress]);
 
