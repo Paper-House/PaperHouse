@@ -46,7 +46,6 @@ export const Paper = (props) => {
   const [maticconversion, setmaticconversion] = useState(0);
   const [Maticprice, setMaticprice] = useState(0);
   getMATIC().then((price) => {
-    console.log(price);
     setMaticprice(price);
   });
   const { connected, address, correctNetwork, balance } = useSelector(
