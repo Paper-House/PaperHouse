@@ -71,6 +71,7 @@ export const GETMYPAPES = (address) => {
     allowFunding
     fundAmount
     totalAmountFunded
+    paperId
   }
 }`,
   };
