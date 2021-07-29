@@ -11,7 +11,7 @@ import Profile from "./components/profile/Profile";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import ProfilePapers from "./components/ProfilePapers/ProfilePapers";
-
+import NotFound from "./components/NotFound/NotFound";
 
 export default function App() {
   return (
@@ -26,6 +26,7 @@ export default function App() {
           <Route path="/paper/:paperid" component={Paper} />
           <Route path="/myprofile" component={Profile} />
           <Route path="/profile" component={ProfilePapers} />
+          <Route component={NotFound} />
         </Switch>
       </SkeletonTheme>
     </Router>
