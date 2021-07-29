@@ -19,7 +19,7 @@ export const getAllPapersQuery = {
 export const getPaper = (paperid) => {
   return {
     query: `{
-  papers(where: {id: "0x${paperid}"}) {
+  papers(where: {paperId: "${paperid}"}) {
     id
     owner
     author
