@@ -17,6 +17,7 @@ import { apiEndpoint, getPaper, getFundings } from "../../graphQueries";
 import { getURL } from "../../utils/getURL";
 import web3 from "web3";
 import Skeleton from "react-loading-skeleton";
+import { getMATIC } from "../../utils/getmarketprice";
 export const Paper = (props) => {
   const { paperid } = props.match.params;
   const [PaperData, setPaperData] = useState({
@@ -43,8 +44,11 @@ export const Paper = (props) => {
   const [loading, setloading] = useState(false);
   const [ShowFundButton, setShowFundButton] = useState(false);
   const [maticconversion, setmaticconversion] = useState(0);
-  const dispatch = useDispatch();
-
+  const [Maticprice, setMaticprice] = useState(0);
+  getMATIC().then((price) => {
+    console.log(price);
+    setMaticprice(price);
+  });
   const { connected, address, correctNetwork, balance } = useSelector(
     (state) => state.paper.wallet
   );
@@ -154,7 +158,7 @@ export const Paper = (props) => {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       var scrollY = window.scrollY;
-      if (scrollY > 10) {
+      if (scrollY > 20) {
         setShowFundButton(true);
       } else {
         setShowFundButton(false);
@@ -235,7 +239,7 @@ export const Paper = (props) => {
                   type="number"
                   placeholder="0 MATIC"
                   onChange={(e) => {
-                    setmaticconversion(e.target.value * 1.05);
+                    setmaticconversion(e.target.value * Maticprice);
                     setfundAmount(e.target.value);
                   }}
                 />
@@ -502,7 +506,9 @@ export const Paper = (props) => {
                     $
                     {UiLoading
                       ? "0"
-                      : (PaperData.paper.totalAmountFunded * 1.05).toFixed(3)}
+                      : (
+                          PaperData.paper.totalAmountFunded * Maticprice
+                        ).toFixed(3)}
                   </h5>
                 </div>
                 <div>
@@ -516,7 +522,7 @@ export const Paper = (props) => {
                     $
                     {UiLoading
                       ? "0"
-                      : (PaperData.paper.fundAmount * 1.05).toFixed(3)}
+                      : (PaperData.paper.fundAmount * Maticprice).toFixed(3)}
                   </h5>
                 </div>
               </div>
