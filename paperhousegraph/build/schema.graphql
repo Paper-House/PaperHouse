@@ -1,0 +1,19 @@
+type Paper @entity {
+  id: ID!
+  paperId: String!
+  owner: Bytes! # address
+  author: String!
+  tokenUri: String!
+  allowFunding: String!
+  fundAmount: String!
+  totalAmountFunded: String!
+}
+
+type PaperFunding @entity {
+  id: ID!
+  from: Bytes! # addres in bytes
+  to: Bytes!
+  amount: String!
+  paperid: String!
+  tokenUri: String!
+}
