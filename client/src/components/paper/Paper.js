@@ -119,27 +119,30 @@ export const Paper = (props) => {
   }
   function FundPaper(paper_id, fundAmount) {
     if (connected && correctNetwork && paper_id && fundAmount) {
-      setloading(true);
-      contract.methods
-        .fundapaper(paper_id)
-        .send({
-          from: address,
-          value: Web3.utils.toWei(String(fundAmount), "ether"),
-        })
-        .then(async (receipt) => {
-          setloading(false);
-          toast("Research Paper Funded", toastStyles.default);
-          setmaticconversion(0);
-          setfundAmount(0);
-          setShowPopup(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error("Transaction Failed", toastStyles.error);
+      if (fundAmount <= PaperData.paper.fundAmount) {
+        setloading(true);
+        contract.methods
+          .fundapaper(paper_id)
+          .send({
+            from: address,
+            value: Web3.utils.toWei(String(fundAmount), "ether"),
+          })
+          .then(async (receipt) => {
+            setloading(false);
+            toast("Research Paper Funded", toastStyles.default);
+            setmaticconversion(0);
+            setfundAmount(0);
+            setShowPopup(false);
+            setTimeout(() => window.location.reload(), 1000);
+          })
+          .catch((err) => {
+            console.log(err);
+            toast.error("Transaction Failed", toastStyles.error);
 
-          setloading(false);
-          setShowPopup(false);
-        });
+            setloading(false);
+            setShowPopup(false);
+          });
+      }
     }
   }
 
@@ -540,7 +543,10 @@ export const Paper = (props) => {
                 </h3>
               </div>
               <button
-                disabled={(PaperData.paper.fundAmount == "0") == true}
+                disabled={
+                  (PaperData.paper.fundAmount == "0") == true ||
+                  PaperData.paper.fundAmount == PaperData.paper.totalAmountFunded
+                }
                 onClick={() => setShowPopup(!ShowPopup)}
               >
                 FUND THIS RESEARCH PAPER
