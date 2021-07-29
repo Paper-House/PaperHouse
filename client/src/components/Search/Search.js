@@ -31,13 +31,13 @@ export default function Search({ input, resetInput }) {
         result.map((paper) => {
           return (
             <li onClick={() => resetInput("")}>
-              <Link to={`/paper/${paper.paperid}`}>
+              <a href={`/paper/${paper.paperid}`}>
                 <SearchResultCard
                   image={paper.thumbnail}
                   title={paper.title}
                   address={paper.publisher}
                 />
-              </Link>
+              </a>
             </li>
           );
         })
