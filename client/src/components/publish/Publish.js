@@ -66,7 +66,16 @@ export const Publish = () => {
   const fundingAmount = useRef(undefined);
 
   const IPFSupload = async (name, des, author, category) => {
-    if (pdf && thumbnail && name && des && author && category && imageType !== "image/svg+xml" && imageType !== "image/svg") {
+    if (
+      pdf &&
+      thumbnail &&
+      name &&
+      des &&
+      author &&
+      category &&
+      imageType !== "image/svg+xml" &&
+      imageType !== "image/svg"
+    ) {
       toast("🦄 Uploading to IPFS!", toastStyles.default);
 
       let date = new Date().toString().split(" ");
@@ -331,7 +340,11 @@ export const Publish = () => {
                             <Skeleton width={"60px"} />
                           )}
                         </div>
-                        <p id="upload__extension-png">.PNG</p>
+                        {imageType ? (
+                          <p id="upload__extension-png">{imageType.slice(6)}</p>
+                        ) : (
+                          <p id="upload__extension-png">.PNG</p>
+                        )}
                         {/* <Skeleton width={"60px"} /> */}
                       </div>
                     </div>
