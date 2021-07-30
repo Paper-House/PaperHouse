@@ -12,12 +12,21 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 
 ## Getting Started
 
+### <p align="center"> <b> Installing React dependencies and starting local server </b> </p>
 ```
-cd client/
 git clone https://github.com/Paper-House/PaperHouse.git
+cd client/
 npm install
 npm start
 ```
+<p align="center">OR</p>
+```
+git clone git clone https://github.com/Paper-House/PaperHouse.git
+cd client/
+yarn install
+yarn start
+```
+
 ## Contributors
 <a href="https://github.com/Paper-House/PaperHouse/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Paper-House/PaperHouse" />
