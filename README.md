@@ -6,11 +6,11 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 
 ## Contents
 
-- [Getting Started](###Getting-Started)
+- [Getting Started](##Getting-Started)
 - [Contributors](#Contributors)
 
 
-### Getting Started
+## Getting Started
 
 ```
 cd client/
