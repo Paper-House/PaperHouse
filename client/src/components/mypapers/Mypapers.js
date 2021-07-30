@@ -74,8 +74,6 @@ const PaperCardRenderer = ({ data, path }) => {
     if (!updateAmount) fund = "0";
     if (Number(updateAmount) < 0) fund = "0";
 
-    console.log(updateAmount);
-
     if (connected && correctNetwork) {
       setUpdating(true);
       contract.methods
@@ -94,7 +92,6 @@ const PaperCardRenderer = ({ data, path }) => {
   }
 
   return data.map((paper) => {
-    console.log(paper.paperid, paper.title);
     return (
         <PaperCard
           data={paper}

@@ -51,7 +51,6 @@ const paperSlice = createSlice({
       state.wallet.correctNetwork = payload;
     },
     setMyPapers: (state, { payload }) => {
-      console.log(payload);
       state.myPapers.data.push(payload);
     },
     setMyPapersLoading: (state, { payload }) => {

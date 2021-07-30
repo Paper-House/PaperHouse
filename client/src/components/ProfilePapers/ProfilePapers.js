@@ -34,7 +34,6 @@ const ProfilePapers = () => {
   useEffect(() => {
     if (urlAddress && profilePaper.length === 0) {
       dispatch(setProfilePaperLoading(true));
-      console.log("dispatching as true");
       axios
         .post(apiEndpoint, {
           query: GETMYPAPES(urlAddress).query,
@@ -58,13 +57,11 @@ const ProfilePapers = () => {
                   thumbnail: thumbnail,
                   category: data.category,
                 };
-                console.log(payloadData);
                 dispatch(setProfilePaper(payloadData));
               })
               .catch((err) => console.log(err));
           });
           dispatch(setProfilePaperLoading(false));
-          console.log("dispatching as false");
         })
         .catch((err) => console.log(err));
     } else {
@@ -108,7 +105,6 @@ const ProfilePapers = () => {
 };
 
 const PaperCardRenderer = ({ data }) => {
-  console.log(data);
   const { connected, address, correctNetwork } = useSelector(
     (state) => state.paper.wallet
   );
@@ -145,7 +141,6 @@ const PaperCardRenderer = ({ data }) => {
   }
 
   return data.map((paper) => {
-    console.log(paper);
     return (
       <PaperCard
         data={paper}
