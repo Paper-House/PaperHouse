@@ -8,6 +8,7 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 
 - [Getting Started](##Getting-Started)
 - [Contributors](#Contributors)
+- [Project roadmap](#Project-Roadmap)
 
 
 ## Getting Started
@@ -18,6 +19,12 @@ git clone https://github.com/Paper-House/PaperHouse.git
 npm install
 npm start
 ```
+
+## Project Roadmap
+
+![Roadmap](./Images/RoadMap.jpg)
+
+
 ## Contributors
 <a href="https://github.com/Paper-House/PaperHouse/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Paper-House/PaperHouse" />
