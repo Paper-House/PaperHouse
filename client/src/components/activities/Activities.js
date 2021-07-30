@@ -62,7 +62,6 @@ const Activities = () => {
           {myActivities.length != 0 ? (
             <div className="Activities__main--section">
               {myActivities.map((activity) => {
-                console.log(activity.title);
                 return (
                   <ActivityCard
                     image={activity.thumbnail}

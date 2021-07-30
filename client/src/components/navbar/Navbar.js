@@ -170,7 +170,7 @@ export const Navbar = () => {
           });
         });
     } else {
-      console.log("Not connected");
+      console.log("Wallet not connected.");
     }
   }, [address]);
 

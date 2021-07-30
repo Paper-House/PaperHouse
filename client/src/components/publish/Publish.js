@@ -93,7 +93,6 @@ export const Publish = () => {
       });
       return metadata.url;
     } else if (!pdf || !thumbnail || !name || !des || !author) {
-      console.log(imageType);
       toast.error("😢️ All inputs are required!!", toastStyles.error);
     }
   };
@@ -159,7 +158,6 @@ export const Publish = () => {
 
   const publishHandleInputChange = (object) => {
     setCategories(object);
-    console.log(categories);
   };
 
   const pdfAdded = (event) => {
@@ -168,7 +166,6 @@ export const Publish = () => {
     } else {
       setPdf(event.target.files[0]);
       setPdfPreviewUrl(URL.createObjectURL(event.target.files[0]));
-      console.log(pdf);
     }
   };
 
@@ -181,7 +178,6 @@ export const Publish = () => {
     } else {
       setThumbnail(event.target.files[0]);
       setThumbPreviewUrl(URL.createObjectURL(event.target.files[0]));
-      console.log(thumbnail);
     }
   };
 
