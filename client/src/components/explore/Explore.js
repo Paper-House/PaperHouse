@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./explore.css";
 import { Link } from "react-router-dom";
 import PaperCard from "./PaperCard";
 import { useSelector } from "react-redux";
-
+import { PaperCardLoading } from "../paperCardLoading";
+import Nopaperloading from "../assets/NoPapers-explore.png";
 export const Explore = () => {
   const [category, setcategory] = useState("all");
+  const [paperbycat, setpaperbycat] = useState([]);
   const papers = useSelector((state) => state.paper.papers.data);
+
+  useEffect(() => {
+    if (papers.length != 0) {
+      setpaperbycat(papers);
+    }
+  }, [papers]);
+  useEffect(() => {
+    setpaperbycat([]);
+    if (papers.length != 0) {
+      if (category === "all") {
+        setpaperbycat(papers);
+      } else {
+        let paper_byCategory = [];
+        let paper = papers.find((paper) => paper.category === category);
+        if (paper) {
+          paper_byCategory.push(paper);
+          setpaperbycat(paper_byCategory);
+        }
+      }
+    }
+  }, [category]);
   return (
     <div className="explore container">
       <div className="explore_title">
@@ -75,26 +98,33 @@ export const Explore = () => {
           📊 Economics
         </button>
       </div>
-      <div className="explore_papers">
-        {papers.length > 0
-          ? papers.map((paper,key) => {
-              if (category === "all") {
-                return (
-                  <Link to={`/paper/${paper.paperid}`} key={key}>
+      {papers.length === 0 ? (
+        <div className="explore_papers">
+          {[1, 2, 3, 4].map((data, index) => {
+            return <PaperCardLoading key={index} />;
+          })}
+        </div>
+      ) : null}
+      {papers.length != 0 ? (
+        paperbycat.length != 0 ? (
+          <div className="explore_papers">
+            {paperbycat.map((paper, index) => {
+              return (
+                <div className="explore_papers">
+                  <Link to={`/paper/${paper.paperid}`} key={index}>
                     <PaperCard data={paper} />
                   </Link>
-                );
-              }
-              if (paper.category === category) {
-                return (
-                  <Link to={`/paper/${paper.paperid}`} key={key}>
-                    <PaperCard data={paper} />
-                  </Link>
-                );
-              }
-            })
-          : ""}
-      </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="explore_nopapers">
+            <img src={Nopaperloading} alt="" srcset="" />
+            <h3>No Papers</h3>
+          </div>
+        )
+      ) : null}
     </div>
   );
 };

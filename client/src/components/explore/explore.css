@@ -202,6 +202,24 @@ button[aria-expanded="true"] {
   background: white;
   transform: translateX(15px);
 }
+.explore_nopapers{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.explore_nopapers img{
+  max-width: 200px;
+}
+.explore_nopapers h3{
+  margin-top: 20px;
+  font-size: 1.3em;
+  font-weight: 400;
+  color: white;
+}
 @media screen and (max-width: 425px) {
   .paper_card {
     width: 100%;
