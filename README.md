@@ -21,6 +21,7 @@ npm install
 npm start
 ```
 <p align="center">OR</p>
+
 ```
 git clone git clone https://github.com/Paper-House/PaperHouse.git
 cd client/
