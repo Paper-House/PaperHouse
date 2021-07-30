@@ -8,7 +8,7 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 
 - [Getting Started](##Getting-Started)
 - [Contributors](#Contributors)
-- [Project roadmap](#Project-Roadmap)
+- [Project Roadmap](#Project-Roadmap)
 
 
 ## Getting Started
