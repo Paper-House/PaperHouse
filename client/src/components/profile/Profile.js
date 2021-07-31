@@ -62,21 +62,17 @@ const Profile = (props) => {
             <>
               <p>{address}</p> <img src={makeBlockie(address)} alt="pf" />
             </>
-          ) : (
-            "Loading"
-          )}
+          ) : null}
         </div>
       </div>
       <div className="Activities__nav--section-mob">
         <h2 id="heading">{heading}</h2>
         <div className="Activities__person--proflie">
-        {connected ? (
+          {connected ? (
             <>
               <p>{address}</p> <img src={makeBlockie(address)} alt="pf" />
             </>
-          ) : (
-            "Loading"
-          )}
+          ) : null}
         </div>
         <div className="Activities__navigation">
           <div

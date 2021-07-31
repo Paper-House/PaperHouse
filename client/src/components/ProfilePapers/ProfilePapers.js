@@ -11,9 +11,9 @@ import {
   setProfilePaperLoading,
 } from "../../redux/reducers/papersreducer";
 import axios from "axios";
-import pf from "../assets/pf.png";
 import "./ProfilePapers.css";
 import { useHistory } from "react-router-dom";
+import makeBlockie from "ethereum-blockies-base64";
 
 const ProfilePapers = () => {
   const dispatch = useDispatch();
@@ -80,15 +80,21 @@ const ProfilePapers = () => {
       <div className="ProfilePapers__nav--section">
         <h2 id="heading">Papers</h2>
         <div className="ProfilePapers__person--proflie">
-          {urlAddress ? <p>{urlAddress}</p> : ""}
-          <img src={pf} alt="pf" />
+          {urlAddress ? (
+            <>
+              <p>{urlAddress}</p> <img src={makeBlockie(urlAddress)} alt="pf" />
+            </>
+          ) : null}
         </div>
       </div>
       <div className="ProfilePapers__nav--section-mob">
         <h2 id="heading">Papers</h2>
         <div className="ProfilePapers__person--proflie">
-          {urlAddress ? <p>{urlAddress}</p> : ""}
-          <img src={pf} alt="pf" />
+          {urlAddress ? (
+            <>
+              <p>{urlAddress}</p> <img src={makeBlockie(urlAddress)} alt="pf" />
+            </>
+          ) : null}
         </div>
       </div>
 
