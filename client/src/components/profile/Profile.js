@@ -66,7 +66,6 @@ const Profile = (props) => {
             "Loading"
           )}
         </div>
-        )}
       </div>
       <div className="Activities__nav--section-mob">
         <h2 id="heading">{heading}</h2>
