@@ -19,12 +19,12 @@ export default function PaperCard({
       {paperLink ? (
         <Link to={paperLink}>
           <div className="paper_card_img">
-            <img src={data.thumbnail} alt="" />
+            <img src={data.thumbnail} alt="" loading="lazy" />
           </div>
         </Link>
       ) : (
         <div className="paper_card_img">
-          <img src={data.thumbnail} alt="" />
+          <img src={data.thumbnail} alt="" loading="lazy" />
         </div>
       )}
       <div className="paper_card_details">
