@@ -1,7 +1,7 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 
-export const PaperCardLoading = () => {
+export const PaperCardLoading = ({ page }) => {
   return (
     <div className="paper_card papercard_myprofile" style={{ height: "unset" }}>
       <div className="paper_card_img">
@@ -37,31 +37,23 @@ export const PaperCardLoading = () => {
           className="paper_card_author"
           style={{ display: "block", textAlign: "start" }}
         >
-          {/* <h3>Sairaj Kapdi</h3> */}
-          {/* <AddressBtn address={data.publisher} /> */}
           <Skeleton width={"40%"} height={"100%"} />
         </div>
-        <div className="paper_card_update">
-          <div className="paper_card_fundtoggle" style={{ display: "block" }}>
-            {/* <h3>Allow Funding</h3> */}
-            <Skeleton width={"100%"} height={"100%"} count={4} />
-            {/* <input type="checkbox" checked={fundtoggle == true} /> */}
+        {page !== "/explore" ? (
+          <div className="paper_card_update">
+            <div className="paper_card_fundtoggle" style={{ display: "block" }}>
+              <Skeleton width={"100%"} height={"100%"} count={4} />
+            </div>
+            <div
+              className={"paper_card_fundamount_input"}
+              style={{ display: "block", textAlign: "start" }}
+            >
+              <Skeleton width={"40%"} height={"100%"} />
+            </div>
           </div>
-          <div
-            className={"paper_card_fundamount_input"}
-            style={{ display: "block", textAlign: "start" }}
-          >
-            <Skeleton width={"40%"} height={"100%"} />
-            {/* <input
-                type="text"
-                name="fundamount"
-                id="fundamoundt"
-                ref={fundInput}
-                placeholder={currentAmount}
-                disabled={fundtoggle == false}
-              /> */}
-          </div>
-        </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

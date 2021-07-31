@@ -100,7 +100,7 @@ const ProfilePapers = () => {
         ) : (
           <div className="mypapers_papers">
             {[1, 2, 3, 4, 5].map((item) => (
-              <PaperCardLoading />
+              <PaperCardLoading page={"/profile"} />
             ))}
           </div>
         )}
