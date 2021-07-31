@@ -200,7 +200,7 @@ export const Navbar = () => {
 
   const sidebar = {
     open: (height = 1000) => ({
-      clipPath: `circle(${height / dropHeight}px at 90% 30px)`,
+      clipPath: `circle(${height / dropHeight}px at 50% 50px)`,
       transition: {
         type: "spring",
         stiffness: 150,
@@ -221,6 +221,12 @@ export const Navbar = () => {
   const hamburgerClickHandle = () => {
     isHamburgerOpen ? setHamburgerOpen(false) : setHamburgerOpen(true);
   };
+
+  useEffect(() => {
+    window.addEventListener("resize" ,() => {
+      console.log(window.innerWidth)
+    })
+  }, [])
 
   return (
     <>
