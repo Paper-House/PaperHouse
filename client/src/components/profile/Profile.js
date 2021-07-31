@@ -57,17 +57,35 @@ const Profile = (props) => {
             Activities
           </div>
         </div>
-        <div className="Activities__person--proflie">
-          {connected ? <p>{address}</p> : "Loading"}
+        {connected ? (
+          <div className="Activities__person--proflie">
+            {connected ? <p>{address}</p> : ""}
+            <img src={pf} alt="pf" />
+          </div>
+        ) : (
+        <div
+          className="Activities__person--proflie"
+          style={{ display: "flex", justifyContent: "flex-end" }}
+        >
           <img src={pf} alt="pf" />
         </div>
+        )}
       </div>
       <div className="Activities__nav--section-mob">
         <h2 id="heading">{heading}</h2>
-        <div className="Activities__person--proflie">
-          {connected ? <p>{address}</p> : "Loading"}
-          <img src={pf} alt="pf" />
-        </div>
+        {connected ? (
+          <div className="Activities__person--proflie">
+            {connected ? <p>{address}</p> : ""}
+            <img src={pf} alt="pf" />
+          </div>
+        ) : (
+          <div
+            className="Activities__person--proflie"
+            style={{ display: "flex", justifyContent: "flex-end" }}
+          >
+            <img src={pf} alt="pf" />
+          </div>
+        )}
         <div className="Activities__navigation">
           <div
             className="Activities__navigation-mypapers"

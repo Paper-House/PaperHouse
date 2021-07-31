@@ -60,7 +60,7 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.Activities__main--section--info p{
+.Activities__main--section--info p {
   font-size: 1em;
   font-weight: 400;
 }
@@ -76,6 +76,7 @@
 
 #fundAmount {
   padding-top: 10px;
+  font-size: 0.8rem;
 }
 
 /* Mobile */
@@ -95,6 +96,15 @@
   .Activities__main--card img {
     width: 55px;
     height: 55px;
+  }
+
+  .Activities-title {
+    max-width: 240px;
+  }
+  .Activities-title h5 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .Activities__main--section--info h5 {
@@ -146,6 +156,18 @@
     width: 30px;
     height: 30px;
   }
+
+  .Activities-title {
+    max-width: 180px;
+  }
+  .Activities-title h5 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  #fundAmount {
+    font-size: 0.7rem;
+  }
 }
 
 @media all and (device-width: 768px) and (device-height: 1024px) {
@@ -153,8 +175,19 @@
     width: 100%;
   }
   .Activities__main--section {
-    width: 80%;
+    width: 100%;
   }
+  .Activities-title {
+    max-width: 240px;
+  }
+  .Activities-title h5 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) {
 }
 
 @media only screen and (max-width: 280px) {
