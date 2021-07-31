@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import pf from "../assets/pf.png";
+import makeBlockie from "ethereum-blockies-base64";
 
 import "./Profile.css";
 
@@ -58,15 +58,25 @@ const Profile = (props) => {
           </div>
         </div>
         <div className="Activities__person--proflie">
-          {connected ? <p>{address}</p> : "Loading"}
-          <img src={pf} alt="pf" />
+          {connected ? (
+            <>
+              <p>{address}</p> <img src={makeBlockie(address)} alt="pf" />
+            </>
+          ) : (
+            "Loading"
+          )}
         </div>
       </div>
       <div className="Activities__nav--section-mob">
         <h2 id="heading">{heading}</h2>
         <div className="Activities__person--proflie">
-          {connected ? <p>{address}</p> : "Loading"}
-          <img src={pf} alt="pf" />
+        {connected ? (
+            <>
+              <p>{address}</p> <img src={makeBlockie(address)} alt="pf" />
+            </>
+          ) : (
+            "Loading"
+          )}
         </div>
         <div className="Activities__navigation">
           <div
