@@ -39,6 +39,7 @@ const ProfilePapers = () => {
         })
         .then(({ data }) => {
           data = data.data.papers;
+          console.log(data);
           let payloadData = {};
           data.map((paper) => {
             let nftUrl = toGatewayURL(paper.tokenUri).href;
@@ -58,14 +59,19 @@ const ProfilePapers = () => {
                 };
                 dispatch(setProfilePaper(payloadData));
               })
-              .catch((err) => console.log(err));
+              .catch((err) => {
+                console.log(err);
+                history.push("/not-found");
+              });
           });
           dispatch(setProfilePaperLoading(false));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          history.push("/not-found");
+        });
     } else {
       console.log("no url address");
-      history.push("/not-found")
     }
   }, [urlAddress]);
 
