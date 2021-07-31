@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import PaperCard from "../explore/PaperCard";
 import { toast } from "react-toastify";
 import Web3 from "web3";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useSelector, useDispatch } from "react-redux";
 import { toGatewayURL } from "nft.storage";
 import { apiEndpoint, GETMYPAPES } from "../../graphQueries";

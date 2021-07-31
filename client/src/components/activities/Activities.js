@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { connect, useSelector } from "react-redux";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { useSelector } from "react-redux";
+import Skeleton from "react-loading-skeleton";
 
 import "./Activities.css";
 
