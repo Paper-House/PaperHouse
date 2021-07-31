@@ -153,6 +153,7 @@
 .paper_funder img {
   max-width: 40px;
   margin-right: 7px;
+  border-radius: 100px;
 }
 .paper_funder h2 {
   color: white;
@@ -282,6 +283,7 @@
 .address-btn img {
   width: 20px;
   margin-right: 5px;
+  border-radius: 100px;
 }
 
 .paper_funding_popup_container {

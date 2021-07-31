@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import pf from "../assets/pf.png";
+import makeBlockie from "ethereum-blockies-base64";
 
 import "./Profile.css";
 
@@ -57,35 +57,28 @@ const Profile = (props) => {
             Activities
           </div>
         </div>
-        {connected ? (
-          <div className="Activities__person--proflie">
-            {connected ? <p>{address}</p> : ""}
-            <img src={pf} alt="pf" />
-          </div>
-        ) : (
-        <div
-          className="Activities__person--proflie"
-          style={{ display: "flex", justifyContent: "flex-end" }}
-        >
-          <img src={pf} alt="pf" />
+        <div className="Activities__person--proflie">
+          {connected ? (
+            <>
+              <p>{address}</p> <img src={makeBlockie(address)} alt="pf" />
+            </>
+          ) : (
+            "Loading"
+          )}
         </div>
         )}
       </div>
       <div className="Activities__nav--section-mob">
         <h2 id="heading">{heading}</h2>
+        <div className="Activities__person--proflie">
         {connected ? (
-          <div className="Activities__person--proflie">
-            {connected ? <p>{address}</p> : ""}
-            <img src={pf} alt="pf" />
-          </div>
-        ) : (
-          <div
-            className="Activities__person--proflie"
-            style={{ display: "flex", justifyContent: "flex-end" }}
-          >
-            <img src={pf} alt="pf" />
-          </div>
-        )}
+            <>
+              <p>{address}</p> <img src={makeBlockie(address)} alt="pf" />
+            </>
+          ) : (
+            "Loading"
+          )}
+        </div>
         <div className="Activities__navigation">
           <div
             className="Activities__navigation-mypapers"

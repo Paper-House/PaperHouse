@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./paper.css";
 import { useSelector } from "react-redux";
 import { AddressBtn } from "../addressBtn";
-import pf from "../assets/pf.png";
 import { Icon } from "@iconify/react";
 import linkOut from "@iconify/icons-akar-icons/link-out";
 import shareBox from "@iconify/icons-akar-icons/share-box";
@@ -17,7 +16,7 @@ import web3 from "web3";
 import Skeleton from "react-loading-skeleton";
 import { getMATIC } from "../../utils/getmarketprice";
 import { useHistory } from "react-router-dom";
-
+import makeBlockie from "ethereum-blockies-base64";
 export const Paper = (props) => {
   const { paperid } = props.match.params;
   const [PaperData, setPaperData] = useState({
@@ -466,7 +465,7 @@ export const Paper = (props) => {
                     PaperData.fundings.map((fund, index) => {
                       return (
                         <div className="paper_funder" key={index}>
-                          <img src={pf} alt="" />
+                          <img src={makeBlockie(fund.from)} alt="" />
                           <div className="paper_funder-address">
                             {fund.from}
                             <h2>

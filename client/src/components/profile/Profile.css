@@ -50,8 +50,9 @@
   border-radius: 100px;
   transition: 100ms ease-in-out;
 }
-.Activities__navigation-mypapers ,.Activities__navigation-activities {
-  font-size: .9em;
+.Activities__navigation-mypapers,
+.Activities__navigation-activities {
+  font-size: 0.9em;
   font-family: "Open Sans";
   font-weight: 500;
 }
@@ -82,6 +83,7 @@
 }
 
 .Activities__person--proflie img {
+  border-radius: 100px;
   width: 50px;
 }
 
@@ -109,17 +111,19 @@
   }
 
   .Activities__navigation {
-    width: 100% ;
+    width: 100%;
   }
 
   .Activities__nav--section {
     display: none;
   }
 
-  .Activities__navigation-mypapers,.Activities__navigation-activities {
+  .Activities__navigation-mypapers,
+  .Activities__navigation-activities {
     padding: 10px 15px;
   }
-  .Activities__navigation-mypapers ,.Activities__navigation-activities {
+  .Activities__navigation-mypapers,
+  .Activities__navigation-activities {
     font-size: 0.8em;
   }
   .Activities__person--proflie p {
