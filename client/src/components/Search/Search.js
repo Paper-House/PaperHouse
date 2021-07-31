@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import pf from "../assets/pf.png";
 import "./search.css";
+import makeBlockie from "ethereum-blockies-base64";
 
 export default function Search({ input, resetInput }) {
   const papers = useSelector((state) => state.paper.papers.data);
@@ -54,7 +55,7 @@ const SearchResultCard = ({ image, title, address }) => {
         <h5>{title}</h5>
         <div className="SearchNav__main--section--transaction--info">
           <div className="SearchNav__main--address">
-            <img src={pf} alt="pf" />
+            <img src={makeBlockie(address)} alt="pf" />
             <p>{address}</p>
           </div>
         </div>

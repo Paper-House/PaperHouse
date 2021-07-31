@@ -181,6 +181,7 @@ export const Paper = (props) => {
             showLeftHandPanel: false,
             enableFormFilling: false,
             showAnnotationTools: false,
+            defaultViewMode: "FIT_WIDTH",
           },
           PaperData.paper.pdf,
           PaperData.paper.title,
