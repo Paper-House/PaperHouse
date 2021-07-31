@@ -29,7 +29,11 @@ const getInstance = (web3, Networkid) => {
 const getNetworkid = async (web3) => {
   return await web3.eth.net.getId();
 };
-export default function ConnectWallet({ wallet, setWallconnect }) {
+export default function ConnectWallet({
+  wallet,
+  setWallconnect,
+  setConnecting,
+}) {
   const dispatch = useDispatch();
   const [networkChange, setnetworkChange] = useState("");
   const state = useSelector((state) => state.paper);
@@ -82,6 +86,8 @@ export default function ConnectWallet({ wallet, setWallconnect }) {
           })
           .catch((err) => {
             console.log(err);
+            setWallconnect(0);
+            setConnecting(false);
             dispatch(
               setWallet({
                 connected: false,
@@ -126,6 +132,17 @@ export default function ConnectWallet({ wallet, setWallconnect }) {
           })
           .catch((err) => {
             console.log(err);
+            setWallconnect(0);
+            setConnecting(false);
+            dispatch(
+              setWallet({
+                connected: false,
+                address: "",
+                network: "",
+                correctNetwork: true,
+                balance: "",
+              })
+            );
           });
       }
     }
