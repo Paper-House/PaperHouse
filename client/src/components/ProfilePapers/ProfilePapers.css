@@ -51,12 +51,13 @@
 }
 
 .ProfilePapers__person--proflie img {
+  border-radius: 100px;
   width: 50px;
 }
 
-  .ProfilePapers__nav--section-mob {
-	  display: none;
-  }
+.ProfilePapers__nav--section-mob {
+  display: none;
+}
 /* Mobile */
 @media only screen and (max-width: 767px) {
   .ProfilePapers__nav--section {
@@ -88,8 +89,6 @@
     width: 100%;
   }
   .ProfilePapers__nav--section-mob {
-	  display: none;
+    display: none;
   }
 }
-
-
