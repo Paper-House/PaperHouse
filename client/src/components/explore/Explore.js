@@ -101,7 +101,7 @@ export const Explore = () => {
       {papers.length === 0 ? (
         <div className="explore_papers">
           {[1, 2, 3, 4].map((data, index) => {
-            return <PaperCardLoading key={index} />;
+            return <PaperCardLoading key={index} page={"/explore"} />;
           })}
         </div>
       ) : null}
