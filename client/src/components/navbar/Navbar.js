@@ -222,12 +222,6 @@ export const Navbar = () => {
     isHamburgerOpen ? setHamburgerOpen(false) : setHamburgerOpen(true);
   };
 
-  useEffect(() => {
-    window.addEventListener("resize" ,() => {
-      console.log(window.innerWidth)
-    })
-  }, [])
-
   return (
     <>
       <ConnectWallet
