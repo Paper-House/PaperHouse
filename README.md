@@ -9,6 +9,7 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 - [Getting Started](##Getting-Started)
 - [Contributors](#Contributors)
 - [Project Roadmap](#Project-Roadmap)
+- [License](#License)
 
 
 ## Getting Started
@@ -38,3 +39,7 @@ yarn start
 <a href="https://github.com/Paper-House/PaperHouse/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Paper-House/PaperHouse" />
 </a>
+
+## License
+
+This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details.
