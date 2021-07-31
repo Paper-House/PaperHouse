@@ -13,7 +13,9 @@ const ActivityCard = ({ image, title, address, fundAmount }) => {
     <div className="Activities__main--card">
       <img src={image} alt="thumbnail" />
       <div className="Activities__main--section--info">
-        <h5>{title}</h5>
+        <div className="Activities-title">
+          <h5>{title}</h5>
+        </div>
         <div className="Activities__main--section--transaction--info">
           <div className="Activities__main--address">
             <img src={pf} alt="pf" />
