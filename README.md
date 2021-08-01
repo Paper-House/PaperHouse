@@ -8,13 +8,24 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 
 ## Contents
 
-- [Getting Started](##Getting-Started)
+- [What is Paper House?](#What-is-Paper-House?)
+- [Getting Started](#Getting-Started)
 - [Project Roadmap](#Project-Roadmap)
 - [Live Demo](#Live-Demo)
 - [Built With](#Built-With)
 - [Contract Releases](#Contract-Releases)
 - [Contributors](#Contributors)
 - [License](#License)
+
+## What is Paper House?
+
+Much of the world is yet to be introduced to cryptocurrencies, DeFi, and NFTs. Our aim with this project is to onboard researchers and scholars to the world of crypto and introduce them to DeFi, Blockchain.  
+
+A Researcher can Mint and Publish their research papers on Paper House. Minting validates the research paper, keeping the originality of the paper linked safely with the Author which would help prevent Piracy. Researchers can also be funded right on the same platform. Many research works get dropped due to lack of funding and support, Funding Research Papers on Paper House would motivate the researchers to carry forward the research work and implement or test their observations.
+
+For scholars, Paper House is a one-stop platform that provides a simple way to broadly search for scholarly literature and also fund researches which have a great potential
+
+
 
 ## Getting Started
 
