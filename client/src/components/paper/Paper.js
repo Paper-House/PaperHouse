@@ -44,11 +44,14 @@ export const Paper = (props) => {
   const [ShowFundButton, setShowFundButton] = useState(false);
   const [maticconversion, setmaticconversion] = useState(0);
   const [Maticprice, setMaticprice] = useState(0);
+  const [Error, setError] = useState(false);
+
   const history = useHistory();
 
   getMATIC().then((price) => {
     setMaticprice(price);
   });
+
   const { connected, address, correctNetwork, balance } = useSelector(
     (state) => state.paper.wallet
   );
@@ -140,7 +143,7 @@ export const Paper = (props) => {
             from: address,
             value: Web3.utils.toWei(String(fundAmount), "ether"),
           })
-          .then(async (receipt) => {
+          .then((receipt) => {
             setloading(false);
             toast("Research Paper Funded", toastStyles.default);
             setmaticconversion(0);
@@ -151,10 +154,13 @@ export const Paper = (props) => {
           .catch((err) => {
             console.log(err);
             toast.error("Transaction Failed", toastStyles.error);
-
+            setmaticconversion(0);
+            setfundAmount(0);
             setloading(false);
             setShowPopup(false);
           });
+      } else {
+        setError(true);
       }
     }
   }
@@ -244,6 +250,7 @@ export const Paper = (props) => {
                   type="number"
                   placeholder="0 MATIC"
                   onChange={(e) => {
+                    setError(false);
                     setmaticconversion(e.target.value * Maticprice);
                     setfundAmount(e.target.value);
                   }}
@@ -262,6 +269,9 @@ export const Paper = (props) => {
                   </h3>
                 </div>
               </div>
+              <p style={!Error ? { display: "none" } : null}>
+                Enter Amount Less Than Max Amount Allowed
+              </p>
             </div>
             <div className="paper_funding_popup_box_buttons">
               <button
