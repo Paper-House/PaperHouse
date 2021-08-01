@@ -10,6 +10,7 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 - [Project Roadmap](#Project-Roadmap)
 - [Live Demo](#Live-Demo)
 - [Built With](#Built-With)
+- [Contract Releases](#Contract-Releases)
 - [Contributors](#Contributors)
 - [License](#License)
 
@@ -49,6 +50,18 @@ Our Official Website: [Paper-House.netlify.app/](https://paper-house.netlify.app
 - [Portis](https://www.portis.io/) - Portis is a simplistic multi-blockchain wallet, which is designed to be easily set-up and connected to dApps.
 - [The Graph](https://thegraph.com/) - The Graph is an indexing protocol for querying networks like Ethereum and IPFS. Anyone can build and publish open APIs, called subgraphs, making data easily accessible.
 - [NFT Storage](https://nft.storage/) - Free decentralized storage and bandwidth for NFTs on IPFS and Filecoin.
+
+## Contract Releases
+
+ - [Polygon Mumbai Testnet (80001)](https://mumbai.polygonscan.com)
+ - [View On Polygonscan](https://mumbai.polygonscan.com/address/0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3)
+```json
+{
+  "80001": {
+    "PaperHouse": "0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3",
+  }
+}
+```
 
 ## Contributors
 <a href="https://github.com/Paper-House/PaperHouse/graphs/contributors">
