@@ -415,6 +415,13 @@
   background-color: rgba(0, 151, 253, 0.3);
   color: rgba(255, 255, 255, 0.3);
 }
+.paper_funding_popup_box_input p{
+  float: left;
+  font-size: .8em;
+  font-weight: 500;
+  color:rgba(255,148,148);
+  margin-top: 5px;
+}
 /* Tablet and below */
 @media screen and (max-width: 768px) {
   .paper_share {

@@ -9,9 +9,7 @@ import logo from "../assets/logo.svg";
 import metamask from "../assets/metamask_icon.svg";
 import portis from "../assets/portis_icon.svg";
 import ConnectWallet from "../ConnectWallet";
-import {
-  setPapers,
-} from "../../redux/reducers/papersreducer";
+import { setPapers } from "../../redux/reducers/papersreducer";
 import web3 from "web3";
 import {
   setMyActivities,
@@ -227,6 +225,7 @@ export const Navbar = () => {
       <ConnectWallet
         wallet={wallet}
         setWallconnect={(prop) => setwallet(prop)}
+        setConnecting={setConnecting}
       />
       {connected ? correctNetwork ? null : <WrongNetwork /> : null}
       <div className="nav__backdrop">
@@ -262,8 +261,9 @@ export const Navbar = () => {
                 onChange={(e) => setSearchinput(e.target.value)}
               />
             </form>
-            {!Searchinput ? null : <Search input={Searchinput} resetInput={setSearchinput} />}
-
+            {!Searchinput ? null : (
+              <Search input={Searchinput} resetInput={setSearchinput} />
+            )}
           </div>
           <div className="nav-buttons">
             <div className="nav-buttons-left">
@@ -301,16 +301,8 @@ export const Navbar = () => {
               height="13.200000000000001"
               xlmns="http://www.w3.org/2000/svg"
             >
-              <path
-                d="M4 12L12 4"
-                stroke="currentColor"
-                strokeWidth="2"
-              ></path>
-              <path
-                d="M12 12L4 4"
-                stroke="currentColor"
-                strokeWidth="2"
-              ></path>
+              <path d="M4 12L12 4" stroke="currentColor" strokeWidth="2"></path>
+              <path d="M12 12L4 4" stroke="currentColor" strokeWidth="2"></path>
             </svg>
           </div>
           <div

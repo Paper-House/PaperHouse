@@ -9,7 +9,6 @@ export const Explore = () => {
   const [category, setcategory] = useState("all");
   const [paperbycat, setpaperbycat] = useState([]);
   const papers = useSelector((state) => state.paper.papers.data);
-
   useEffect(() => {
     if (papers.length != 0) {
       setpaperbycat(papers);
@@ -22,11 +21,12 @@ export const Explore = () => {
         setpaperbycat(papers);
       } else {
         let paper_byCategory = [];
-        let paper = papers.find((paper) => paper.category === category);
-        if (paper) {
-          paper_byCategory.push(paper);
-          setpaperbycat(paper_byCategory);
-        }
+        papers.forEach((paper) => {
+          if (paper.category === category) {
+            paper_byCategory.push(paper);
+            setpaperbycat(paper_byCategory);
+          }
+        });
       }
     }
   }, [category]);
@@ -120,7 +120,7 @@ export const Explore = () => {
           </div>
         ) : (
           <div className="explore_nopapers">
-            <img src={Nopaperloading} alt="" srcset="" />
+            <img src={Nopaperloading} alt="" />
             <h3>No Papers</h3>
           </div>
         )
