@@ -4,6 +4,8 @@
 
 An NFT Platform for Researchers. A place where a researcher can mint their research paper and publish and also get funded on our platform.
 
+![UiDesign](./Images/UiDesign.jpg)
+
 ## Contents
 
 - [Getting Started](##Getting-Started)
@@ -14,16 +16,17 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 - [Contributors](#Contributors)
 - [License](#License)
 
-
 ## Getting Started
 
 ### <p align="center"> <b> Installing React dependencies and starting local server </b> </p>
+
 ```
 git clone https://github.com/Paper-House/PaperHouse.git
 cd client/
 npm install
 npm start
 ```
+
 <p align="center">OR</p>
 
 ```
@@ -37,8 +40,8 @@ yarn start
 
 ![Roadmap](./Images/RoadMap.jpg)
 
-
 ## Live Demo
+
 Our Official Website: [Paper-House.netlify.app/](https://paper-house.netlify.app/).
 
 ## Built With
@@ -53,17 +56,19 @@ Our Official Website: [Paper-House.netlify.app/](https://paper-house.netlify.app
 
 ## Contract Releases
 
- - [Polygon Mumbai Testnet (80001)](https://mumbai.polygonscan.com)
- - [View On Polygonscan](https://mumbai.polygonscan.com/address/0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3)
+- [Polygon Mumbai Testnet (80001)](https://mumbai.polygonscan.com)
+- [View On Polygonscan](https://mumbai.polygonscan.com/address/0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3)
+
 ```json
 {
   "80001": {
-    "PaperHouse": "0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3",
+    "PaperHouse": "0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3"
   }
 }
 ```
 
 ## Contributors
+
 <a href="https://github.com/Paper-House/PaperHouse/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Paper-House/PaperHouse" />
 </a>
