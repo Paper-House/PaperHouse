@@ -39,7 +39,8 @@
 }
 
 .Activities__main--section--transaction--info {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   align-items: center;
 }
 
@@ -47,7 +48,6 @@
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: 30px;
-  width: 50%;
   padding: 10px 10px 0px 0px;
   align-items: center;
   grid-gap: 10px;
@@ -77,6 +77,8 @@
 #fundAmount {
   padding-top: 10px;
   font-size: 0.8rem;
+  float: right;
+  text-align: center;
 }
 
 /* Mobile */
