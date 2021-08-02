@@ -7,6 +7,7 @@ import { Explore } from "./components/explore/index";
 import { Publish } from "./components/publish/index";
 import { Paper } from "./components/paper/index";
 import { Mypapers } from "./components/mypapers/index";
+import UnderConstruction from "./components/UnderConstruction";
 import Profile from "./components/profile/Profile";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
@@ -19,15 +20,15 @@ export default function App() {
       <SkeletonTheme color="#1e5383" highlightColor="rgba(0, 151, 253,.4)">
         <Navbar />
         <Switch>
-          <Route exact path="/" component={Explore} />
-          <Route path="/explore" component={Explore} />
+          <Route path="/" component={UnderConstruction} />
+          {/* <Route path="/explore" component={Explore} />
           <Route path="/publish" component={Publish} />
           <Route path="/mypaper" component={Mypapers} />
           <Route path="/paper/:paperid" component={Paper} />
           <Route path="/myprofile" component={Profile} />
           <Route path="/profile" component={ProfilePapers} />
           <Route path="/not-found" component={NotFound} />
-          <Route component={NotFound} />
+          <Route component={NotFound} /> */}
         </Switch>
       </SkeletonTheme>
     </Router>
