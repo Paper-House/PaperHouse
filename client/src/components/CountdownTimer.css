@@ -43,5 +43,6 @@
   .timer {
     font-size: small;
     width: auto;
+    max-width: 335px;
   }
 }

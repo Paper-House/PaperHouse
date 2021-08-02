@@ -18,7 +18,7 @@ export default function App() {
   return (
     <Router>
       <SkeletonTheme color="#1e5383" highlightColor="rgba(0, 151, 253,.4)">
-        <Navbar />
+        {/* <Navbar /> */}
         <Switch>
           <Route path="/" component={CountdownTimer} />
           {/* <Route path="/explore" component={Explore} />
