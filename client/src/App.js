@@ -7,7 +7,7 @@ import { Explore } from "./components/explore/index";
 import { Publish } from "./components/publish/index";
 import { Paper } from "./components/paper/index";
 import { Mypapers } from "./components/mypapers/index";
-import UnderConstruction from "./components/UnderConstruction";
+import CountdownTimer from "./components/CountdownTimer";
 import Profile from "./components/profile/Profile";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
@@ -20,7 +20,7 @@ export default function App() {
       <SkeletonTheme color="#1e5383" highlightColor="rgba(0, 151, 253,.4)">
         <Navbar />
         <Switch>
-          <Route path="/" component={UnderConstruction} />
+          <Route path="/" component={CountdownTimer} />
           {/* <Route path="/explore" component={Explore} />
           <Route path="/publish" component={Publish} />
           <Route path="/mypaper" component={Mypapers} />

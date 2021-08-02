@@ -1,0 +1,47 @@
+.counterContainer {
+  margin-top: 65px;
+}
+
+#live {
+  animation: glow 1s alternate infinite;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0px 0px 5px #0097fd;
+  }
+  100% {
+    text-shadow: 0px 0px 18px #0097fd;
+  }
+}
+
+.live {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  flex-direction: column;
+  color: white;
+}
+.live {
+  font-size: x-large;
+}
+
+.timer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  width: 400px;
+  font-size: 1rem;
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  .live h1 {
+    text-align: center;
+    color: white;
+  }
+  .timer {
+    font-size: small;
+    width: auto;
+  }
+}
