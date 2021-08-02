@@ -86,4 +86,4 @@ Our Official Website: [Paper-House.netlify.app/](https://paper-house.netlify.app
 
 ## License
 
-This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
