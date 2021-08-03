@@ -1,6 +1,6 @@
-.counterContainer {
+/* .counterContainer {
   margin-top: 65px;
-}
+} */
 
 #live {
   animation: glow 1s alternate infinite;
@@ -40,9 +40,20 @@
     text-align: center;
     color: white;
   }
+  #live {
+    font-size: xx-large;
+  }
   .timer {
     font-size: small;
     width: auto;
     max-width: 335px;
+  }
+  .counterContainer {
+    height: 100vh;
+  }
+
+  .counterContainer svg {
+    width: 200px;
+    height: 300px;
   }
 }
