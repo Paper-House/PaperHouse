@@ -110,11 +110,9 @@ export const Explore = () => {
           <div className="explore_papers">
             {paperbycat.map((paper, index) => {
               return (
-                <div className="explore_papers">
-                  <Link to={`/paper/${paper.paperid}`} key={index}>
-                    <PaperCard data={paper} />
-                  </Link>
-                </div>
+                <Link to={`/paper/${paper.paperid}`} key={index}>
+                  <PaperCard data={paper} />
+                </Link>
               );
             })}
           </div>
