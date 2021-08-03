@@ -4,9 +4,12 @@
 
 An NFT Platform for Researchers. A place where a researcher can mint their research paper and publish and also get funded on our platform.
 
+![UiDesign](./Images/UiDesign.jpg)
+
 ## Contents
 
-- [Getting Started](##Getting-Started)
+- [What is Paper House?](#What-is-Paper-House?)
+- [Getting Started](#Getting-Started)
 - [Project Roadmap](#Project-Roadmap)
 - [Live Demo](#Live-Demo)
 - [Built With](#Built-With)
@@ -14,16 +17,27 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 - [Contributors](#Contributors)
 - [License](#License)
 
+## What is Paper House?
+
+Much of the world is yet to be introduced to cryptocurrencies, DeFi, and NFTs. Our aim with this project is to onboard researchers and scholars to the world of crypto and introduce them to DeFi, Blockchain.  
+
+A Researcher can Mint and Publish their research papers on Paper House. Minting validates the research paper, keeping the originality of the paper linked safely with the Author which would help prevent Piracy. Researchers can also be funded right on the same platform. Many research works get dropped due to lack of funding and support, Funding Research Papers on Paper House would motivate the researchers to carry forward the research work and implement or test their observations.
+
+For scholars, Paper House is a one-stop platform that provides a simple way to broadly search for scholarly literature and also fund researches which have a great potential
+
+
 
 ## Getting Started
 
 ### <p align="center"> <b> Installing React dependencies and starting local server </b> </p>
+
 ```
 git clone https://github.com/Paper-House/PaperHouse.git
 cd client/
 npm install
 npm start
 ```
+
 <p align="center">OR</p>
 
 ```
@@ -37,8 +51,8 @@ yarn start
 
 ![Roadmap](./Images/RoadMap.jpg)
 
-
 ## Live Demo
+
 Our Official Website: [Paper-House.netlify.app/](https://paper-house.netlify.app/).
 
 ## Built With
@@ -53,21 +67,23 @@ Our Official Website: [Paper-House.netlify.app/](https://paper-house.netlify.app
 
 ## Contract Releases
 
- - [Polygon Mumbai Testnet (80001)](https://mumbai.polygonscan.com)
- - [View On Polygonscan](https://mumbai.polygonscan.com/address/0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3)
+- [Polygon Mumbai Testnet (80001)](https://mumbai.polygonscan.com)
+- [View On Polygonscan](https://mumbai.polygonscan.com/address/0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3)
+
 ```json
 {
   "80001": {
-    "PaperHouse": "0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3",
+    "PaperHouse": "0xEA1aC3a3c4B29F55D1271658e8c864B40a6c68E3"
   }
 }
 ```
 
 ## Contributors
+
 <a href="https://github.com/Paper-House/PaperHouse/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Paper-House/PaperHouse" />
 </a>
 
 ## License
 
-This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
