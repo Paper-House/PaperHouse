@@ -54,28 +54,36 @@ export const Navbar = () => {
   const height = useDimensions(containerRef);
   const [Searchinput, setSearchinput] = useState(undefined);
 
+  //add paperId of paper here to blacklist tht paper
+  const Paper_blacklist = [10];
+
   const { connected, correctNetwork, address } = useSelector(
     (state) => state.paper.wallet
   );
 
-  const state = useSelector((state) => state.paper);
+  function blacklist(paperid) {
+    if (Paper_blacklist.find((list) => list == paperid)) return true;
+    return false;
+  }
 
   useEffect(() => {
     axios
       .post(apiEndpoint, { query: getAllPapersQuery.query })
       .then(({ data }) => {
         data.data.papers.map((data) => {
-          axios.get(getURL(data.tokenUri)).then((metadata) => {
-            var paper = {};
-            paper.paperid = data.paperId;
-            paper.title = metadata.data.name;
-            paper.thumbnail = getURL(metadata.data.image);
-            paper.category = metadata.data.category.toLowerCase();
-            paper.author = metadata.data.author;
-            paper.date = metadata.data.publishDate;
-            paper.publisher = data.owner;
-            dispatch(setPapers(paper));
-          });
+          if (!blacklist(data.paperId)) {
+            axios.get(getURL(data.tokenUri)).then((metadata) => {
+              var paper = {};
+              paper.paperid = data.paperId;
+              paper.title = metadata.data.name;
+              paper.thumbnail = getURL(metadata.data.image);
+              paper.category = metadata.data.category.toLowerCase();
+              paper.author = metadata.data.author;
+              paper.date = metadata.data.publishDate;
+              paper.publisher = data.owner;
+              dispatch(setPapers(paper));
+            });
+          }
         });
       });
 
