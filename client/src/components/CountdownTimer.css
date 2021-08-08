@@ -3,10 +3,10 @@
 } */
 
 #live {
-  animation: glow 1s alternate infinite;
+  animation: glowLive 1s alternate infinite;
 }
 
-@keyframes glow {
+@keyframes glowLive {
   0% {
     text-shadow: 0px 0px 5px #0097fd;
   }
