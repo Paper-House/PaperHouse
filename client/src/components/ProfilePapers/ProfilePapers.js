@@ -162,6 +162,7 @@ const PaperCardRenderer = ({ data }) => {
         }
         updating={updating}
         allowFunding={paper.allowFunding}
+        paperLink={`/paper/${paper.paperid}`}
       />
     );
   });
