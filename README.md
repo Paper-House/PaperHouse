@@ -19,13 +19,13 @@ An NFT Platform for Researchers. A place where a researcher can mint their resea
 
 ## What is Paper House?
 
-Much of the world is yet to be introduced to cryptocurrencies, DeFi, and NFTs. Our aim with this project is to onboard researchers and scholars to the world of crypto and introduce them to DeFi, Blockchain.  
+Much of the world is yet to be introduced to cryptocurrencies, DeFi, and NFTs. Our aim with this project is to onboard researchers and scholars to the world of crypto and introduce them to DeFi, Blockchain.
 
-A Researcher can Mint and Publish their research papers on Paper House. Minting validates the research paper, keeping the originality of the paper linked safely with the Author which would help prevent Piracy. Researchers can also be funded right on the same platform. Many research works get dropped due to lack of funding and support, Funding Research Papers on Paper House would motivate the researchers to carry forward the research work and implement or test their observations.
+A Researcher can Mint and Publish their research papers on Paper House. Minting validates the research paper, keeping the originality of the paper linked safely with the Author, which would help prevent Piracy & duplication of Research Papers. Researchers can also be funded right on the same platform. Many research works get dropped due to lack of funding and support, Funding Research Papers on Paper House would motivate the researchers to carry forward the research work.
 
 For scholars, Paper House is a one-stop platform that provides a simple way to broadly search for scholarly literature and also fund researches which have a great potential
 
-
+In near future, we’re planning to add various features to our platform like Up-Vote & Down-Vote Papers, De-list paper from our home page, Get crypto rewards for reading research papers, and also much-needed features like Verifying the Authenticity of Research papers, Report Paper, Comments Section, Filter for adult content, Getting crypto rewards for reading research papers and Subscription-based on-demand service to get more insights about a research paper so that researchers can get monetized.
 
 ## Getting Started
 
