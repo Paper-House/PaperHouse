@@ -250,7 +250,7 @@ export const Navbar = () => {
             className="paper-search"
             style={SearchToggle ? { display: "block", width: "100%" } : null}
           >
-            <form>
+            <form onSubmit={(e) => e.preventDefault()}>
               <svg
                 width="18"
                 height="18"
