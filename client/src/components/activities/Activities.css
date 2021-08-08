@@ -46,7 +46,7 @@
 
 .Activities__main--address {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 25px auto;
   grid-template-rows: 30px;
   padding: 10px 10px 0px 0px;
   align-items: center;
@@ -128,6 +128,10 @@
     grid-gap: 20px;
     max-width: 100vw;
     margin-top: 20px;
+  }
+
+  .Activities__main--address {
+    grid-template-columns: 30px auto;
   }
 
   .Activities__main--address p {
