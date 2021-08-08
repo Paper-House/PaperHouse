@@ -4,9 +4,9 @@ import Skeleton from "react-loading-skeleton";
 
 import "./Activities.css";
 
-import pf from "../assets/pf.png";
 import ConnectWallet from "../connectWallet/ConnectWallet";
 import NoActivities from "../NoActivities/NoActivities";
+import makeBlockie from "ethereum-blockies-base64";
 
 const ActivityCard = ({ image, title, address, fundAmount }) => {
   return (
@@ -18,7 +18,7 @@ const ActivityCard = ({ image, title, address, fundAmount }) => {
         </div>
         <div className="Activities__main--section--transaction--info">
           <div className="Activities__main--address">
-            <img src={pf} alt="pf" />
+            <img src={makeBlockie(address)} alt="pf" />
             <p>{address}</p>
           </div>
           <p id="fundAmount">Funded {Number(fundAmount).toFixed(3)} MATIC</p>
