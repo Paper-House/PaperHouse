@@ -5,7 +5,7 @@ import "./CountdownTimer.css";
 const CountdownTimer = () => {
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    let difference = +new Date(`9/08/${year}`) - +new Date();
+    let difference = +new Date(`8/09/${year}`) - +new Date();
     let timeLeft = {};
 
     if (difference > 0) {
