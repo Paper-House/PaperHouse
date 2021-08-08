@@ -79,6 +79,7 @@
   font-size: 0.8rem;
   float: right;
   text-align: center;
+  margin-right: 10px;
 }
 
 /* Mobile */
@@ -138,6 +139,10 @@
   }
   .Activities__nav--section-mob h2 {
     color: var(--pH-heading-color);
+  }
+
+  #fundAmount {
+    font-size: 0.7rem;
   }
 }
 
