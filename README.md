@@ -29,7 +29,7 @@ In near future, we’re planning to add various features to our platform like Up
 
 ## Getting Started
 
-### <p align="center"> <b> Installing React dependencies and starting local server </b> </p>
+### <p> <b> Installing React dependencies and starting local server </b> </p>
 
 ```
 git clone https://github.com/Paper-House/PaperHouse.git
