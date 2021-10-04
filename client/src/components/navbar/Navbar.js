@@ -394,7 +394,7 @@ export const Navbar = () => {
                       </div>
                       <div className="mobile__nav-dropdown-socialMedia">
                         <div className="mobile-nav-social">
-                          <a href="#">
+                          <a href="https://github.com/Paper-House" target="_blank">
                             <svg
                               width="18"
                               height="18"
