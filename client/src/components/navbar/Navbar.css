@@ -100,7 +100,7 @@ input:focus {
   background: #0097fd;
   /* box-shadow: 8px 12px 14px rgba(0, 151, 253, 0.19), inset 0px 4px 30px #6447f4; */
   color: white;
-  padding: 8px 18px 8px 18px;
+  padding: 8px 7px 8px 7px;
   border-radius: 26px;
   transition: 0.25s ease-in-out;
   animation: glow 1s alternate infinite;
