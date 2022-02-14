@@ -150,6 +150,18 @@ input:focus {
   justify-content: space-between;
 }
 
+.nav-user {
+  display: flex;
+  align-items: center;
+}
+
+.nav-avatar {
+  height: 20px;
+  width: 20px;
+  border-radius: 100px;
+  margin-right: 8px;
+}
+
 .mobile__slider__toogle--search {
   display: none;
 }
@@ -583,7 +595,7 @@ input:focus {
   }
 }
 
-@media only screen and (max-width: 767px) and (min-width: 500px){
+@media only screen and (max-width: 767px) and (min-width: 500px) {
   .nav__mobile-dropdown-navigation-buttons {
     display: grid;
     grid-template-rows: auto auto auto auto 1fr;

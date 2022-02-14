@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ethersproject/providers": "^5.5.3",
     "@portis/web3": "^4.0.5",
     "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.18.1",
