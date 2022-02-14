@@ -28,6 +28,7 @@ import {
 } from "../../graphQueries";
 
 import { getURL } from "../../utils/getURL";
+import useENS from "../../hooks/useENS";
 import Search from "../Search/Search";
 
 export const useDimensions = (ref) => {
@@ -60,6 +61,7 @@ export const Navbar = () => {
   const { connected, correctNetwork, address } = useSelector(
     (state) => state.paper.wallet
   );
+  const { ensName, ensAvatar } = useENS(address);
 
   function blacklist(paperid) {
     if (Paper_blacklist.find((list) => list == paperid)) return true;
@@ -288,12 +290,16 @@ export const Navbar = () => {
               </NavLink>
               <a
                 id="connect"
+                className="nav-user"
                 onClick={() => {
                   window.scrollTo(0, 0);
                   setWalletToggle(!walletToggle);
                 }}
               >
-                {!connected ? "Connect" : "Connected"}
+                {ensAvatar && (
+                  <img className="nav-avatar" src={ensAvatar} alt={address} />
+                )}
+                {!connected ? "Connect" : ensName || "Connected"}
               </a>
             </div>
           </div>
@@ -394,7 +400,10 @@ export const Navbar = () => {
                       </div>
                       <div className="mobile__nav-dropdown-socialMedia">
                         <div className="mobile-nav-social">
-                          <a href="https://github.com/Paper-House" target="_blank">
+                          <a
+                            href="https://github.com/Paper-House"
+                            target="_blank"
+                          >
                             <svg
                               width="18"
                               height="18"
